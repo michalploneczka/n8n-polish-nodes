@@ -33,14 +33,14 @@
 
 ### CEIDG Node
 
-- [ ] **CEIDG-01**: Credentials — API Key w header Authorization
-- [ ] **CEIDG-02**: Resource: Companies — operacja Search by NIP (nip query param)
-- [ ] **CEIDG-03**: Resource: Companies — operacja Search by Name (nazwa query param)
-- [ ] **CEIDG-04**: Resource: Companies — operacja Get (id path param)
-- [ ] **CEIDG-05**: Styl deklaratywny (routing) — żadnego execute() method
+- [x] **CEIDG-01**: Credentials — API Key w header Authorization
+- [x] **CEIDG-02**: Resource: Companies — operacja Search by NIP (nip query param)
+- [x] **CEIDG-03**: Resource: Companies — operacja Search by Name (nazwa query param)
+- [x] **CEIDG-04**: Resource: Companies — operacja Get (id path param)
+- [x] **CEIDG-05**: Styl deklaratywny (routing) — żadnego execute() method
 - [ ] **CEIDG-06**: Obsługa błędów HTTP jako `NodeApiError`
 - [ ] **CEIDG-07**: Testy z nock — happy path + error handling
-- [ ] **CEIDG-08**: package.json, codex, SVG ikona, README (jak SMSAPI-10..13)
+- [x] **CEIDG-08**: package.json, codex, SVG ikona, README (jak SMSAPI-10..13)
 
 ### Fakturownia Node
 
