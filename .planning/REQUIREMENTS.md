@@ -24,8 +24,8 @@
 - [x] **SMSAPI-05**: Resource: Contacts — operacje List, Create, Update, Delete
 - [x] **SMSAPI-06**: Resource: Groups — operacja List
 - [x] **SMSAPI-07**: Resource: Account — operacja Balance
-- [ ] **SMSAPI-08**: Obsługa błędów HTTP jako `NodeApiError` z czytelnym komunikatem po angielsku
-- [ ] **SMSAPI-09**: Testy z nock — happy path + error handling dla każdej operacji
+- [x] **SMSAPI-08**: Obsługa błędów HTTP jako `NodeApiError` z czytelnym komunikatem po angielsku
+- [x] **SMSAPI-09**: Testy z nock — happy path + error handling dla każdej operacji
 - [x] **SMSAPI-10**: package.json z keyword `n8n-community-node-package`, pole `n8n` z paths do dist
 - [x] **SMSAPI-11**: Plik codex (.node.json) — categories: Communication, subcategory: SMS
 - [x] **SMSAPI-12**: Ikona SVG 60x60 — oficjalne logo SMSAPI
