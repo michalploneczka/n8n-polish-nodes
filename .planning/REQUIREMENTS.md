@@ -11,7 +11,7 @@
 - [x] **INFRA-02**: Wspólny tsconfig.json (base) dziedziczony przez każdy package
 - [x] **INFRA-03**: Root-level skrypty: `build:all`, `lint:all`, `test:all`
 - [ ] **INFRA-04**: GitHub Actions workflow publish.yml z `--provenance` flag i `id-token: write` permission
-- [ ] **INFRA-05**: Shared test utilities — mock `IExecuteFunctions` i `this.helpers.httpRequest()` dla nock
+- [x] **INFRA-05**: Shared test utilities — mock `IExecuteFunctions` i `this.helpers.httpRequest()` dla nock
 - [ ] **INFRA-06**: README.md root z listą node'ów, badges npm, link do każdego package
 - [x] **INFRA-07**: LICENSE (MIT) i .gitignore (node_modules, dist)
 
