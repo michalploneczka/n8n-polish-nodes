@@ -38,7 +38,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 10 plans
 
 Plans:
-- [ ] 01-01: Monorepo root -- pnpm-workspace.yaml, package.json, tsconfig.base.json, jest.config.base.js, .gitignore, LICENSE, scripts/copy-codex.js
+- [x] 01-01: Monorepo root -- pnpm-workspace.yaml, package.json, tsconfig.base.json, jest.config.base.js, .gitignore, LICENSE, scripts/copy-codex.js
 - [ ] 01-02: Shared test utilities -- createMockExecuteFunctions (no n8n-core), nock helpers in shared/test-utils/
 - [ ] 01-03: CI/CD workflows and README -- ci.yml, publish.yml (provenance), verify-packages.js, root README.md
 - [ ] 01-04: CEIDG node -- credentials (API Key, IAuthenticateGeneric), declarative routing for Search by NIP, Search by Name, Get; codex, SVG icon
