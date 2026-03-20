@@ -1,0 +1,56 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'n8n-nodes-*@*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+
+      - name: Extract package name and version from tag
+        id: tag
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          PACKAGE_NAME="${TAG%@*}"
+          VERSION="${TAG##*@}"
+          echo "package_name=$PACKAGE_NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing $PACKAGE_NAME@$VERSION"
+
+      - name: Verify version matches package.json
+        run: |
+          PKG_VERSION=$(node -e "console.log(require('./packages/${{ steps.tag.outputs.package_name }}/package.json').version)")
+          if [ "$PKG_VERSION" != "${{ steps.tag.outputs.version }}" ]; then
+            echo "Tag version (${{ steps.tag.outputs.version }}) does not match package.json version ($PKG_VERSION)"
+            exit 1
+          fi
+
+      - name: Build package
+        run: pnpm --filter "${{ steps.tag.outputs.package_name }}" run build
+
+      - name: Test package
+        run: pnpm --filter "${{ steps.tag.outputs.package_name }}" run test
+
+      - name: Publish with provenance
+        run: |
+          cd packages/${{ steps.tag.outputs.package_name }}
+          npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
