@@ -38,16 +38,16 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 10 plans
 
 Plans:
-- [ ] 01-01: Monorepo scaffold -- root package.json with npm workspaces, tsconfig.base.json, .eslintrc.js, jest.config.base.js, .gitignore, LICENSE
-- [ ] 01-02: Shared test utilities -- mock IExecuteFunctions, nock helpers in shared/test-utils/, verify imports from package test dirs
-- [ ] 01-03: CI workflow -- .github/workflows/ci.yml (lint + build + test on PR/push to main, Node 18 + 20 matrix)
-- [ ] 01-04: Publish workflow -- .github/workflows/publish.yml (tag-triggered, --provenance, id-token:write, version verification)
-- [ ] 01-05: Package verification script -- scripts/verify-packages.js checking keyword, n8n field paths, repository.directory
-- [ ] 01-06: CEIDG node -- credentials (API Key), declarative routing for Search by NIP, Search by Name, Get; codex, SVG icon, README
-- [ ] 01-07: CEIDG tests and error handling -- nock tests for happy path + error scenarios, NodeApiError wrapping
-- [ ] 01-08: SMSAPI node -- credentials (Bearer Token), declarative routing for SMS Send/Send Group/Get Report, Contacts CRUD, Groups List, Account Balance; format=json in requestDefaults
-- [ ] 01-09: SMSAPI tests and error handling -- nock tests for all operations, verify format=json on legacy /sms.do endpoint
-- [ ] 01-10: Pipeline validation -- build CEIDG, npm link to n8n, verify node discovery; dry-run publish with tag to validate provenance workflow
+- [ ] 01-01: Monorepo root -- pnpm-workspace.yaml, package.json, tsconfig.base.json, jest.config.base.js, .gitignore, LICENSE, scripts/copy-codex.js
+- [ ] 01-02: Shared test utilities -- createMockExecuteFunctions (no n8n-core), nock helpers in shared/test-utils/
+- [ ] 01-03: CI/CD workflows and README -- ci.yml, publish.yml (provenance), verify-packages.js, root README.md
+- [ ] 01-04: CEIDG node -- credentials (API Key, IAuthenticateGeneric), declarative routing for Search by NIP, Search by Name, Get; codex, SVG icon
+- [ ] 01-05: SMSAPI node -- credentials (Bearer Token), declarative node with 4 resources (SMS, Contacts, Groups, Account); format=json in requestDefaults
+- [ ] 01-06: CEIDG tests -- nock-based tests for node description, routing validation, HTTP error handling
+- [ ] 01-07: SMSAPI tests -- nock-based tests for all 9 operations, format=json verification, error handling
+- [ ] 01-08: Package READMEs -- CEIDG and SMSAPI README.md with operations, credentials, example workflow
+- [ ] 01-09: Full pipeline build -- pnpm install, build:all, lint:all, test:all, verify-packages integration
+- [ ] 01-10: Pipeline validation -- link to n8n, verify node discovery in picker (human checkpoint)
 
 **Technical Notes:**
 - Resolve pnpm vs npm workspaces: test `npm link` compatibility first. Default: npm workspaces per ARCHITECTURE.md recommendation
