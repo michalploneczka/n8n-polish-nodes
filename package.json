@@ -1,0 +1,32 @@
+{
+  "name": "n8n-polish-nodes",
+  "private": true,
+  "description": "Collection of n8n community nodes for Polish services",
+  "license": "MIT",
+  "author": {
+    "name": "Michal Ploneczka",
+    "email": "mp@codersgroup.pl",
+    "url": "https://codersgroup.pl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michalploneczka/n8n-polish-nodes.git"
+  },
+  "scripts": {
+    "build:all": "pnpm --filter './packages/*' run build",
+    "lint:all": "pnpm --filter './packages/*' run lint",
+    "test:all": "pnpm --filter './packages/*' run test",
+    "clean:all": "pnpm --filter './packages/*' run clean"
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "^0.23.0",
+    "@types/jest": "^29.5.0",
+    "eslint": "9.32.0",
+    "jest": "^29.7.0",
+    "nock": "^14.0.0",
+    "n8n-workflow": "*",
+    "prettier": "3.6.2",
+    "ts-jest": "^29.2.0",
+    "typescript": "5.9.2"
+  }
+}
