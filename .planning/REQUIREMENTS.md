@@ -10,9 +10,9 @@
 - [x] **INFRA-01**: Monorepo z npm workspaces — wspólny root package.json, packages/ directory, wspólny tooling
 - [x] **INFRA-02**: Wspólny tsconfig.json (base) dziedziczony przez każdy package
 - [x] **INFRA-03**: Root-level skrypty: `build:all`, `lint:all`, `test:all`
-- [ ] **INFRA-04**: GitHub Actions workflow publish.yml z `--provenance` flag i `id-token: write` permission
+- [x] **INFRA-04**: GitHub Actions workflow publish.yml z `--provenance` flag i `id-token: write` permission
 - [x] **INFRA-05**: Shared test utilities — mock `IExecuteFunctions` i `this.helpers.httpRequest()` dla nock
-- [ ] **INFRA-06**: README.md root z listą node'ów, badges npm, link do każdego package
+- [x] **INFRA-06**: README.md root z listą node'ów, badges npm, link do każdego package
 - [x] **INFRA-07**: LICENSE (MIT) i .gitignore (node_modules, dist)
 
 ### SMSAPI Node
