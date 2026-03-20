@@ -1,6 +1,5 @@
 import type {
 	IAuthenticateGeneric,
-	Icon,
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
@@ -11,7 +10,7 @@ export class SmsapiApi implements ICredentialType {
 
 	displayName = 'SMSAPI API';
 
-	icon: Icon = { light: 'file:../icons/smsapi.svg' };
+	icon = 'file:../icons/smsapi.svg' as const;
 
 	documentationUrl = 'https://www.smsapi.pl/docs';
 

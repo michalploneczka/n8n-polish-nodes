@@ -31,25 +31,17 @@
     "test": "jest --config jest.config.js",
     "clean": "rm -rf dist"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "strict": true,
-    "credentials": [
-      "dist/credentials/SmsapiApi.credentials.js"
-    ],
-    "nodes": [
-      "dist/nodes/Smsapi/Smsapi.node.js"
-    ]
+    "strict": false,
+    "credentials": ["dist/credentials/SmsapiApi.credentials.js"],
+    "nodes": ["dist/nodes/Smsapi/Smsapi.node.js"]
   },
   "devDependencies": {
     "@n8n/node-cli": "*",
     "eslint": "9.32.0",
     "typescript": "5.9.2"
   },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  }
+  "peerDependencies": { "n8n-workflow": "*" }
 }

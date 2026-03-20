@@ -8,7 +8,7 @@ export class Smsapi implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'SMSAPI',
 		name: 'smsapi',
-		icon: { light: 'file:../../icons/smsapi.svg' },
+		icon: 'file:../../icons/smsapi.svg',
 		group: ['output'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',

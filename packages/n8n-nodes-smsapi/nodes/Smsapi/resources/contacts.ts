@@ -111,6 +111,19 @@ export const contactsDescription: INodeProperties[] = [
 		},
 		options: [
 			{
+				displayName: 'Description',
+				name: 'description',
+				type: 'string',
+				default: '',
+				description: 'Contact description',
+				routing: {
+					send: {
+						type: 'body',
+						property: 'description',
+					},
+				},
+			},
+			{
 				displayName: 'Email',
 				name: 'email',
 				type: 'string',
@@ -138,32 +151,6 @@ export const contactsDescription: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Last Name',
-				name: 'last_name',
-				type: 'string',
-				default: '',
-				description: 'Contact last name',
-				routing: {
-					send: {
-						type: 'body',
-						property: 'last_name',
-					},
-				},
-			},
-			{
-				displayName: 'Description',
-				name: 'description',
-				type: 'string',
-				default: '',
-				description: 'Contact description',
-				routing: {
-					send: {
-						type: 'body',
-						property: 'description',
-					},
-				},
-			},
-			{
 				displayName: 'Group ID',
 				name: 'group_id',
 				type: 'string',
@@ -173,6 +160,19 @@ export const contactsDescription: INodeProperties[] = [
 					send: {
 						type: 'body',
 						property: 'group_id',
+					},
+				},
+			},
+			{
+				displayName: 'Last Name',
+				name: 'last_name',
+				type: 'string',
+				default: '',
+				description: 'Contact last name',
+				routing: {
+					send: {
+						type: 'body',
+						property: 'last_name',
 					},
 				},
 			},
@@ -202,15 +202,15 @@ export const contactsDescription: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Phone Number',
-				name: 'phone_number',
+				displayName: 'Description',
+				name: 'description',
 				type: 'string',
 				default: '',
-				description: 'Phone number in format 48XXXXXXXXX',
+				description: 'Contact description',
 				routing: {
 					send: {
 						type: 'body',
-						property: 'phone_number',
+						property: 'description',
 					},
 				},
 			},
@@ -242,6 +242,19 @@ export const contactsDescription: INodeProperties[] = [
 				},
 			},
 			{
+				displayName: 'Group ID',
+				name: 'group_id',
+				type: 'string',
+				default: '',
+				description: 'ID of the group to assign the contact to',
+				routing: {
+					send: {
+						type: 'body',
+						property: 'group_id',
+					},
+				},
+			},
+			{
 				displayName: 'Last Name',
 				name: 'last_name',
 				type: 'string',
@@ -255,28 +268,15 @@ export const contactsDescription: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Description',
-				name: 'description',
+				displayName: 'Phone Number',
+				name: 'phone_number',
 				type: 'string',
 				default: '',
-				description: 'Contact description',
+				description: 'Phone number in format 48XXXXXXXXX',
 				routing: {
 					send: {
 						type: 'body',
-						property: 'description',
-					},
-				},
-			},
-			{
-				displayName: 'Group ID',
-				name: 'group_id',
-				type: 'string',
-				default: '',
-				description: 'ID of the group to assign the contact to',
-				routing: {
-					send: {
-						type: 'body',
-						property: 'group_id',
+						property: 'phone_number',
 					},
 				},
 			},

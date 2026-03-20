@@ -1,6 +1,5 @@
 import type {
 	IAuthenticateGeneric,
-	Icon,
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
@@ -11,7 +10,7 @@ export class CeidgApi implements ICredentialType {
 
 	displayName = 'CEIDG API';
 
-	icon: Icon = 'file:ceidg.svg' as Icon;
+	icon = 'file:../icons/ceidg.svg' as const;
 
 	documentationUrl = 'https://dane.biznes.gov.pl/api';
 
