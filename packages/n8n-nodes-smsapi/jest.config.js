@@ -5,4 +5,9 @@ module.exports = {
   moduleNameMapper: {
     '^@n8n-polish-nodes/test-utils$': '<rootDir>/../../shared/test-utils',
   },
+  globals: {
+    'ts-jest': {
+      diagnostics: false,
+    },
+  },
 };
