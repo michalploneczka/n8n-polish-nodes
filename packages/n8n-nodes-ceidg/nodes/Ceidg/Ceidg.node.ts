@@ -4,7 +4,7 @@ export class Ceidg implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'CEIDG',
 		name: 'ceidg',
-		icon: { light: 'file:../../icons/ceidg.svg' },
+		icon: 'file:ceidg.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',

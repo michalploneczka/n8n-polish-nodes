@@ -11,7 +11,7 @@ export class CeidgApi implements ICredentialType {
 
 	displayName = 'CEIDG API';
 
-	icon: Icon = { light: 'file:../icons/ceidg.svg' };
+	icon: Icon = 'file:ceidg.svg' as Icon;
 
 	documentationUrl = 'https://dane.biznes.gov.pl/api';
 

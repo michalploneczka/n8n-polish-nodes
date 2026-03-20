@@ -31,6 +31,7 @@ export function createMockExecuteFunctions(
 	continueBool = false,
 ): IExecuteFunctions {
 	const defaultNode: INode = {
+		id: 'test-node-id',
 		name: 'TestNode',
 		type: 'test',
 		typeVersion: 1,
