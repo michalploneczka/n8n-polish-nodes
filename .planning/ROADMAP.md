@@ -43,7 +43,7 @@ Plans:
 - [x] 01-03: CI/CD workflows and README -- ci.yml, publish.yml (provenance), verify-packages.js, root README.md
 - [x] 01-04: CEIDG node -- credentials (API Key, IAuthenticateGeneric), declarative routing for Search by NIP, Search by Name, Get; codex, SVG icon
 - [x] 01-05: SMSAPI node -- credentials (Bearer Token), declarative node with 4 resources (SMS, Contacts, Groups, Account); format=json in requestDefaults
-- [ ] 01-06: CEIDG tests -- nock-based tests for node description, routing validation, HTTP error handling
+- [x] 01-06: CEIDG tests -- nock-based tests for node description, routing validation, HTTP error handling
 - [ ] 01-07: SMSAPI tests -- nock-based tests for all 9 operations, format=json verification, error handling
 - [ ] 01-08: Package READMEs -- CEIDG and SMSAPI README.md with operations, credentials, example workflow
 - [ ] 01-09: Full pipeline build -- pnpm install, build:all, lint:all, test:all, verify-packages integration

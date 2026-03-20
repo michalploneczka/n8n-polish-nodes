@@ -38,8 +38,8 @@
 - [x] **CEIDG-03**: Resource: Companies — operacja Search by Name (nazwa query param)
 - [x] **CEIDG-04**: Resource: Companies — operacja Get (id path param)
 - [x] **CEIDG-05**: Styl deklaratywny (routing) — żadnego execute() method
-- [ ] **CEIDG-06**: Obsługa błędów HTTP jako `NodeApiError`
-- [ ] **CEIDG-07**: Testy z nock — happy path + error handling
+- [x] **CEIDG-06**: Obsługa błędów HTTP jako `NodeApiError`
+- [x] **CEIDG-07**: Testy z nock — happy path + error handling
 - [x] **CEIDG-08**: package.json, codex, SVG ikona, README (jak SMSAPI-10..13)
 
 ### Fakturownia Node
