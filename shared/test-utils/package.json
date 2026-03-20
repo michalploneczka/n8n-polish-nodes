@@ -1,0 +1,9 @@
+{
+  "name": "@n8n-polish-nodes/test-utils",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "devDependencies": {
+    "n8n-workflow": "*"
+  }
+}
