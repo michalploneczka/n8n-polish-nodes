@@ -45,7 +45,7 @@ Plans:
 - [x] 01-05: SMSAPI node -- credentials (Bearer Token), declarative node with 4 resources (SMS, Contacts, Groups, Account); format=json in requestDefaults
 - [x] 01-06: CEIDG tests -- nock-based tests for node description, routing validation, HTTP error handling
 - [x] 01-07: SMSAPI tests -- nock-based tests for all 9 operations, format=json verification, error handling
-- [ ] 01-08: Package READMEs -- CEIDG and SMSAPI README.md with operations, credentials, example workflow
+- [x] 01-08: Package READMEs -- CEIDG and SMSAPI README.md with operations, credentials, example workflow
 - [ ] 01-09: Full pipeline build -- pnpm install, build:all, lint:all, test:all, verify-packages integration
 - [ ] 01-10: Pipeline validation -- link to n8n, verify node discovery in picker (human checkpoint)
 

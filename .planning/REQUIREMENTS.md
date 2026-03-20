@@ -29,7 +29,7 @@
 - [x] **SMSAPI-10**: package.json z keyword `n8n-community-node-package`, pole `n8n` z paths do dist
 - [x] **SMSAPI-11**: Plik codex (.node.json) — categories: Communication, subcategory: SMS
 - [x] **SMSAPI-12**: Ikona SVG 60x60 — oficjalne logo SMSAPI
-- [ ] **SMSAPI-13**: README z opisem, example workflow JSON, link do API docs
+- [x] **SMSAPI-13**: README z opisem, example workflow JSON, link do API docs
 
 ### CEIDG Node
 
