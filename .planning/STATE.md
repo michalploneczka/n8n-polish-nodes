@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-03-20T22:14:47.593Z"
+stopped_at: Completed 01-05-PLAN.md
+last_updated: "2026-03-20T22:19:42.845Z"
 progress:
   total_phases: 10
   completed_phases: 0
   total_plans: 10
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-20)
 ## Current Position
 
 Phase: 01 (monorepo-bootstrap-smsapi-ceidg) — EXECUTING
-Plan: 5 of 10
+Plan: 6 of 10
 
 ## Performance Metrics
 
@@ -50,6 +50,7 @@ Plan: 5 of 10
 | Phase 01 P02 | 1min | 2 tasks | 5 files |
 | Phase 01 P03 | 2min | 2 tasks | 4 files |
 | Phase 01 P04 | 2min | 2 tasks | 7 files |
+| Phase 01 P05 | 2min | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,8 @@ Recent decisions affecting current work:
 - [Phase 01]: npm publish (not pnpm publish) for provenance attestation compatibility
 - [Phase 01]: Tag pattern n8n-nodes-*@* for per-package selective publishing
 - [Phase 01]: CEIDG node uses single resource (Company) with 3 operations - simplest declarative pattern
+- [Phase 01]: Resource-split pattern: multi-resource nodes split into resources/{name}.ts files
+- [Phase 01]: format=json in requestDefaults.qs at node level for SMSAPI legacy endpoint compatibility
 
 ### Pending Todos
 
@@ -85,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-20T22:14:47.591Z
-Stopped at: Completed 01-04-PLAN.md
+Last session: 2026-03-20T22:19:42.843Z
+Stopped at: Completed 01-05-PLAN.md
 Resume file: None

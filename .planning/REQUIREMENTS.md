@@ -17,18 +17,18 @@
 
 ### SMSAPI Node
 
-- [ ] **SMSAPI-01**: Credentials — Bearer Token (apiToken) z `documentationUrl` do docs SMSAPI
-- [ ] **SMSAPI-02**: Resource: SMS — operacja Send (to, message, from, encoding, date, test) ze `format=json` w query params
-- [ ] **SMSAPI-03**: Resource: SMS — operacja Send Group (group, message, from)
-- [ ] **SMSAPI-04**: Resource: SMS — operacja Get Report (messageId)
-- [ ] **SMSAPI-05**: Resource: Contacts — operacje List, Create, Update, Delete
-- [ ] **SMSAPI-06**: Resource: Groups — operacja List
-- [ ] **SMSAPI-07**: Resource: Account — operacja Balance
+- [x] **SMSAPI-01**: Credentials — Bearer Token (apiToken) z `documentationUrl` do docs SMSAPI
+- [x] **SMSAPI-02**: Resource: SMS — operacja Send (to, message, from, encoding, date, test) ze `format=json` w query params
+- [x] **SMSAPI-03**: Resource: SMS — operacja Send Group (group, message, from)
+- [x] **SMSAPI-04**: Resource: SMS — operacja Get Report (messageId)
+- [x] **SMSAPI-05**: Resource: Contacts — operacje List, Create, Update, Delete
+- [x] **SMSAPI-06**: Resource: Groups — operacja List
+- [x] **SMSAPI-07**: Resource: Account — operacja Balance
 - [ ] **SMSAPI-08**: Obsługa błędów HTTP jako `NodeApiError` z czytelnym komunikatem po angielsku
 - [ ] **SMSAPI-09**: Testy z nock — happy path + error handling dla każdej operacji
-- [ ] **SMSAPI-10**: package.json z keyword `n8n-community-node-package`, pole `n8n` z paths do dist
-- [ ] **SMSAPI-11**: Plik codex (.node.json) — categories: Communication, subcategory: SMS
-- [ ] **SMSAPI-12**: Ikona SVG 60x60 — oficjalne logo SMSAPI
+- [x] **SMSAPI-10**: package.json z keyword `n8n-community-node-package`, pole `n8n` z paths do dist
+- [x] **SMSAPI-11**: Plik codex (.node.json) — categories: Communication, subcategory: SMS
+- [x] **SMSAPI-12**: Ikona SVG 60x60 — oficjalne logo SMSAPI
 - [ ] **SMSAPI-13**: README z opisem, example workflow JSON, link do API docs
 
 ### CEIDG Node
