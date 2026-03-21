@@ -180,6 +180,39 @@ export class LinkerCloud implements INodeType {
 						const orderId = this.getNodeParameter('orderId', i) as string;
 						const response = await linkerCloudApiRequest.call(this, 'PUT', `/public-api/v1/orders/${orderId}/cancel`);
 						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'getTransitions') {
+						const id = this.getNodeParameter('orderId', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'GET', `/public-api/v1/orders/${id}/transition`);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'applyTransition') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const transition = this.getNodeParameter('transitionName', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'POST', `/public-api/v1/orders/${orderId}/transitions/${transition}`);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'updateTrackingNumber') {
+						const id = this.getNodeParameter('orderId', i) as string;
+						const trackingNumber = this.getNodeParameter('trackingNumber', i) as string;
+						const operator = this.getNodeParameter('operator', i) as string;
+						const trackingUrl = this.getNodeParameter('trackingUrl', i, '') as string;
+						const body: IDataObject = { tracking_number: trackingNumber, operator };
+						if (trackingUrl) body.url = trackingUrl;
+						const response = await linkerCloudApiRequest.call(this, 'PUT', `/public-api/v1/orders/${id}/trackingnumber`, body);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'updatePaymentStatus') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const paymentStatus = this.getNodeParameter('paymentStatus', i) as string;
+						const paymentDate = this.getNodeParameter('paymentDate', i, '') as string;
+						const paymentTransactionId = this.getNodeParameter('paymentTransactionIdForPayment', i, '') as string;
+						const identifierType = this.getNodeParameter('orderIdentifier', i, 'id') as string;
+
+						const item: IDataObject = { paymentStatus };
+						item[identifierType] = orderId;
+						if (paymentDate) item.paymentDate = paymentDate;
+						if (paymentTransactionId) item.paymentTransactionId = paymentTransactionId;
+
+						// PUT /payment-status takes { items: PaymentItemRequest[] }
+						const response = await linkerCloudApiRequest.call(this, 'PUT', '/public-api/v1/payment-status', { items: [item] });
+						returnData.push({ json: response as IDataObject });
 					}
 				} else if (resource === 'product') {
 					if (operation === 'list') {

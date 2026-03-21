@@ -36,10 +36,34 @@ export const orderOperations: INodeProperties = {
 			description: 'Get a list of orders',
 		},
 		{
+			name: 'Apply Transition',
+			value: 'applyTransition',
+			action: 'Apply a state transition to an order',
+			description: 'Apply a state transition to an order',
+		},
+		{
+			name: 'Get Transitions',
+			value: 'getTransitions',
+			action: 'Get allowed transitions for an order',
+			description: 'Get allowed state transitions for an order',
+		},
+		{
 			name: 'Update',
 			value: 'update',
 			action: 'Update an order',
 			description: 'Update an order (full update via PUT)',
+		},
+		{
+			name: 'Update Payment Status',
+			value: 'updatePaymentStatus',
+			action: 'Update payment status for an order',
+			description: 'Update payment status for an order',
+		},
+		{
+			name: 'Update Tracking Number',
+			value: 'updateTrackingNumber',
+			action: 'Update tracking number for an order',
+			description: 'Update tracking number for an order',
 		},
 	],
 	default: 'list',
@@ -57,7 +81,7 @@ export const orderFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['order'],
-				operation: ['get', 'update', 'cancel'],
+				operation: ['get', 'update', 'cancel', 'getTransitions', 'applyTransition', 'updateTrackingNumber', 'updatePaymentStatus'],
 			},
 		},
 	},
@@ -707,5 +731,131 @@ export const orderFields: INodeProperties[] = [
 				description: 'Validation errors as JSON array',
 			},
 		],
+	},
+
+	// ------ Transition Name (applyTransition) ------
+	{
+		displayName: 'Transition Name',
+		name: 'transitionName',
+		type: 'string',
+		required: true,
+		default: '',
+		description: 'Transition name to apply (get available transitions from Get Transitions operation first)',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['applyTransition'],
+			},
+		},
+	},
+
+	// ------ Update Tracking Number Fields ------
+	{
+		displayName: 'Tracking Number',
+		name: 'trackingNumber',
+		type: 'string',
+		required: true,
+		default: '',
+		description: 'Tracking number, e.g., 12312442',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['updateTrackingNumber'],
+			},
+		},
+	},
+	{
+		displayName: 'Operator',
+		name: 'operator',
+		type: 'string',
+		required: true,
+		default: '',
+		description: 'Carrier/operator name, e.g., DHL, InPost',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['updateTrackingNumber'],
+			},
+		},
+	},
+	{
+		displayName: 'Tracking URL',
+		name: 'trackingUrl',
+		type: 'string',
+		default: '',
+		description: 'Tracking URL (optional)',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['updateTrackingNumber'],
+			},
+		},
+	},
+
+	// ------ Update Payment Status Fields ------
+	{
+		displayName: 'Payment Status',
+		name: 'paymentStatus',
+		type: 'options',
+		required: true,
+		options: [
+			{ name: 'Paid', value: 'paid' },
+			{ name: 'Underpayment', value: 'underpayment' },
+			{ name: 'Overpaid', value: 'overpaid' },
+			{ name: 'Unpaid', value: 'unpaid' },
+		],
+		default: 'paid',
+		description: 'Payment status to set',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['updatePaymentStatus'],
+			},
+		},
+	},
+	{
+		displayName: 'Order Identifier Type',
+		name: 'orderIdentifier',
+		type: 'options',
+		options: [
+			{ name: 'ID', value: 'id' },
+			{ name: 'External ID', value: 'externalId' },
+			{ name: 'Client Order Number', value: 'clientOrderNumber' },
+		],
+		default: 'id',
+		description: 'Which identifier to use for matching the order',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['updatePaymentStatus'],
+			},
+		},
+	},
+	{
+		displayName: 'Payment Date',
+		name: 'paymentDate',
+		type: 'string',
+		default: '',
+		placeholder: 'YYYY-MM-DDTHH:mm:ss',
+		description: 'Payment date (ISO datetime, optional)',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['updatePaymentStatus'],
+			},
+		},
+	},
+	{
+		displayName: 'Payment Transaction ID',
+		name: 'paymentTransactionIdForPayment',
+		type: 'string',
+		default: '',
+		description: 'Payment transaction ID (optional)',
+		displayOptions: {
+			show: {
+				resource: ['order'],
+				operation: ['updatePaymentStatus'],
+			},
+		},
 	},
 ];
