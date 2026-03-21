@@ -8,6 +8,7 @@ import type {
 import { NodeConnectionTypes, NodeApiError } from 'n8n-workflow';
 
 import { linkerCloudApiRequest, linkerCloudApiRequestAllItems } from './GenericFunctions';
+import { orderOperations, orderFields } from './resources/order';
 import { productOperations, productFields } from './resources/product';
 import { shipmentOperations, shipmentFields } from './resources/shipment';
 import { stockOperations, stockFields } from './resources/stock';
@@ -50,6 +51,8 @@ export class LinkerCloud implements INodeType {
 				default: 'order',
 			},
 			// Resource operations and fields
+			orderOperations,
+			...orderFields,
 			productOperations,
 			...productFields,
 			shipmentOperations,
@@ -68,7 +71,111 @@ export class LinkerCloud implements INodeType {
 				const resource = this.getNodeParameter('resource', i) as string;
 				const operation = this.getNodeParameter('operation', i) as string;
 
-				if (resource === 'product') {
+				if (resource === 'order') {
+					if (operation === 'list') {
+						const filters = this.getNodeParameter('filters', i, {}) as IDataObject;
+						const qs: IDataObject = {};
+
+						if (filters.updatedAt) qs["filters['updatedAt']"] = filters.updatedAt;
+						if (filters.updatedAtTo) qs["filters['updatedAtTo']"] = filters.updatedAtTo;
+						if (filters.created_at_with_time) qs["filters['created_at_with_time']"] = filters.created_at_with_time;
+						if (filters.created_at_with_time_to) qs["filters['created_at_with_time_to']"] = filters.created_at_with_time_to;
+						if (filters.sortDir) qs.sortDir = filters.sortDir;
+						if (filters.sortCol) qs.sortCol = filters.sortCol;
+
+						const orders = await linkerCloudApiRequestAllItems.call(this, 'GET', '/public-api/v1/orders', {}, qs);
+						for (const order of orders) {
+							returnData.push({ json: order });
+						}
+					} else if (operation === 'get') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'GET', `/public-api/v1/orders/${orderId}`);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'create') {
+						const orderDate = this.getNodeParameter('orderDate', i) as string;
+						const executionDate = this.getNodeParameter('executionDate', i) as string;
+						const executionDueDate = this.getNodeParameter('executionDueDate', i) as string;
+						const deliveryEmail = this.getNodeParameter('deliveryEmail', i) as string;
+						const codAmount = this.getNodeParameter('codAmount', i) as number;
+						const shipmentPrice = this.getNodeParameter('shipmentPrice', i) as number;
+						const shipmentPriceNet = this.getNodeParameter('shipmentPriceNet', i) as number;
+						const discount = this.getNodeParameter('discount', i) as number;
+						const paymentTransactionId = this.getNodeParameter('paymentTransactionId', i) as string;
+						const itemsRaw = this.getNodeParameter('items', i) as string;
+						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
+
+						let parsedItems: IDataObject[];
+						try {
+							parsedItems = JSON.parse(itemsRaw) as IDataObject[];
+							// Ensure required array fields default to empty arrays
+							parsedItems = parsedItems.map(item => ({
+								...item,
+								serial_numbers: item.serial_numbers || [],
+								custom_properties: item.custom_properties || [],
+								source_data: item.source_data || [],
+								batch_numbers: item.batch_numbers || [],
+							}));
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, {
+								message: 'Invalid JSON in Items field. Expected array of objects.',
+							});
+						}
+
+						// Parse JSON string fields from additionalFields
+						const tags = additionalFields.tags ? JSON.parse(additionalFields.tags as string) : [];
+						const customProperties = additionalFields.customProperties ? JSON.parse(additionalFields.customProperties as string) : [];
+						const validationErrors = additionalFields.validationErrors ? JSON.parse(additionalFields.validationErrors as string) : [];
+						delete additionalFields.tags;
+						delete additionalFields.customProperties;
+						delete additionalFields.validationErrors;
+
+						const body: IDataObject = {
+							orderDate,
+							executionDate,
+							executionDueDate,
+							deliveryEmail,
+							codAmount,
+							shipmentPrice,
+							shipmentPriceNet,
+							discount,
+							paymentTransactionId,
+							items: parsedItems,
+							tags,
+							customProperties,
+							validationErrors,
+							...additionalFields,
+						};
+
+						const response = await linkerCloudApiRequest.call(this, 'POST', '/public-api/v1/orders', body);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'update') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const updateFields = this.getNodeParameter('updateFields', i, {}) as IDataObject;
+
+						// Parse JSON string fields
+						if (updateFields.items) {
+							let parsedItems = JSON.parse(updateFields.items as string) as IDataObject[];
+							parsedItems = parsedItems.map(item => ({
+								...item,
+								serial_numbers: item.serial_numbers || [],
+								custom_properties: item.custom_properties || [],
+								source_data: item.source_data || [],
+								batch_numbers: item.batch_numbers || [],
+							}));
+							updateFields.items = parsedItems;
+						}
+						if (updateFields.tags) updateFields.tags = JSON.parse(updateFields.tags as string);
+						if (updateFields.customProperties) updateFields.customProperties = JSON.parse(updateFields.customProperties as string);
+						if (updateFields.validationErrors) updateFields.validationErrors = JSON.parse(updateFields.validationErrors as string);
+
+						const response = await linkerCloudApiRequest.call(this, 'PUT', `/public-api/v1/orders/${orderId}`, updateFields);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'cancel') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'PUT', `/public-api/v1/orders/${orderId}/cancel`);
+						returnData.push({ json: response as IDataObject });
+					}
+				} else if (resource === 'product') {
 					if (operation === 'list') {
 						const products = await linkerCloudApiRequestAllItems.call(this, 'GET', '/public-api/v1/products');
 						for (const product of products) {
@@ -120,29 +227,29 @@ export class LinkerCloud implements INodeType {
 					}
 				} else if (resource === 'stock') {
 					if (operation === 'list') {
-						const filters = this.getNodeParameter('filters', i, {}) as IDataObject;
+						const stockFilters = this.getNodeParameter('filters', i, {}) as IDataObject;
 						const qs: IDataObject = {};
-						if (filters.sku) qs.sku = filters.sku;
-						if (filters.depotId) qs.depotId = filters.depotId;
+						if (stockFilters.sku) qs.sku = stockFilters.sku;
+						if (stockFilters.depotId) qs.depotId = stockFilters.depotId;
 
 						const stocks = await linkerCloudApiRequestAllItems.call(this, 'GET', '/public-api/v1/stocks', {}, qs);
 						for (const stock of stocks) {
 							returnData.push({ json: stock });
 						}
 					} else if (operation === 'update') {
-						const itemsRaw = this.getNodeParameter('items', i) as string;
+						const stockItemsRaw = this.getNodeParameter('items', i) as string;
 						const additionalOptions = this.getNodeParameter('additionalOptions', i, {}) as IDataObject;
 
-						let parsedItems: IDataObject[];
+						let parsedStockItems: IDataObject[];
 						try {
-							parsedItems = JSON.parse(itemsRaw) as IDataObject[];
+							parsedStockItems = JSON.parse(stockItemsRaw) as IDataObject[];
 						} catch {
 							throw new NodeApiError(this.getNode(), {}, {
 								message: 'Invalid JSON in Items field. Expected array of objects with sku and totalQuantity.',
 							});
 						}
 
-						const body: IDataObject = { items: parsedItems, ...additionalOptions };
+						const body: IDataObject = { items: parsedStockItems, ...additionalOptions };
 						const response = await linkerCloudApiRequest.call(this, 'PUT', '/public-api/v1/products-stocks', body);
 						returnData.push({ json: response as IDataObject });
 					}
