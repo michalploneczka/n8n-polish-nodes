@@ -76,7 +76,7 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Package scaffold, credentials (apiToken + subdomain), GenericFunctions (API request helper + pagination helper)
+- [x] 02-01-PLAN.md -- Package scaffold, credentials (apiToken + subdomain), GenericFunctions (API request helper + pagination helper)
 - [ ] 02-02-PLAN.md -- Node class with execute() + Invoice resource (7 operations: list, get, create, update, delete, sendByEmail, downloadPdf)
 - [ ] 02-03-PLAN.md -- Clients resource (list, get, create) + Products resource (list, create) wired into node
 - [ ] 02-04-PLAN.md -- Nock tests for all operations, codex, SVG icon, README, build verification (human checkpoint)
@@ -346,7 +346,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Monorepo Bootstrap + SMSAPI + CEIDG | 11/11 | Complete | 2026-03-21 |
-| 2. Fakturownia | 0/4 | Planning complete | - |
+| 2. Fakturownia | 1/4 | In Progress|  |
 | 3. InPost ShipX | 0/7 | Not started | - |
 | 4. Przelewy24 | 0/7 | Not started | - |
 | 5. BaseLinker | 0/8 | Not started | - |
@@ -361,7 +361,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 **Goal:** [To be planned]
 **Requirements**: TBD
 **Depends on:** Phase 10
-**Plans:** 0 plans
+**Plans:** 1/4 plans executed
 
 Plans:
 - [ ] TBD (run /gsd:plan-phase 11 to break down)

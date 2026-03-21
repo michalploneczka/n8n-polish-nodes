@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-11-PLAN.md
-last_updated: "2026-03-21T13:35:06.736Z"
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-21T14:36:11.954Z"
 progress:
-  total_phases: 10
+  total_phases: 15
   completed_phases: 1
-  total_plans: 11
-  completed_plans: 11
+  total_plans: 15
+  completed_plans: 12
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 01 — monorepo-bootstrap-smsapi-ceidg
+**Current focus:** Phase 02 — fakturownia
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 02 (fakturownia) — EXECUTING
+Plan: 2 of 4
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Plan: Not started
 | Phase 01 P09 | 9min | 2 tasks | 10 files |
 | Phase 01 P10 | 15min | 3 tasks | 6 files |
 | Phase 01 P11 | 2min | 1 tasks | 1 files |
+| Phase 02 P01 | 3min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -88,6 +89,15 @@ Recent decisions affecting current work:
 - [Phase 01]: npm link (not pnpm link) for n8n custom node development
 - [Phase 01]: CEIDG API v3 (not v2) -- v2 deprecated, v3 uses Bearer auth and /firma endpoint
 - [Phase 01]: No code changes to node/credential files -- only test assertions were stale after v2->v3 migration
+- [Phase 02]: No authenticate block on credentials -- auth handled via api_token query param in GenericFunctions due to dynamic subdomain URL
+
+### Roadmap Evolution
+
+- Phase 11 added: node dla KRS, biała lista podatników VAT, VIES i GUS
+- Phase 12 added: mmode dla Linker Cloud przez realizacja base linker - dokumentacje do api linker clud dostarcze
+- Phase 13 added: node dla integracji z api Ceneo - mozliwosc weryfikowania cen rynkowych
+- Phase 14 added: node do pobierania kursu walut z nbp
+- Phase 15 added: integracja z https://api.nfz.gov.pl/app-itl-api/
 
 ### Pending Todos
 
@@ -103,6 +113,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T13:27:25.091Z
-Stopped at: Completed 01-11-PLAN.md
+Last session: 2026-03-21T14:36:11.952Z
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None
