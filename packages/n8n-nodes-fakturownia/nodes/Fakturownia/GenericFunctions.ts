@@ -14,7 +14,7 @@ export async function fakturowniaApiRequest(
 	body: IDataObject = {},
 	qs: IDataObject = {},
 	options: IDataObject = {},
-): Promise<any> {
+): Promise<IDataObject | IDataObject[] | Buffer | undefined> {
 	const credentials = await this.getCredentials('fakturowniaApi');
 	const subdomain = (credentials.subdomain as string).replace(/\.fakturownia\.pl$/i, '');
 	const url = `https://${subdomain}.fakturownia.pl${endpoint}`;
@@ -35,6 +35,9 @@ export async function fakturowniaApiRequest(
 	}
 
 	try {
+		// Fakturownia uses dynamic per-subdomain URLs (e.g. mycompany.fakturownia.pl)
+		// requiring manual URL construction. Auth is via api_token query param, not headers.
+		// eslint-disable-next-line @n8n/community-nodes/no-http-request-with-manual-auth
 		return await this.helpers.httpRequest(requestOptions);
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error as JsonObject, {
@@ -56,7 +59,7 @@ export async function fakturowniaApiRequestAllItems(
 	let page = 1;
 	const allItems: IDataObject[] = [];
 
-	do {
+	while (true) {
 		const response = (await fakturowniaApiRequest.call(this, method, endpoint, body, {
 			...qs,
 			page,
@@ -74,7 +77,7 @@ export async function fakturowniaApiRequestAllItems(
 		}
 
 		page++;
-	} while (true);
+	}
 
 	return allItems;
 }
