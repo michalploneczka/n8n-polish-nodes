@@ -1,0 +1,14 @@
+{
+  "node": "n8n-nodes-fakturownia.fakturownia",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Finance & Accounting"],
+  "subcategories": {
+    "Finance & Accounting": ["Invoicing"]
+  },
+  "resources": {
+    "primaryDocumentation": [
+      { "url": "https://app.fakturownia.pl/api" }
+    ]
+  }
+}
