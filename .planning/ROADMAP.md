@@ -73,23 +73,22 @@ Plans:
   3. User can download an invoice PDF that opens correctly as a valid PDF file in the next workflow node (binary data output)
   4. User can manage clients (List, Get, Create) and products (List, Create) as separate resources
   5. Dynamic base URL is constructed from subdomain credential (e.g., `mycompany.fakturownia.pl`)
-**Plans**: 7 plans
+**Plans**: 4 plans
 
 Plans:
-- [ ] 02-01: Fakturownia credentials -- apiToken + subdomain fields, dynamic base URL construction, test connection endpoint
-- [ ] 02-02: Invoices resource -- List (with pagination + filters), Get, Create (with positions JSON array), Update, Delete operations
-- [ ] 02-03: Invoice Send by Email and Download PDF -- programmatic binary data handling with arraybuffer encoding
-- [ ] 02-04: Clients and Products resources -- List, Get, Create operations with Additional Fields pattern
-- [ ] 02-05: Pagination helper -- returnAll toggle + limit parameter, page-based loop for all list operations
-- [ ] 02-06: Error handling and tests -- NodeApiError wrapping, nock tests for all operations including PDF binary response
-- [ ] 02-07: Package finalization -- package.json, codex (Finance & Accounting), SVG icon, README with example workflow
+- [ ] 02-01-PLAN.md -- Package scaffold, credentials (apiToken + subdomain), GenericFunctions (API request helper + pagination helper)
+- [ ] 02-02-PLAN.md -- Node class with execute() + Invoice resource (7 operations: list, get, create, update, delete, sendByEmail, downloadPdf)
+- [ ] 02-03-PLAN.md -- Clients resource (list, get, create) + Products resource (list, create) wired into node
+- [ ] 02-04-PLAN.md -- Nock tests for all operations, codex, SVG icon, README, build verification (human checkpoint)
 
 **Technical Notes:**
-- PDF download forces programmatic style for that operation even if rest is declarative (Pitfall 9)
+- Fully programmatic node (execute() method) -- PDF download + pagination require it
 - Use `encoding: 'arraybuffer'` + `this.helpers.prepareBinaryData()` for PDF
-- Subdomain-based URL: build in credential `authenticate` or node `requestDefaults`
-- Pagination pattern: `page` param, 25 items/page default -- use as template for later nodes
+- Subdomain-based URL: constructed dynamically in GenericFunctions.ts from credentials
+- Auth via `api_token` query parameter (not header) per Fakturownia API docs
+- Pagination pattern: `page` + `per_page` params, end detection by `response.length < per_page`
 - Set meaningful filename on binary: `invoice-{id}.pdf`
+- Subdomain sanitization: strip `.fakturownia.pl` suffix if user accidentally includes it
 
 ---
 
@@ -346,8 +345,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Monorepo Bootstrap + SMSAPI + CEIDG | 10/11 | Gap closure | - |
-| 2. Fakturownia | 0/7 | Not started | - |
+| 1. Monorepo Bootstrap + SMSAPI + CEIDG | 11/11 | Complete | 2026-03-21 |
+| 2. Fakturownia | 0/4 | Planning complete | - |
 | 3. InPost ShipX | 0/7 | Not started | - |
 | 4. Przelewy24 | 0/7 | Not started | - |
 | 5. BaseLinker | 0/8 | Not started | - |
@@ -357,7 +356,57 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 9. Allegro | 0/7 | Not started | - |
 | 10. GUS REGON | 0/7 | Not started | - |
 
+### Phase 11: node dla KRS, biala lista podatnikow VAT, VIES i GUS
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 10
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 11 to break down)
+
+### Phase 12: mmode dla Linker Cloud przez realizacja base linker - dokumentacje do api linker clud dostarcze
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 11
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 12 to break down)
+
+### Phase 13: node dla integracji z api Ceneo - mozliwosc weryfikowania cen rynkowych
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 12
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 13 to break down)
+
+### Phase 14: node do pobierania kursu walut z nbp
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 13
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 14 to break down)
+
+### Phase 15: integracja z https://api.nfz.gov.pl/app-itl-api/
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 14
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 15 to break down)
+
 ---
 *Roadmap created: 2026-03-20*
-*Granularity: Fine (10 phases, 73 plans)*
+*Granularity: Fine (10 phases, 70 plans)*
 *Coverage: 88/88 v1 requirements mapped*
