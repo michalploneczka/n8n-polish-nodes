@@ -146,6 +146,100 @@ export class LinkerCloud implements INodeType {
 						const response = await linkerCloudApiRequest.call(this, 'PUT', '/public-api/v1/products-stocks', body);
 						returnData.push({ json: response as IDataObject });
 					}
+
+				} else if (resource === 'shipment') {
+					if (operation === 'create') {
+						const orderNumber = this.getNodeParameter('orderNumber', i) as string;
+						const packagesRaw = this.getNodeParameter('packages', i) as string;
+						const markAsPacked = this.getNodeParameter('markAsPacked', i) as boolean;
+						const createAdditional = this.getNodeParameter('createAdditional', i) as boolean;
+						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
+
+						let packages: IDataObject[];
+						try {
+							packages = JSON.parse(packagesRaw) as IDataObject[];
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, {
+								message: 'Invalid JSON in Packages field. Expected array of package objects.',
+							});
+						}
+
+						const batchNumbers = additionalFields.batchNumbers
+							? JSON.parse(additionalFields.batchNumbers as string)
+							: [];
+						delete additionalFields.batchNumbers;
+
+						const body: IDataObject = {
+							orderNumber,
+							packages,
+							markAsPacked,
+							createAdditional,
+							batchNumbers,
+							...additionalFields,
+						};
+
+						const response = await linkerCloudApiRequest.call(this, 'POST', '/public-api/v1/deliveries', body);
+						returnData.push({ json: response as IDataObject });
+
+					} else if (operation === 'createByOrderNumber') {
+						const orderNumber = this.getNodeParameter('orderNumber', i) as string;
+						const packagesRaw = this.getNodeParameter('packages', i) as string;
+
+						let packages: IDataObject[];
+						try {
+							packages = JSON.parse(packagesRaw) as IDataObject[];
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, {
+								message: 'Invalid JSON in Packages field.',
+							});
+						}
+
+						const body: IDataObject = { orderNumber, packages };
+						const response = await linkerCloudApiRequest.call(this, 'POST', '/public-api/v1/deliveries/packages', body);
+						returnData.push({ json: response as IDataObject });
+
+					} else if (operation === 'getLabel') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const packageId = this.getNodeParameter('packageId', i) as string;
+						const parcelId = this.getNodeParameter('parcelId', i) as string;
+						const format = this.getNodeParameter('labelFormat', i) as string;
+
+						const response = await linkerCloudApiRequest.call(
+							this, 'GET',
+							`/public-api/v1/${orderId}/${packageId}/${format}/${parcelId}`,
+						);
+
+						let binaryBuffer: Buffer;
+						const mimeType = format === 'pdf' ? 'application/pdf' : 'image/png';
+						const fileName = `label-${orderId}-${parcelId}.${format}`;
+
+						if (typeof response === 'object' && (response as IDataObject).label) {
+							binaryBuffer = Buffer.from((response as IDataObject).label as string, 'base64');
+						} else if (typeof response === 'string') {
+							binaryBuffer = Buffer.from(response, 'base64');
+						} else {
+							binaryBuffer = Buffer.from(response as unknown as ArrayBuffer);
+						}
+
+						const binaryData = await this.helpers.prepareBinaryData(binaryBuffer, fileName, mimeType);
+						returnData.push({
+							json: { orderId, packageId, parcelId, format },
+							binary: { data: binaryData },
+						});
+
+					} else if (operation === 'getStatus') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'GET', `/public-api/v1/deliveries/${orderId}`);
+						returnData.push({ json: response as IDataObject });
+
+					} else if (operation === 'cancel') {
+						const orderId = this.getNodeParameter('orderId', i) as string;
+						const packageIdsRaw = this.getNodeParameter('packageIdsToCancel', i) as string;
+						const ids = packageIdsRaw.split(',').map(id => id.trim());
+						const response = await linkerCloudApiRequest.call(this, 'PATCH', `/public-api/v1/deliveries/${orderId}`, { ids });
+						returnData.push({ json: response as IDataObject });
+					}
+
 				} else {
 					throw new NodeApiError(this.getNode(), {}, {
 						message: `Unsupported resource/operation: ${resource}/${operation}`,
