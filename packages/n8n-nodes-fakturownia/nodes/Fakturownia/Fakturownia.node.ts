@@ -8,7 +8,9 @@ import type {
 import { NodeConnectionTypes, NodeApiError } from 'n8n-workflow';
 
 import { fakturowniaApiRequest, fakturowniaApiRequestAllItems } from './GenericFunctions';
+import { clientOperations, clientFields } from './resources/clients';
 import { invoiceOperations, invoiceFields } from './resources/invoices';
+import { productOperations, productFields } from './resources/products';
 
 export class Fakturownia implements INodeType {
 	description: INodeTypeDescription = {
@@ -38,12 +40,18 @@ export class Fakturownia implements INodeType {
 				type: 'options',
 				noDataExpression: true,
 				options: [
+					{ name: 'Client', value: 'client' },
 					{ name: 'Invoice', value: 'invoice' },
+					{ name: 'Product', value: 'product' },
 				],
 				default: 'invoice',
 			},
+			clientOperations,
+			...clientFields,
 			invoiceOperations,
 			...invoiceFields,
+			productOperations,
+			...productFields,
 		],
 	};
 
@@ -193,6 +201,78 @@ export class Fakturownia implements INodeType {
 						throw new NodeApiError(this.getNode(), {}, {
 							message: `Unsupported resource/operation: ${resource}/${operation}`,
 						});
+					}
+				} else if (resource === 'client') {
+					if (operation === 'list') {
+						const clients = await fakturowniaApiRequestAllItems.call(
+							this,
+							'GET',
+							'/clients.json',
+						);
+						for (const client of clients) {
+							returnData.push({ json: client });
+						}
+					} else if (operation === 'get') {
+						const clientId = this.getNodeParameter('clientId', i) as string;
+						const response = await fakturowniaApiRequest.call(
+							this,
+							'GET',
+							`/clients/${clientId}.json`,
+						);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'create') {
+						const name = this.getNodeParameter('name', i) as string;
+						const taxNo = this.getNodeParameter('taxNo', i) as string;
+						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
+
+						const body = {
+							client: {
+								name,
+								tax_no: taxNo,
+								...additionalFields,
+							},
+						};
+
+						const response = await fakturowniaApiRequest.call(
+							this,
+							'POST',
+							'/clients.json',
+							body,
+						);
+						returnData.push({ json: response as IDataObject });
+					}
+				} else if (resource === 'product') {
+					if (operation === 'list') {
+						const products = await fakturowniaApiRequestAllItems.call(
+							this,
+							'GET',
+							'/products.json',
+						);
+						for (const product of products) {
+							returnData.push({ json: product });
+						}
+					} else if (operation === 'create') {
+						const productName = this.getNodeParameter('productName', i) as string;
+						const totalPriceGross = this.getNodeParameter('totalPriceGross', i) as number;
+						const tax = this.getNodeParameter('tax', i) as number;
+						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
+
+						const body = {
+							product: {
+								name: productName,
+								total_price_gross: totalPriceGross,
+								tax,
+								...additionalFields,
+							},
+						};
+
+						const response = await fakturowniaApiRequest.call(
+							this,
+							'POST',
+							'/products.json',
+							body,
+						);
+						returnData.push({ json: response as IDataObject });
 					}
 				} else {
 					throw new NodeApiError(this.getNode(), {}, {
