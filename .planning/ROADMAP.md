@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. SMSAPI node installed via `npm link` appears in n8n, and a user can send a test SMS (test mode), list contacts, check account balance -- all returning valid JSON (format=json enforced)
   4. Pushing a git tag `n8n-nodes-ceidg@0.1.0` triggers GitHub Actions publish with provenance attestation; package appears on npmjs.com with provenance badge
   5. Shared test utilities (mock IExecuteFunctions) work -- `npm run test` in any package directory runs nock-based tests for happy path and error handling
-**Plans**: 10 plans
+**Plans**: 11 plans
 
 Plans:
 - [x] 01-01: Monorepo root -- pnpm-workspace.yaml, package.json, tsconfig.base.json, jest.config.base.js, .gitignore, LICENSE, scripts/copy-codex.js
@@ -48,6 +48,7 @@ Plans:
 - [x] 01-08: Package READMEs -- CEIDG and SMSAPI README.md with operations, credentials, example workflow
 - [x] 01-09: Full pipeline build -- pnpm install, build:all, lint:all, test:all, verify-packages integration
 - [x] 01-10: Pipeline validation -- link to n8n, verify node discovery in picker (human checkpoint)
+- [ ] 01-11: Gap closure -- fix CEIDG test assertions for v3 API (v2 -> v3 baseURL, /firmy -> /firma, credential auth string)
 
 **Technical Notes:**
 - Resolve pnpm vs npm workspaces: test `npm link` compatibility first. Default: npm workspaces per ARCHITECTURE.md recommendation
@@ -58,6 +59,7 @@ Plans:
 - SMSAPI: always inject `format=json` in requestDefaults at node level, not per-operation (Pitfall 1)
 - CEIDG is the pipeline guinea pig -- validate full publish flow before SMSAPI
 - Copy-assets build step required: tsc ignores .svg and .node.json files
+- CEIDG API upgraded to v3 during plan 01-10 (v2 deprecated); `npm publish --dry-run` blocked by `n8n-node prerelease` by design (forces GitHub Actions path)
 
 ---
 
@@ -344,7 +346,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Monorepo Bootstrap + SMSAPI + CEIDG | 10/10 | Complete   | 2026-03-21 |
+| 1. Monorepo Bootstrap + SMSAPI + CEIDG | 10/11 | Gap closure | - |
 | 2. Fakturownia | 0/7 | Not started | - |
 | 3. InPost ShipX | 0/7 | Not started | - |
 | 4. Przelewy24 | 0/7 | Not started | - |
@@ -357,5 +359,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 ---
 *Roadmap created: 2026-03-20*
-*Granularity: Fine (10 phases, 72 plans)*
+*Granularity: Fine (10 phases, 73 plans)*
 *Coverage: 88/88 v1 requirements mapped*
