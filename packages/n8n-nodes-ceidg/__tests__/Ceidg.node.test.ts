@@ -6,7 +6,7 @@ import { Ceidg } from '../nodes/Ceidg/Ceidg.node';
 import { CeidgApi } from '../credentials/CeidgApi.credentials';
 
 const BASE_URL = 'https://dane.biznes.gov.pl';
-const API_PATH = '/api/ceidg/v2';
+const API_PATH = '/api/ceidg/v3';
 
 describe('Ceidg Node', () => {
 	let node: Ceidg;
@@ -22,7 +22,7 @@ describe('Ceidg Node', () => {
 
 		it('should have correct requestDefaults baseURL', () => {
 			expect(node.description.requestDefaults?.baseURL).toBe(
-				'https://dane.biznes.gov.pl/api/ceidg/v2',
+				'https://dane.biznes.gov.pl/api/ceidg/v3',
 			);
 		});
 
@@ -63,7 +63,7 @@ describe('Ceidg Node', () => {
 			expect(nipProp).toBeDefined();
 			expect(nipProp!.routing).toBeDefined();
 			expect(nipProp!.routing!.request).toEqual(
-				expect.objectContaining({ url: '/firmy', method: 'GET' }),
+				expect.objectContaining({ url: '/firma', method: 'GET' }),
 			);
 			expect(nipProp!.routing!.send).toEqual(
 				expect.objectContaining({ type: 'query', property: 'nip' }),
@@ -88,7 +88,7 @@ describe('Ceidg Node', () => {
 			);
 			expect(companyIdProp).toBeDefined();
 			expect(companyIdProp!.routing).toBeDefined();
-			expect(companyIdProp!.routing!.request!.url).toContain('/firmy/');
+			expect(companyIdProp!.routing!.request!.url).toContain('/firma/');
 			expect(companyIdProp!.routing!.request!.method).toBe('GET');
 		});
 	});
@@ -115,14 +115,14 @@ describe('Ceidg Node', () => {
 				properties: { headers: Record<string, string> };
 			};
 			expect(auth.type).toBe('generic');
-			expect(auth.properties.headers.Authorization).toContain('$credentials?.apiKey');
+			expect(auth.properties.headers.Authorization).toContain('$credentials.apiKey');
 		});
 
-		it('should have test request for /firmy endpoint', () => {
+		it('should have test request for /firma endpoint', () => {
 			const test = credentials.test as {
 				request: { url: string; method: string };
 			};
-			expect(test.request.url).toBe('/firmy');
+			expect(test.request.url).toBe('/firma?nip=6351723862');
 			expect(test.request.method).toBe('GET');
 		});
 	});
@@ -138,7 +138,7 @@ describe('Ceidg Node', () => {
 
 		it('credential test returns success on 200', () => {
 			const scope = createNockScope(BASE_URL)
-				.get(`${API_PATH}/firmy`)
+				.get(`${API_PATH}/firma`)
 				.query({ nip: '1234567890' })
 				.reply(200, { firma: [] });
 
@@ -151,7 +151,7 @@ describe('Ceidg Node', () => {
 			const https = require('https');
 			return new Promise<void>((resolve) => {
 				https.get(
-					`${BASE_URL}${API_PATH}/firmy?nip=1234567890`,
+					`${BASE_URL}${API_PATH}/firma?nip=1234567890`,
 					(res: typeof http.IncomingMessage) => {
 						expect(res.statusCode).toBe(200);
 						let data = '';
@@ -171,14 +171,14 @@ describe('Ceidg Node', () => {
 
 		it('credential test handles 401 unauthorized - produces NodeApiError with English message', () => {
 			const scope = createNockScope(BASE_URL)
-				.get(`${API_PATH}/firmy`)
+				.get(`${API_PATH}/firma`)
 				.query({ nip: '1234567890' })
 				.reply(401, { error: 'Unauthorized' });
 
 			return new Promise<void>((resolve) => {
 				const https = require('https');
 				https.get(
-					`${BASE_URL}${API_PATH}/firmy?nip=1234567890`,
+					`${BASE_URL}${API_PATH}/firma?nip=1234567890`,
 					(res: { statusCode: number; on: (event: string, cb: (chunk: string) => void) => void }) => {
 						expect(res.statusCode).toBe(401);
 
@@ -212,14 +212,14 @@ describe('Ceidg Node', () => {
 
 		it('API returns 404 for unknown company', () => {
 			const scope = createNockScope(BASE_URL)
-				.get(`${API_PATH}/firmy`)
+				.get(`${API_PATH}/firma`)
 				.query({ nip: '0000000000' })
 				.reply(404, { error: 'Not found' });
 
 			return new Promise<void>((resolve) => {
 				const https = require('https');
 				https.get(
-					`${BASE_URL}${API_PATH}/firmy?nip=0000000000`,
+					`${BASE_URL}${API_PATH}/firma?nip=0000000000`,
 					(res: { statusCode: number; on: (event: string, cb: (chunk: string) => void) => void }) => {
 						expect(res.statusCode).toBe(404);
 
