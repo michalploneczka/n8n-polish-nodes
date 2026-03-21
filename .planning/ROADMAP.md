@@ -12,7 +12,7 @@ This roadmap delivers 11 n8n community nodes for Polish services as independentl
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Monorepo Bootstrap + SMSAPI + CEIDG** - Establish infrastructure, shared tooling, CI/CD pipeline, and deliver the first two nodes
+- [x] **Phase 1: Monorepo Bootstrap + SMSAPI + CEIDG** - Establish infrastructure, shared tooling, CI/CD pipeline, and deliver the first two nodes (completed 2026-03-21)
 - [ ] **Phase 2: Fakturownia** - Pagination and binary PDF download patterns via invoice management node
 - [ ] **Phase 3: InPost ShipX** - Programmatic node with complex nested input, environment toggle, and binary label download
 - [ ] **Phase 4: Przelewy24** - Cryptographic CRC SHA384 signing pattern for payment transactions
@@ -47,7 +47,7 @@ Plans:
 - [x] 01-07: SMSAPI tests -- nock-based tests for all 9 operations, format=json verification, error handling
 - [x] 01-08: Package READMEs -- CEIDG and SMSAPI README.md with operations, credentials, example workflow
 - [x] 01-09: Full pipeline build -- pnpm install, build:all, lint:all, test:all, verify-packages integration
-- [ ] 01-10: Pipeline validation -- link to n8n, verify node discovery in picker (human checkpoint)
+- [x] 01-10: Pipeline validation -- link to n8n, verify node discovery in picker (human checkpoint)
 
 **Technical Notes:**
 - Resolve pnpm vs npm workspaces: test `npm link` compatibility first. Default: npm workspaces per ARCHITECTURE.md recommendation
@@ -344,7 +344,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Monorepo Bootstrap + SMSAPI + CEIDG | 0/10 | Not started | - |
+| 1. Monorepo Bootstrap + SMSAPI + CEIDG | 10/10 | Complete   | 2026-03-21 |
 | 2. Fakturownia | 0/7 | Not started | - |
 | 3. InPost ShipX | 0/7 | Not started | - |
 | 4. Przelewy24 | 0/7 | Not started | - |
