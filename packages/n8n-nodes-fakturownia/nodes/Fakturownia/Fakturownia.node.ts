@@ -189,7 +189,7 @@ export class Fakturownia implements INodeType {
 							{ encoding: 'arraybuffer', json: false },
 						);
 						const binaryData = await this.helpers.prepareBinaryData(
-							Buffer.from(response as ArrayBuffer),
+							Buffer.from(response as unknown as ArrayBuffer),
 							`invoice-${invoiceId}.pdf`,
 							'application/pdf',
 						);

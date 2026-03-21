@@ -185,8 +185,7 @@ export const invoiceFields: INodeProperties[] = [
 		type: 'json',
 		required: true,
 		default: '[]',
-		description:
-			'Invoice line items as JSON array. Each item: {"name": "Item", "quantity": 1, "total_price_gross": 123.00, "tax": 23}',
+		description: 'Invoice line items as JSON array. Each item: {"name": "Item", "quantity": 1, "total_price_gross": 123.00, "tax": 23}.',
 		displayOptions: {
 			show: {
 				resource: ['invoice'],
@@ -268,7 +267,6 @@ export const invoiceFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				placeholder: 'YYYY-MM-DD',
-				description: 'Payment due date',
 			},
 			{
 				displayName: 'Payment Type',
@@ -367,7 +365,6 @@ export const invoiceFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				placeholder: 'YYYY-MM-DD',
-				description: 'Payment due date',
 			},
 			{
 				displayName: 'Payment Type',
@@ -382,8 +379,7 @@ export const invoiceFields: INodeProperties[] = [
 				name: 'positions',
 				type: 'json',
 				default: '[]',
-				description:
-					'Invoice line items as JSON array. Each item: {"name": "Item", "quantity": 1, "total_price_gross": 123.00, "tax": 23}',
+				description: 'Invoice line items as JSON array. Each item: {"name": "Item", "quantity": 1, "total_price_gross": 123.00, "tax": 23}.',
 			},
 			{
 				displayName: 'Sell Date',

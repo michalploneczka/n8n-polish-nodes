@@ -69,7 +69,6 @@ export const productFields: INodeProperties[] = [
 		type: 'string',
 		required: true,
 		default: '',
-		description: 'Product name',
 		displayOptions: {
 			show: {
 				resource: ['product'],

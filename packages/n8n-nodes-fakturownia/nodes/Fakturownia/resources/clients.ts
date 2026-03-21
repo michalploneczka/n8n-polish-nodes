@@ -135,7 +135,6 @@ export const clientFields: INodeProperties[] = [
 				name: 'city',
 				type: 'string',
 				default: '',
-				description: 'City',
 			},
 			{
 				displayName: 'Country',
@@ -148,6 +147,7 @@ export const clientFields: INodeProperties[] = [
 				displayName: 'Email',
 				name: 'email',
 				type: 'string',
+				placeholder: 'name@email.com',
 				default: '',
 				description: 'Client email',
 			},
@@ -170,7 +170,6 @@ export const clientFields: INodeProperties[] = [
 				name: 'post_code',
 				type: 'string',
 				default: '',
-				description: 'Postal code',
 			},
 			{
 				displayName: 'Shortcut',
