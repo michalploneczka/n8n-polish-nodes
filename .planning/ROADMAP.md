@@ -48,7 +48,7 @@ Plans:
 - [x] 01-08: Package READMEs -- CEIDG and SMSAPI README.md with operations, credentials, example workflow
 - [x] 01-09: Full pipeline build -- pnpm install, build:all, lint:all, test:all, verify-packages integration
 - [x] 01-10: Pipeline validation -- link to n8n, verify node discovery in picker (human checkpoint)
-- [ ] 01-11: Gap closure -- fix CEIDG test assertions for v3 API (v2 -> v3 baseURL, /firmy -> /firma, credential auth string)
+- [x] 01-11: Gap closure -- fix CEIDG test assertions for v3 API (v2 -> v3 baseURL, /firmy -> /firma, credential auth string)
 
 **Technical Notes:**
 - Resolve pnpm vs npm workspaces: test `npm link` compatibility first. Default: npm workspaces per ARCHITECTURE.md recommendation
