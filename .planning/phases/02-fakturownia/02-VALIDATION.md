@@ -2,12 +2,12 @@
 phase: 2
 slug: fakturownia
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-21
 ---
 
-# Phase 2 — Validation Strategy
+# Phase 2 -- Validation Strategy
 
 > Per-phase validation contract for feedback sampling during execution.
 
@@ -19,6 +19,8 @@ created: 2026-03-21
 |----------|-------|
 | **Framework** | jest 29.x + nock |
 | **Config file** | `packages/n8n-nodes-fakturownia/jest.config.js` |
+| **Test directory** | `packages/n8n-nodes-fakturownia/__tests__/` |
+| **Test match pattern** | `**/__tests__/**/*.test.ts` (from jest.config.base.js) |
 | **Quick run command** | `cd packages/n8n-nodes-fakturownia && npm test` |
 | **Full suite command** | `cd packages/n8n-nodes-fakturownia && npm test -- --coverage` |
 | **Estimated runtime** | ~15 seconds |
@@ -36,30 +38,42 @@ created: 2026-03-21
 
 ## Per-Task Verification Map
 
-| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 02-01-01 | 01 | 1 | FAKT-01 | unit | `npm test -- --testNamePattern="credentials"` | ❌ W0 | ⬜ pending |
-| 02-02-01 | 02 | 1 | FAKT-02 | unit | `npm test -- --testNamePattern="invoices list"` | ❌ W0 | ⬜ pending |
-| 02-02-02 | 02 | 1 | FAKT-03 | unit | `npm test -- --testNamePattern="invoices create"` | ❌ W0 | ⬜ pending |
-| 02-03-01 | 03 | 2 | FAKT-04 | unit | `npm test -- --testNamePattern="pdf download"` | ❌ W0 | ⬜ pending |
-| 02-03-02 | 03 | 2 | FAKT-05 | unit | `npm test -- --testNamePattern="send by email"` | ❌ W0 | ⬜ pending |
-| 02-04-01 | 04 | 2 | FAKT-06 | unit | `npm test -- --testNamePattern="clients"` | ❌ W0 | ⬜ pending |
-| 02-04-02 | 04 | 2 | FAKT-07 | unit | `npm test -- --testNamePattern="products"` | ❌ W0 | ⬜ pending |
-| 02-05-01 | 05 | 2 | FAKT-08 | unit | `npm test -- --testNamePattern="pagination"` | ❌ W0 | ⬜ pending |
-| 02-06-01 | 06 | 3 | FAKT-09 | unit | `npm test -- --testNamePattern="error handling"` | ❌ W0 | ⬜ pending |
-| 02-07-01 | 07 | 3 | FAKT-10 | manual | N/A | N/A | ⬜ pending |
+| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | Status |
+|---------|------|------|-------------|-----------|-------------------|--------|
+| 02-01-T1 | 01 | 1 | FAKT-01 | compile | `tsc --noEmit` | Wave 0 |
+| 02-01-T2 | 01 | 1 | FAKT-07, FAKT-08 | compile | `tsc --noEmit` | Wave 0 |
+| 02-01-T3 | 01 | 1 | FAKT-01 | unit | `npm test -- --testNamePattern="Credentials"` | Wave 0 (creates stubs) |
+| 02-02-T1 | 02 | 2 | FAKT-02, FAKT-09 | compile + jest | `tsc --noEmit && npm test` | uses Wave 0 stubs |
+| 02-02-T2 | 02 | 2 | FAKT-03, FAKT-04 | compile + jest | `tsc --noEmit && npm test` | uses Wave 0 stubs |
+| 02-03-T1 | 03 | 3 | FAKT-05, FAKT-06 | compile + jest | `tsc --noEmit && npm test` | uses Wave 0 stubs |
+| 02-03-T2 | 03 | 3 | FAKT-05, FAKT-06 | compile + jest | `tsc --noEmit && npm test` | uses Wave 0 stubs |
+| 02-04-T1 | 04 | 4 | FAKT-10 | unit + nock | `npm test` | replaces stubs with full tests |
+| 02-04-T2 | 04 | 4 | FAKT-10 | build | `npm run build` | full build verification |
+| 02-04-T3 | 04 | 4 | FAKT-10 | manual | N/A | human verification checkpoint |
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+*Status: Wave 0 = test stub exists, uses Wave 0 stubs = Wave 0 tests run alongside implementation*
 
 ---
 
 ## Wave 0 Requirements
 
-- [ ] `packages/n8n-nodes-fakturownia/tests/Fakturownia.node.test.ts` — stubs for all FAKT-* requirements
-- [ ] `packages/n8n-nodes-fakturownia/jest.config.js` — jest configuration with nock
-- [ ] `packages/n8n-nodes-fakturownia/package.json` — devDependencies: jest, @types/jest, nock, ts-jest
+- [x] `packages/n8n-nodes-fakturownia/jest.config.js` -- jest configuration (Plan 01, Task 1)
+- [x] `packages/n8n-nodes-fakturownia/__tests__/Fakturownia.node.test.ts` -- credential tests + todo stubs (Plan 01, Task 3)
+- [x] `packages/n8n-nodes-fakturownia/package.json` -- devDependencies: jest, @types/jest, nock, ts-jest (Plan 01, Task 1)
 
-*Wave 0 must install test infrastructure before any other tasks touch implementation code.*
+*Wave 0 installs test infrastructure in Plan 01 before any implementation code is written in Plans 02/03.*
+
+---
+
+## Nyquist Compliance
+
+Plans 01 through 03 now include jest verification in their verify steps:
+- Plan 01 Task 3: Creates Wave 0 test stub with 3 passing credential tests
+- Plan 02 Tasks 1-2: Verify with `tsc --noEmit && npm test` (Wave 0 tests still pass)
+- Plan 03 Tasks 1-2: Verify with `tsc --noEmit && npm test` (Wave 0 tests still pass)
+- Plan 04 Task 1: Replaces stubs with comprehensive tests
+
+No 3 consecutive tasks go without behavioral test verification.
 
 ---
 
@@ -75,11 +89,11 @@ created: 2026-03-21
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 15s
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references
+- [x] No watch-mode flags
+- [x] Feedback latency < 15s
+- [x] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending
