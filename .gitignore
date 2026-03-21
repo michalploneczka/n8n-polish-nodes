@@ -10,3 +10,4 @@ dist/
 coverage/
 .n8n/
 package-lock.json
+resources/
