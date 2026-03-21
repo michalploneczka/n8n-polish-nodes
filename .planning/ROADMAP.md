@@ -73,13 +73,14 @@ Plans:
   3. User can download an invoice PDF that opens correctly as a valid PDF file in the next workflow node (binary data output)
   4. User can manage clients (List, Get, Create) and products (List, Create) as separate resources
   5. Dynamic base URL is constructed from subdomain credential (e.g., `mycompany.fakturownia.pl`)
-**Plans**: 4 plans
+**Plans**: 5 plans
 
 Plans:
 - [x] 02-01-PLAN.md -- Package scaffold, credentials (apiToken + subdomain), GenericFunctions (API request helper + pagination helper)
 - [x] 02-02-PLAN.md -- Node class with execute() + Invoice resource (7 operations: list, get, create, update, delete, sendByEmail, downloadPdf)
 - [x] 02-03-PLAN.md -- Clients resource (list, get, create) + Products resource (list, create) wired into node
 - [x] 02-04-PLAN.md -- Nock tests for all operations, codex, SVG icon, README, build verification (human checkpoint)
+- [ ] 02-05-PLAN.md -- Gap closure: fix 11 lint errors (3 manual in GenericFunctions.ts + 8 autofix in resource files)
 
 **Technical Notes:**
 - Fully programmatic node (execute() method) -- PDF download + pagination require it
