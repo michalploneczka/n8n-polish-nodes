@@ -75,14 +75,40 @@ pnpm --filter n8n-nodes-smsapi run test
 pnpm run lint:all
 ```
 
-### Local Development with n8n
+### Local Development with n8n (Docker)
+
+Use the included script to build, pack, and hot-reload nodes into a running n8n Docker container:
+
+```bash
+# Install all packages into the running n8n container (default container name: n8n)
+./scripts/dev-install.sh
+
+# Install a single package
+./scripts/dev-install.sh ceidg
+./scripts/dev-install.sh smsapi
+
+# Custom container name
+CONTAINER=my-n8n ./scripts/dev-install.sh
+```
+
+The script builds all packages, packs them as tarballs, installs them inside the container's custom nodes directory, and restarts n8n. Run it after every code change.
+
+**docker-compose.yml** is included for quick local setup:
+
+```bash
+docker compose up -d
+./scripts/dev-install.sh
+# Open http://localhost:5678
+```
+
+### Local Development without Docker
 
 ```bash
 cd packages/n8n-nodes-smsapi
 pnpm run build
-pnpm link --global
+npm link
 cd ~/.n8n/custom
-pnpm link --global n8n-nodes-smsapi
+npm link n8n-nodes-smsapi
 npx n8n start
 ```
 

@@ -26,21 +26,21 @@ export class CeidgApi implements ICredentialType {
 		},
 	];
 
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: 'https://dane.biznes.gov.pl/api/ceidg/v3',
+			url: '/firma?nip=6351723862',
+			method: 'GET',
+		},
+	};
+
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
 			headers: {
-				Authorization: '={{$credentials?.apiKey}}',
+				Authorization: '=Bearer {{$credentials.apiKey}}',
 			},
 		},
 	};
 
-	test: ICredentialTestRequest = {
-		request: {
-			baseURL: 'https://dane.biznes.gov.pl/api/ceidg/v2',
-			url: '/firmy',
-			qs: { nip: '1234567890' },
-			method: 'GET',
-		},
-	};
 }

@@ -22,9 +22,10 @@ export class Ceidg implements INodeType {
 			},
 		],
 		requestDefaults: {
-			baseURL: 'https://dane.biznes.gov.pl/api/ceidg/v2',
+			baseURL: 'https://dane.biznes.gov.pl/api/ceidg/v3',
 			headers: {
 				Accept: 'application/json',
+				'Content-Type': 'application/json',
 			},
 		},
 		properties: [
@@ -90,7 +91,7 @@ export class Ceidg implements INodeType {
 				routing: {
 					request: {
 						method: 'GET',
-						url: '/firmy',
+						url: '/firma',
 					},
 					send: {
 						type: 'query',
@@ -128,7 +129,8 @@ export class Ceidg implements INodeType {
 				type: 'string',
 				required: true,
 				default: '',
-				description: 'CEIDG entry ID',
+				placeholder: '31F87519-9395-4FCF-8E19-6D5C0522FA7A',
+				description: 'CEIDG entry UUID (from search results — field: id)',
 				displayOptions: {
 					show: {
 						resource: ['company'],
@@ -138,7 +140,7 @@ export class Ceidg implements INodeType {
 				routing: {
 					request: {
 						method: 'GET',
-						url: '=/firmy/{{$value}}',
+						url: '=/firma/{{$value}}',
 					},
 				},
 			},

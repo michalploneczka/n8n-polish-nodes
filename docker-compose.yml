@@ -13,8 +13,11 @@ services:
       - N8N_BASIC_AUTH_PASSWORD=twoje_haslo
       - GENERIC_TIMEZONE=Europe/Warsaw
       - TZ=Europe/Warsaw
+      - N8N_CUSTOM_EXTENSIONS=/custom-nodes/node_modules
     volumes:
       - n8n_data:/home/node/.n8n
+      - ./packages/n8n-nodes-ceidg:/custom-nodes/node_modules/n8n-nodes-ceidg
+      - ./packages/n8n-nodes-smsapi:/custom-nodes/node_modules/n8n-nodes-smsapi
 
 volumes:
   n8n_data:
