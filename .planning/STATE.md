@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-05-PLAN.md
-last_updated: "2026-03-21T15:20:57.633Z"
+stopped_at: Completed 12-01-PLAN.md
+last_updated: "2026-03-21T21:46:41.912Z"
 progress:
   total_phases: 15
   completed_phases: 2
-  total_plans: 16
-  completed_plans: 16
+  total_plans: 22
+  completed_plans: 17
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 02 — fakturownia
+**Current focus:** Phase 12 — mmode-dla-linker-cloud-przez-realizacja-base-linker-dokumentacje-do-api-linker-clud-dostarcze
 
 ## Current Position
 
-Phase: 11
-Plan: Not started
+Phase: 12 (mmode-dla-linker-cloud-przez-realizacja-base-linker-dokumentacje-do-api-linker-clud-dostarcze) — EXECUTING
+Plan: 2 of 6
 
 ## Performance Metrics
 
@@ -62,6 +62,7 @@ Plan: Not started
 | Phase 02 P03 | 2min | 2 tasks | 3 files |
 | Phase 02 P04 | 2min | 3 tasks | 4 files |
 | Phase 02 P05 | 2min | 2 tasks | 5 files |
+| Phase 12 P01 | 3min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -100,11 +101,13 @@ Recent decisions affecting current work:
 - [Phase 02]: Programmatic node tests mock helpers.httpRequest directly (not httpRequestWithAuthentication)
 - [Phase 02]: Binary PDF download test mocks both httpRequest and prepareBinaryData
 - [Phase 02]: eslint-disable for no-http-request-with-manual-auth justified by dynamic subdomain URL construction
+- [Phase 12]: Static class properties to expose GenericFunctions imports -- avoids unused-import tsc error
+- [Phase 12]: eslint-disable for no-http-request-with-manual-auth justified by dynamic per-customer domain URL
 
 ### Roadmap Evolution
 
 - Phase 11 added: node dla KRS, biała lista podatników VAT, VIES i GUS
-- Phase 12 added: mmode dla Linker Cloud przez realizacja base linker - dokumentacje do api linker clud dostarcze
+- Phase 12 added: mmode dla Linker Cloud - dokumentacje do api znajduyje sie w folderze resources/linker_cloud_api.json
 - Phase 13 added: node dla integracji z api Ceneo - mozliwosc weryfikowania cen rynkowych
 - Phase 14 added: node do pobierania kursu walut z nbp
 - Phase 15 added: integracja z https://api.nfz.gov.pl/app-itl-api/
@@ -123,6 +126,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T15:03:49.034Z
-Stopped at: Completed 02-05-PLAN.md
+Last session: 2026-03-21T21:46:41.910Z
+Stopped at: Completed 12-01-PLAN.md
 Resume file: None

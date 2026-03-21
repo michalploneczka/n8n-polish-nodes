@@ -371,7 +371,7 @@ Plans:
 **Goal:** Users can manage fulfillment orders, products, stock, shipments, inbound orders, and order returns via the Linker Cloud WMS/OMS API
 **Requirements**: LC-01, LC-02, LC-03, LC-04, LC-05, LC-06, LC-07, LC-08, LC-09, LC-10
 **Depends on:** Phase 11
-**Plans:** 6 plans
+**Plans:** 1/6 plans executed
 **Success Criteria** (what must be TRUE):
   1. User can create, list, get, update, and cancel fulfillment orders with complex nested items
   2. User can manage products with correct boolean/array defaults and batch-update stock levels by SKU
@@ -380,7 +380,7 @@ Plans:
   5. Dynamic base URL constructed from configurable domain credential with apikey query param auth
 
 Plans:
-- [ ] 12-01-PLAN.md -- Package scaffold, credentials (domain + apiKey), GenericFunctions (API helper + offset/limit pagination), node skeleton
+- [x] 12-01-PLAN.md -- Package scaffold, credentials (domain + apiKey), GenericFunctions (API helper + offset/limit pagination), node skeleton
 - [ ] 12-02-PLAN.md -- Order resource (List, Get, Create, Update, Cancel) with 58-property model and smart field grouping
 - [ ] 12-03-PLAN.md -- Product resource (List, Create, Update) + Stock resource (List, batch Update)
 - [ ] 12-04-PLAN.md -- Shipment resource (Create, Create by Order#, Get Label binary, Get Status, Cancel)
