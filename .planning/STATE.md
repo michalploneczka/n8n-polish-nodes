@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-21T14:36:11.954Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-21T14:40:10.438Z"
 progress:
   total_phases: 15
   completed_phases: 1
   total_plans: 15
-  completed_plans: 12
+  completed_plans: 13
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-20)
 ## Current Position
 
 Phase: 02 (fakturownia) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Plan: 2 of 4
 | Phase 01 P10 | 15min | 3 tasks | 6 files |
 | Phase 01 P11 | 2min | 1 tasks | 1 files |
 | Phase 02 P01 | 3min | 3 tasks | 7 files |
+| Phase 02 P02 | 2min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,8 @@ Recent decisions affecting current work:
 - [Phase 01]: CEIDG API v3 (not v2) -- v2 deprecated, v3 uses Bearer auth and /firma endpoint
 - [Phase 01]: No code changes to node/credential files -- only test assertions were stale after v2->v3 migration
 - [Phase 02]: No authenticate block on credentials -- auth handled via api_token query param in GenericFunctions due to dynamic subdomain URL
+- [Phase 02]: Resource selector only lists invoice -- client/product added in Plan 03
+- [Phase 02]: PDF download uses json:false + encoding:arraybuffer via GenericFunctions options
 
 ### Roadmap Evolution
 
@@ -113,6 +116,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T14:36:11.952Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-21T14:40:10.435Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
