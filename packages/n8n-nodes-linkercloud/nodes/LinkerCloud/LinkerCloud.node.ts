@@ -8,7 +8,9 @@ import type {
 import { NodeConnectionTypes, NodeApiError } from 'n8n-workflow';
 
 import { linkerCloudApiRequest, linkerCloudApiRequestAllItems } from './GenericFunctions';
+import { inboundOrderOperations, inboundOrderFields } from './resources/inboundOrder';
 import { orderOperations, orderFields } from './resources/order';
+import { orderReturnOperations, orderReturnFields } from './resources/orderReturn';
 import { productOperations, productFields } from './resources/product';
 import { shipmentOperations, shipmentFields } from './resources/shipment';
 import { stockOperations, stockFields } from './resources/stock';
@@ -51,8 +53,12 @@ export class LinkerCloud implements INodeType {
 				default: 'order',
 			},
 			// Resource operations and fields
+			inboundOrderOperations,
+			...inboundOrderFields,
 			orderOperations,
 			...orderFields,
+			orderReturnOperations,
+			...orderReturnFields,
 			productOperations,
 			...productFields,
 			shipmentOperations,
@@ -344,6 +350,134 @@ export class LinkerCloud implements INodeType {
 						const packageIdsRaw = this.getNodeParameter('packageIdsToCancel', i) as string;
 						const ids = packageIdsRaw.split(',').map(id => id.trim());
 						const response = await linkerCloudApiRequest.call(this, 'PATCH', `/public-api/v1/deliveries/${orderId}`, { ids });
+						returnData.push({ json: response as IDataObject });
+					}
+
+				} else if (resource === 'inboundOrder') {
+					if (operation === 'list') {
+						const orders = await linkerCloudApiRequestAllItems.call(this, 'GET', '/public-api/v1/supplierorders');
+						for (const order of orders) {
+							returnData.push({ json: order });
+						}
+					} else if (operation === 'get') {
+						const id = this.getNodeParameter('inboundOrderId', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'GET', `/public-api/v1/supplierorders/${id}`);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'create') {
+						const orderDate = this.getNodeParameter('orderDate', i) as string;
+						const executionDate = this.getNodeParameter('executionDate', i) as string;
+						const priceGross = this.getNodeParameter('priceGross', i) as number;
+						const priceNet = this.getNodeParameter('priceNet', i) as number;
+						const supplier = this.getNodeParameter('supplier', i) as string;
+						const supplierObjectRaw = this.getNodeParameter('supplierObject', i) as string;
+						const itemsRaw = this.getNodeParameter('items', i) as string;
+						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
+
+						let supplierObject: IDataObject;
+						let items: IDataObject[];
+						try {
+							supplierObject = JSON.parse(supplierObjectRaw) as IDataObject;
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Supplier Object field.' });
+						}
+						try {
+							items = JSON.parse(itemsRaw) as IDataObject[];
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Items field.' });
+						}
+
+						const customProperties = additionalFields.customProperties
+							? JSON.parse(additionalFields.customProperties as string)
+							: [];
+						delete additionalFields.customProperties;
+
+						const body: IDataObject = {
+							orderDate, executionDate, priceGross, priceNet, supplier, supplierObject, items,
+							customProperties, ...additionalFields,
+						};
+
+						const response = await linkerCloudApiRequest.call(this, 'POST', '/public-api/v1/supplierorders', body);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'update') {
+						const id = this.getNodeParameter('inboundOrderId', i) as string;
+						const updateFields = this.getNodeParameter('updateFields', i, {}) as IDataObject;
+
+						if (updateFields.supplierObject) updateFields.supplierObject = JSON.parse(updateFields.supplierObject as string);
+						if (updateFields.items) updateFields.items = JSON.parse(updateFields.items as string);
+						if (updateFields.customProperties) updateFields.customProperties = JSON.parse(updateFields.customProperties as string);
+
+						const response = await linkerCloudApiRequest.call(this, 'PUT', `/public-api/v1/supplierorders/${id}`, updateFields);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'confirm') {
+						// Swagger spec: POST /supplierorders/confirms creates a new inbound confirmation document
+						// Body is SupplierOrderType (full order schema), NOT batch confirm by IDs
+						const orderDate = this.getNodeParameter('orderDate', i) as string;
+						const executionDate = this.getNodeParameter('executionDate', i) as string;
+						const priceGross = this.getNodeParameter('priceGross', i) as number;
+						const priceNet = this.getNodeParameter('priceNet', i) as number;
+						const supplier = this.getNodeParameter('supplier', i) as string;
+						const supplierObjectRaw = this.getNodeParameter('supplierObject', i) as string;
+						const itemsRaw = this.getNodeParameter('items', i) as string;
+						const additionalFields = this.getNodeParameter('confirmAdditionalFields', i, {}) as IDataObject;
+
+						let supplierObject: IDataObject;
+						let items: IDataObject[];
+						try {
+							supplierObject = JSON.parse(supplierObjectRaw) as IDataObject;
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Supplier Object field.' });
+						}
+						try {
+							items = JSON.parse(itemsRaw) as IDataObject[];
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Items field.' });
+						}
+
+						const customProperties = additionalFields.customProperties
+							? JSON.parse(additionalFields.customProperties as string)
+							: [];
+						delete additionalFields.customProperties;
+
+						const body: IDataObject = {
+							orderDate, executionDate, priceGross, priceNet, supplier, supplierObject, items,
+							customProperties, ...additionalFields,
+						};
+
+						const response = await linkerCloudApiRequest.call(this, 'POST', '/public-api/v1/supplierorders/confirms', body);
+						returnData.push({ json: response as IDataObject });
+					}
+
+				} else if (resource === 'orderReturn') {
+					if (operation === 'list') {
+						const returns = await linkerCloudApiRequestAllItems.call(this, 'GET', '/public-api/v1/orderreturns');
+						for (const ret of returns) {
+							returnData.push({ json: ret });
+						}
+					} else if (operation === 'get') {
+						const id = this.getNodeParameter('orderReturnId', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'GET', `/public-api/v1/orderreturns/${id}`);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'create') {
+						const orderNumber = this.getNodeParameter('orderNumber', i) as string;
+						const itemsRaw = this.getNodeParameter('items', i) as string;
+						const reason = this.getNodeParameter('reason', i, '') as string;
+						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
+
+						let items: IDataObject[];
+						try {
+							items = JSON.parse(itemsRaw) as IDataObject[];
+						} catch {
+							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Items field.' });
+						}
+
+						const body: IDataObject = { orderNumber, items, ...additionalFields };
+						if (reason) body.reason = reason;
+
+						const response = await linkerCloudApiRequest.call(this, 'POST', '/public-api/v1/orderreturns', body);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'accept') {
+						const id = this.getNodeParameter('orderReturnId', i) as string;
+						const response = await linkerCloudApiRequest.call(this, 'POST', `/public-api/v1/orderreturns/${id}/accept`);
 						returnData.push({ json: response as IDataObject });
 					}
 
