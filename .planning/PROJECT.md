@@ -14,13 +14,17 @@ Kompletny ekosystem polskich integracji n8n — od wysyłki SMS, przez faktury, 
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Monorepo structure z wspólnym toolingiem i osobnymi publishami per package — Validated in Phase 01: monorepo-bootstrap-smsapi-ceidg
+- [x] NODE #1: SMSAPI.pl — SMS: Send/Send Group/Get Report, Contacts CRUD, Groups List, Account Balance (deklaratywny) — Validated in Phase 01: monorepo-bootstrap-smsapi-ceidg
+- [x] NODE #10: CEIDG — Companies: Search by NIP/Name, Get (deklaratywny, najprostszy) — Validated in Phase 01: monorepo-bootstrap-smsapi-ceidg
+- [x] CI/CD: GitHub Actions publish workflow z provenance attestation — Validated in Phase 01: monorepo-bootstrap-smsapi-ceidg
+- [x] Testy per node z nock (mock HTTP) — happy path + error handling — Validated in Phase 01: monorepo-bootstrap-smsapi-ceidg
+- [x] README per node z example workflow JSON — Validated in Phase 01: monorepo-bootstrap-smsapi-ceidg
+- [x] SVG ikona 60x60 per node — Validated in Phase 01: monorepo-bootstrap-smsapi-ceidg
 
 ### Active
 
-- [ ] Monorepo structure z wspólnym toolingiem i osobnymi publishami per package
-- [ ] NODE #1: SMSAPI.pl — SMS: Send/Send Group/Get Report, Contacts CRUD, Groups List, Account Balance (deklaratywny)
-- [ ] NODE #10: CEIDG — Companies: Search by NIP/Name, Get (deklaratywny, najprostszy)
+- [ ] NODE #2: Fakturownia.pl — Invoices/Clients/Products CRUD + PDF download (deklaratywny)
 - [ ] NODE #2: Fakturownia.pl — Invoices/Clients/Products CRUD + PDF download (deklaratywny)
 - [ ] NODE #3: InPost ShipX — Shipments CRUD + Label/Tracking, Points List (programmatic)
 - [ ] NODE #4: Przelewy24 — Transactions Register/Verify/Refund, Payment Methods (programmatic, CRC checksum)
@@ -30,10 +34,6 @@ Kompletny ekosystem polskich integracji n8n — od wysyłki SMS, przez faktury, 
 - [ ] NODE #8: iFirma — Invoices/Expenses/Contractors (programmatic, HMAC-SHA1)
 - [ ] NODE #9: Allegro — Offers/Orders/Shipping (programmatic, OAuth2 Authorization Code)
 - [ ] NODE #11: GUS REGON (BIR) — Search by NIP/REGON/KRS (programmatic, SOAP/XML)
-- [ ] CI/CD: GitHub Actions publish workflow z provenance attestation
-- [ ] Testy per node z nock (mock HTTP) — happy path + error handling
-- [ ] README per node z example workflow JSON
-- [ ] SVG ikona 60x60 per node
 
 ### Out of Scope
 
@@ -96,4 +96,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-20 after initialization*
+*Last updated: 2026-03-21 after Phase 01 completion — monorepo bootstrapped, SMSAPI + CEIDG nodes delivered (38/38 tests passing, CI/CD ready)*
