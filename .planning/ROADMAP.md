@@ -79,7 +79,7 @@ Plans:
 - [x] 02-01-PLAN.md -- Package scaffold, credentials (apiToken + subdomain), GenericFunctions (API request helper + pagination helper)
 - [x] 02-02-PLAN.md -- Node class with execute() + Invoice resource (7 operations: list, get, create, update, delete, sendByEmail, downloadPdf)
 - [x] 02-03-PLAN.md -- Clients resource (list, get, create) + Products resource (list, create) wired into node
-- [ ] 02-04-PLAN.md -- Nock tests for all operations, codex, SVG icon, README, build verification (human checkpoint)
+- [x] 02-04-PLAN.md -- Nock tests for all operations, codex, SVG icon, README, build verification (human checkpoint)
 
 **Technical Notes:**
 - Fully programmatic node (execute() method) -- PDF download + pagination require it

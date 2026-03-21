@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-03-21T14:43:42.592Z"
+stopped_at: Completed 02-04-PLAN.md
+last_updated: "2026-03-21T14:47:43.202Z"
 progress:
   total_phases: 15
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 15
-  completed_plans: 14
+  completed_plans: 15
 ---
 
 # Project State
@@ -60,6 +60,7 @@ Plan: 4 of 4
 | Phase 02 P01 | 3min | 3 tasks | 7 files |
 | Phase 02 P02 | 2min | 2 tasks | 2 files |
 | Phase 02 P03 | 2min | 2 tasks | 3 files |
+| Phase 02 P04 | 2min | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,8 @@ Recent decisions affecting current work:
 - [Phase 02]: Resource selector only lists invoice -- client/product added in Plan 03
 - [Phase 02]: PDF download uses json:false + encoding:arraybuffer via GenericFunctions options
 - [Phase 02]: Resource files force-added due to root .gitignore excluding resources/ globally
+- [Phase 02]: Programmatic node tests mock helpers.httpRequest directly (not httpRequestWithAuthentication)
+- [Phase 02]: Binary PDF download test mocks both httpRequest and prepareBinaryData
 
 ### Roadmap Evolution
 
@@ -118,6 +121,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T14:43:42.590Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-03-21T14:47:43.199Z
+Stopped at: Completed 02-04-PLAN.md
 Resume file: None

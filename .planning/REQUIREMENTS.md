@@ -53,7 +53,7 @@
 - [x] **FAKT-07**: Paginacja — obsługa `page` parameter (25 elementów per strona domyślnie)
 - [x] **FAKT-08**: Binary data handling — PDF download jako n8n binary item
 - [x] **FAKT-09**: Create Invoice — pola: kind, number, sell_date, issue_date, payment_to, buyer_name, buyer_tax_no, positions (JSON array), payment_type
-- [ ] **FAKT-10**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+- [x] **FAKT-10**: Obsługa błędów, testy nock, package.json, codex, ikona, README
 
 ### InPost Node
 
