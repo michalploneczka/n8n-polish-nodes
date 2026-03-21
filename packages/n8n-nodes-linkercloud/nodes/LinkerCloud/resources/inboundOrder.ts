@@ -196,7 +196,7 @@ export const inboundOrderFields: INodeProperties[] = [
 		typeOptions: {
 			rows: 4,
 		},
-		description: 'Items as JSON array. Each: { "sku": "...", "quantity": N, "price": N }',
+		description: 'Items as JSON array. Each: { "sku": "...", "quantity": N, "price": N }.',
 		displayOptions: {
 			show: {
 				resource: ['inboundOrder'],
@@ -269,21 +269,18 @@ export const inboundOrderFields: INodeProperties[] = [
 				name: 'numberOfContainers',
 				type: 'number',
 				default: 0,
-				description: 'Number of containers',
 			},
 			{
 				displayName: 'Number of Pallets',
 				name: 'numberOfPallets',
 				type: 'number',
 				default: 0,
-				description: 'Number of pallets',
 			},
 			{
 				displayName: 'Number of Parcels',
 				name: 'numberOfParcels',
 				type: 'number',
 				default: 0,
-				description: 'Number of parcels',
 			},
 			{
 				displayName: 'Priority',
@@ -370,28 +367,25 @@ export const inboundOrderFields: INodeProperties[] = [
 				typeOptions: {
 					rows: 4,
 				},
-				description: 'Items as JSON array. Each: { "sku": "...", "quantity": N, "price": N }',
+				description: 'Items as JSON array. Each: { "sku": "...", "quantity": N, "price": N }.',
 			},
 			{
 				displayName: 'Number of Containers',
 				name: 'numberOfContainers',
 				type: 'number',
 				default: 0,
-				description: 'Number of containers',
 			},
 			{
 				displayName: 'Number of Pallets',
 				name: 'numberOfPallets',
 				type: 'number',
 				default: 0,
-				description: 'Number of pallets',
 			},
 			{
 				displayName: 'Number of Parcels',
 				name: 'numberOfParcels',
 				type: 'number',
 				default: 0,
-				description: 'Number of parcels',
 			},
 			{
 				displayName: 'Order Date',
@@ -543,7 +537,7 @@ export const inboundOrderFields: INodeProperties[] = [
 		typeOptions: {
 			rows: 4,
 		},
-		description: 'Items as JSON array. Each: { "sku": "...", "quantity": N, "price": N }',
+		description: 'Items as JSON array. Each: { "sku": "...", "quantity": N, "price": N }.',
 		displayOptions: {
 			show: {
 				resource: ['inboundOrder'],
@@ -616,21 +610,18 @@ export const inboundOrderFields: INodeProperties[] = [
 				name: 'numberOfContainers',
 				type: 'number',
 				default: 0,
-				description: 'Number of containers',
 			},
 			{
 				displayName: 'Number of Pallets',
 				name: 'numberOfPallets',
 				type: 'number',
 				default: 0,
-				description: 'Number of pallets',
 			},
 			{
 				displayName: 'Number of Parcels',
 				name: 'numberOfParcels',
 				type: 'number',
 				default: 0,
-				description: 'Number of parcels',
 			},
 			{
 				displayName: 'Priority',

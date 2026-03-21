@@ -9,6 +9,8 @@ export class LinkerCloudApi implements ICredentialType {
 
 	displayName = 'Linker Cloud API';
 
+	icon = 'file:linkercloud.svg' as const;
+
 	documentationUrl = 'https://linkercloud.com';
 
 	properties: INodeProperties[] = [

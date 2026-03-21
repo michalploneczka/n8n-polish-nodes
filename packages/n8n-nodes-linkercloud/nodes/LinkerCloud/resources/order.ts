@@ -12,6 +12,12 @@ export const orderOperations: INodeProperties = {
 	},
 	options: [
 		{
+			name: 'Apply Transition',
+			value: 'applyTransition',
+			action: 'Apply a state transition to an order',
+			description: 'Apply a state transition to an order',
+		},
+		{
 			name: 'Cancel',
 			value: 'cancel',
 			action: 'Cancel an order',
@@ -30,22 +36,16 @@ export const orderOperations: INodeProperties = {
 			description: 'Get an order by ID',
 		},
 		{
-			name: 'List',
-			value: 'list',
-			action: 'List orders',
-			description: 'Get a list of orders',
-		},
-		{
-			name: 'Apply Transition',
-			value: 'applyTransition',
-			action: 'Apply a state transition to an order',
-			description: 'Apply a state transition to an order',
-		},
-		{
 			name: 'Get Transitions',
 			value: 'getTransitions',
 			action: 'Get allowed transitions for an order',
 			description: 'Get allowed state transitions for an order',
+		},
+		{
+			name: 'List',
+			value: 'list',
+			action: 'List orders',
+			description: 'Get a list of orders',
 		},
 		{
 			name: 'Update',
@@ -664,7 +664,7 @@ export const orderFields: INodeProperties[] = [
 				typeOptions: {
 					rows: 4,
 				},
-				description: 'Order items as JSON array. Each item: { "sku": "...", "quantity": 1, "price_gross": 10.00, "description": "...", "serial_numbers": [], "custom_properties": [], "source_data": [], "batch_numbers": [] }',
+				description: 'Order items as JSON array. Each item: { "sku": "...", "quantity": 1, "price_gross": 10.00, "description": "...", "serial_numbers": [], "custom_properties": [], "source_data": [], "batch_numbers": [] }.',
 			},
 			{
 				displayName: 'Order Date',
@@ -679,14 +679,12 @@ export const orderFields: INodeProperties[] = [
 				name: 'paymentMethod',
 				type: 'string',
 				default: '',
-				description: 'Payment method',
 			},
 			{
 				displayName: 'Payment Transaction ID',
 				name: 'paymentTransactionId',
 				type: 'string',
 				default: '',
-				description: 'Payment transaction ID',
 			},
 			{
 				displayName: 'Price Gross',

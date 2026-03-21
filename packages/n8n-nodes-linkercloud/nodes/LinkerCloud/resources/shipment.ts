@@ -163,7 +163,7 @@ export const shipmentFields: INodeProperties[] = [
 				operation: ['create', 'createByOrderNumber'],
 			},
 		},
-		description: 'Packages as JSON array. Each: { "weight": 1.5, "items": [{ "sku": "ABC", "quantity": 1 }] }',
+		description: 'Packages as JSON array. Each: { "weight": 1.5, "items": [{ "sku": "ABC", "quantity": 1 }] }.',
 	},
 	{
 		displayName: 'Mark as Packed',

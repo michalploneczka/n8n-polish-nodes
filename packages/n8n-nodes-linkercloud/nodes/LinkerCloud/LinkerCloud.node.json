@@ -1,0 +1,14 @@
+{
+  "node": "n8n-nodes-linkercloud.linkerCloud",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Sales"],
+  "subcategories": {
+    "Sales": ["Fulfillment"]
+  },
+  "resources": {
+    "primaryDocumentation": [
+      { "url": "https://linkercloud.com" }
+    ]
+  }
+}
