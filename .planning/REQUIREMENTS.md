@@ -48,8 +48,8 @@
 - [x] **FAKT-02**: Resource: Invoices — operacje List (z filtrami: data, status, paginacja `page`), Get, Create, Update, Delete
 - [x] **FAKT-03**: Resource: Invoices — operacja Send by Email
 - [x] **FAKT-04**: Resource: Invoices — operacja Download PDF (binary data output)
-- [ ] **FAKT-05**: Resource: Clients — operacje List, Get, Create
-- [ ] **FAKT-06**: Resource: Products — operacje List, Create
+- [x] **FAKT-05**: Resource: Clients — operacje List, Get, Create
+- [x] **FAKT-06**: Resource: Products — operacje List, Create
 - [x] **FAKT-07**: Paginacja — obsługa `page` parameter (25 elementów per strona domyślnie)
 - [x] **FAKT-08**: Binary data handling — PDF download jako n8n binary item
 - [x] **FAKT-09**: Create Invoice — pola: kind, number, sell_date, issue_date, payment_to, buyer_name, buyer_tax_no, positions (JSON array), payment_type
