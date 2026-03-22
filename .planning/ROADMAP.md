@@ -407,15 +407,33 @@ Plans:
 Plans:
 - [ ] TBD (run /gsd:plan-phase 13 to break down)
 
-### Phase 14: node do pobierania kursu walut z nbp
-
-**Goal:** [To be planned]
-**Requirements**: TBD
+### Phase 14: NBP Exchange Rates
+**Goal:** Users can get official PLN exchange rates (Tables A, B, C) and gold prices from NBP (National Bank of Poland) public API with no authentication required
+**Requirements**: NBP-01, NBP-02, NBP-03, NBP-04, NBP-05, NBP-06
 **Depends on:** Phase 13
-**Plans:** 0 plans
+**Plans:** 2 plans
+**Success Criteria** (what must be TRUE):
+  1. Node exists as a declarative node with NO credentials -- public API, no registration needed
+  2. User can get current, historical, and date-range exchange rates for any currency by ISO 4217 code across Tables A, B, and C
+  3. User can get current, historical, and date-range gold prices
+  4. All requests use JSON format (Accept header + query param)
+  5. Build, lint, and tests pass; package is ready for npm publish
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 14 to break down)
+- [ ] 14-01-PLAN.md -- Package scaffold (package.json, tsconfig, eslint, jest) + declarative node with Exchange Rate (6 ops) and Gold Price (4 ops) resources
+- [ ] 14-02-PLAN.md -- Nock tests, codex (Data & Storage), SVG icon, README, build + lint verification
+
+**Technical Notes:**
+- Simplest possible node -- no credentials, all GET, JSON responses, no pagination, no rate limits
+- Follows CEIDG declarative pattern but without credentials
+- Date fields use `string` type (not `dateTime`) because NBP expects YYYY-MM-DD format
+- Table A = common currencies (mid), Table B = all currencies (mid), Table C = buy/sell (bid/ask)
+- Gold price response uses Polish field names: `data` (date), `cena` (price)
+- 404 on weekends/holidays for date queries -- "Get Current" always returns latest published
+- Maximum 93-day date range
+- Exchange rates from 2002, gold prices from 2013
+
+---
 
 ### Phase 15: integracja z https://api.nfz.gov.pl/app-itl-api/
 
