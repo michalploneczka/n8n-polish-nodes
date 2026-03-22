@@ -317,25 +317,22 @@ Plans:
   3. SOAP session management is transparent -- user does not interact with login/logout flow
   4. Polish characters in company names and search terms are handled correctly (XML encoding)
   5. Double-encoded CDATA responses (HTML-encoded XML inside SOAP) are parsed correctly
-**Plans**: 7 plans
+**Plans**: 3 plans
 
 Plans:
-- [ ] 10-01: GUS REGON credentials -- API Key (free from dane.biznes.gov.pl), environment info in description
-- [ ] 10-02: SOAP envelope builder -- XML construction with fast-xml-parser or template literals, proper namespace declarations
-- [ ] 10-03: Session management -- DaneZaloguj (login, get session ID) -> operation -> DaneWyloguj (logout); session ID as SOAP header
-- [ ] 10-04: Search operations -- Search by NIP, Search by REGON, Search by KRS (DaneSzukajPodmioty with different params)
-- [ ] 10-05: Get full data operation -- DanePobierzPelnyRaport for full company data + PKD codes
-- [ ] 10-06: Response parsing -- double decode: parse SOAP envelope -> extract CDATA -> HTML-decode -> parse inner XML -> flatten to JSON
-- [ ] 10-07: Tests and package finalization -- nock tests with SOAP/XML fixtures, Polish character tests, package.json, codex (Data & Storage), SVG icon, README
+- [ ] 10-01-PLAN.md -- Package scaffold, credentials (apiKey + environment toggle), SoapTemplates (5 envelope functions), XmlParser (double-decode pipeline), GenericFunctions (session-managed SOAP request)
+- [ ] 10-02-PLAN.md -- Company resource (4 operations: searchByNip, searchByRegon, searchByKrs, getFullData) + GusRegon.node.ts with execute()
+- [ ] 10-03-PLAN.md -- SOAP XML fixtures, XmlParser unit tests, node integration tests, codex, SVG icon, README, build + lint verification
 
 **Technical Notes:**
-- Most technically complex node -- SOAP/XML with session lifecycle (Pitfall 8)
+- Most technically complex node -- SOAP/XML with session lifecycle
 - Double XML parsing required: SOAP response contains HTML-encoded XML in CDATA sections
-- Use fast-xml-parser (already a dependency from Phase 7 wFirma) -- consider shared XML utility if interface matches
-- Test with company names containing Polish chars and special XML chars (&, <, ")
-- Session pattern: Zaloguj -> sid header -> DaneSzukajPodmioty/DanePobierzPelnyRaport -> Wyloguj
-- Consider `soap` npm library only if handcrafted XML proves too fragile
-- Test vs production: same API key, different login method -- document clearly
+- Runtime dependencies: fast-xml-parser + entities (for HTML decoding of CDATA content)
+- Template-literal SOAP envelopes (proven pattern from bir1 npm package)
+- Session pattern: Zaloguj -> sid HTTP header -> DaneSzukajPodmioty/DanePobierzPelnyRaport -> Wyloguj
+- GetValue action uses different namespace (http://CIS/BIR/2014/07 vs http://CIS/BIR/PUBL/2014/07)
+- getFullData auto-detects entity type (P/F) to select correct report type
+- Test key: abcde12345abcde12345
 
 ---
 
@@ -355,7 +352,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 7. wFirma | 0/6 | Not started | - |
 | 8. iFirma | 0/6 | Not started | - |
 | 9. Allegro | 0/7 | Not started | - |
-| 10. GUS REGON | 0/7 | Not started | - |
+| 10. GUS REGON | 0/3 | Not started | - |
 
 ### Phase 11: node dla KRS, biala lista podatnikow VAT, VIES i GUS
 
