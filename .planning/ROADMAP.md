@@ -321,7 +321,7 @@ Plans:
 
 Plans:
 - [x] 10-01-PLAN.md -- Package scaffold, credentials (apiKey + environment toggle), SoapTemplates (5 envelope functions), XmlParser (double-decode pipeline), GenericFunctions (session-managed SOAP request)
-- [ ] 10-02-PLAN.md -- Company resource (4 operations: searchByNip, searchByRegon, searchByKrs, getFullData) + GusRegon.node.ts with execute()
+- [x] 10-02-PLAN.md -- Company resource (4 operations: searchByNip, searchByRegon, searchByKrs, getFullData) + GusRegon.node.ts with execute()
 - [ ] 10-03-PLAN.md -- SOAP XML fixtures, XmlParser unit tests, node integration tests, codex, SVG icon, README, build + lint verification
 
 **Technical Notes:**
@@ -352,14 +352,14 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 7. wFirma | 0/6 | Not started | - |
 | 8. iFirma | 0/6 | Not started | - |
 | 9. Allegro | 0/7 | Not started | - |
-| 10. GUS REGON | 1/3 | In Progress|  |
+| 10. GUS REGON | 2/3 | In Progress|  |
 
 ### Phase 11: node dla KRS, biala lista podatnikow VAT, VIES i GUS
 
 **Goal:** [To be planned]
 **Requirements**: TBD
 **Depends on:** Phase 10
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
 - [ ] TBD (run /gsd:plan-phase 11 to break down)

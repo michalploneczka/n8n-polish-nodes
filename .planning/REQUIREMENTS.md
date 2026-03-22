@@ -144,10 +144,10 @@
 - [x] **REGON-01**: Credentials — API Key (bezpłatny, dane.biznes.gov.pl)
 - [x] **REGON-02**: SOAP session management — DaneZaloguj → operacja → DaneWyloguj
 - [x] **REGON-03**: XML envelope construction i XML response parsing
-- [ ] **REGON-04**: Resource: Companies — operacja Search by NIP
-- [ ] **REGON-05**: Resource: Companies — operacja Search by REGON
-- [ ] **REGON-06**: Resource: Companies — operacja Search by KRS
-- [ ] **REGON-07**: Resource: Companies — operacja Get full data + PKD codes
+- [x] **REGON-04**: Resource: Companies — operacja Search by NIP
+- [x] **REGON-05**: Resource: Companies — operacja Search by REGON
+- [x] **REGON-06**: Resource: Companies — operacja Search by KRS
+- [x] **REGON-07**: Resource: Companies — operacja Get full data + PKD codes
 - [x] **REGON-08**: Styl programmatic — SOAP wymusza execute()
 - [ ] **REGON-09**: Obsługa błędów, testy nock (SOAP/XML), package.json, codex, ikona, README
 
