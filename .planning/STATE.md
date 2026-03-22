@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-stopped_at: Completed 14-02-PLAN.md
-last_updated: "2026-03-22T15:55:05.566Z"
+status: Ready to execute
+stopped_at: Completed 10-01-PLAN.md
+last_updated: "2026-03-22T22:19:23.595Z"
 progress:
   total_phases: 15
   completed_phases: 4
-  total_plans: 24
-  completed_plans: 24
+  total_plans: 27
+  completed_plans: 25
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 14 — node-do-pobierania-kursu-walut-z-nbp
+**Current focus:** Phase 10 — gus-regon
 
 ## Current Position
 
-Phase: 15
-Plan: Not started
+Phase: 10 (gus-regon) — EXECUTING
+Plan: 2 of 3
 
 ## Performance Metrics
 
@@ -70,6 +70,7 @@ Plan: Not started
 | Phase 12 P06 | 4min | 2 tasks | 9 files |
 | Phase 14 P01 | 2min | 2 tasks | 5 files |
 | Phase 14 P02 | 2min | 2 tasks | 4 files |
+| Phase 10 P01 | 2min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -120,6 +121,10 @@ Recent decisions affecting current work:
 - [Phase 12]: Credential icon property added for lint compliance -- new eslint rule
 - [Phase 14]: No credentials property for public API nodes (NBP pattern)
 - [Phase 14]: Test credentials assertion checks undefined OR empty array for public API nodes
+- [Phase 10]: fast-xml-parser + entities as runtime deps for SOAP response parsing
+- [Phase 10]: Template-literal SOAP envelopes instead of soap npm package for 5 fixed endpoints
+- [Phase 10]: Session ID sent as HTTP header (not cookie/body) per GUS BIR API spec
+- [Phase 10]: No ICredentialTestRequest on GUS credentials -- SOAP login requires programmatic execution
 
 ### Roadmap Evolution
 
@@ -143,6 +148,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T13:52:29.272Z
-Stopped at: Completed 14-02-PLAN.md
+Last session: 2026-03-22T22:19:23.591Z
+Stopped at: Completed 10-01-PLAN.md
 Resume file: None
