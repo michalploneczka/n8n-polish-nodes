@@ -33,7 +33,7 @@ Kompletny ekosystem polskich integracji n8n — od wysyłki SMS, przez faktury, 
 - [ ] NODE #7: wFirma — Invoices/Contractors/Expenses (programmatic, XML responses)
 - [ ] NODE #8: iFirma — Invoices/Expenses/Contractors (programmatic, HMAC-SHA1)
 - [ ] NODE #9: Allegro — Offers/Orders/Shipping (programmatic, OAuth2 Authorization Code)
-- [ ] NODE #11: GUS REGON (BIR) — Search by NIP/REGON/KRS (programmatic, SOAP/XML)
+- [x] NODE #11: GUS REGON (BIR) — Search by NIP/REGON/KRS (programmatic, SOAP/XML) — Validated in Phase 10: gus-regon
 
 ### Out of Scope
 
@@ -96,4 +96,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-22 after Phase 14 completion — NBP Exchange Rates node delivered (18/18 tests passing, no credentials needed, 10 operations across Exchange Rate + Gold Price resources)*
+*Last updated: 2026-03-22 after Phase 10 completion — GUS REGON (BIR) node delivered (21 tests passing, SOAP/XML session-managed, 4 operations: Search by NIP/REGON/KRS + Get Full Data with PKD codes)*
