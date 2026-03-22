@@ -411,7 +411,7 @@ Plans:
 **Goal:** Users can get official PLN exchange rates (Tables A, B, C) and gold prices from NBP (National Bank of Poland) public API with no authentication required
 **Requirements**: NBP-01, NBP-02, NBP-03, NBP-04, NBP-05, NBP-06
 **Depends on:** Phase 13
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 **Success Criteria** (what must be TRUE):
   1. Node exists as a declarative node with NO credentials -- public API, no registration needed
   2. User can get current, historical, and date-range exchange rates for any currency by ISO 4217 code across Tables A, B, and C
@@ -421,7 +421,7 @@ Plans:
 
 Plans:
 - [x] 14-01-PLAN.md -- Package scaffold (package.json, tsconfig, eslint, jest) + declarative node with Exchange Rate (6 ops) and Gold Price (4 ops) resources
-- [ ] 14-02-PLAN.md -- Nock tests, codex (Data & Storage), SVG icon, README, build + lint verification
+- [x] 14-02-PLAN.md -- Nock tests, codex (Data & Storage), SVG icon, README, build + lint verification
 
 **Technical Notes:**
 - Simplest possible node -- no credentials, all GET, JSON responses, no pagination, no rate limits
