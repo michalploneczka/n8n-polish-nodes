@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 12-06-PLAN.md
-last_updated: "2026-03-22T13:20:16.855Z"
+stopped_at: Completed 14-01-PLAN.md
+last_updated: "2026-03-22T13:47:37.242Z"
 progress:
   total_phases: 15
   completed_phases: 3
-  total_plans: 22
-  completed_plans: 22
+  total_plans: 24
+  completed_plans: 23
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 12 — mmode-dla-linker-cloud-przez-realizacja-base-linker-dokumentacje-do-api-linker-clud-dostarcze
+**Current focus:** Phase 14 — node-do-pobierania-kursu-walut-z-nbp
 
 ## Current Position
 
-Phase: 13
-Plan: Not started
+Phase: 14 (node-do-pobierania-kursu-walut-z-nbp) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -68,6 +68,7 @@ Plan: Not started
 | Phase 12 P02 | 4min | 2 tasks | 2 files |
 | Phase 12 P05 | 4min | 3 tasks | 4 files |
 | Phase 12 P06 | 4min | 2 tasks | 9 files |
+| Phase 14 P01 | 2min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -116,6 +117,7 @@ Recent decisions affecting current work:
 - [Phase 12]: Payment status uses flexible identifier type (id/externalId/clientOrderNumber) for order matching
 - [Phase 12]: paymentTransactionIdForPayment field name avoids collision with existing create field
 - [Phase 12]: Credential icon property added for lint compliance -- new eslint rule
+- [Phase 14]: No credentials property for public API nodes (NBP pattern)
 
 ### Roadmap Evolution
 
@@ -139,6 +141,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T22:05:20.843Z
-Stopped at: Completed 12-06-PLAN.md
+Last session: 2026-03-22T13:47:37.240Z
+Stopped at: Completed 14-01-PLAN.md
 Resume file: None
