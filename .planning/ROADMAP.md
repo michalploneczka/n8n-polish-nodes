@@ -352,7 +352,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 7. wFirma | 0/6 | Not started | - |
 | 8. iFirma | 0/6 | Not started | - |
 | 9. Allegro | 0/7 | Not started | - |
-| 10. GUS REGON | 3/3 | Complete   | 2026-03-22 |
+| 10. GUS REGON | 3/3 | Complete    | 2026-03-22 |
 
 ### Phase 11: node dla KRS, biala lista podatnikow VAT, VIES i GUS
 
