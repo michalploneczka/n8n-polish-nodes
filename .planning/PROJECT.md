@@ -96,4 +96,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after Phase 01 completion — monorepo bootstrapped, SMSAPI + CEIDG nodes delivered (38/38 tests passing, CI/CD ready)*
+*Last updated: 2026-03-22 after Phase 14 completion — NBP Exchange Rates node delivered (18/18 tests passing, no credentials needed, 10 operations across Exchange Rate + Gold Price resources)*
