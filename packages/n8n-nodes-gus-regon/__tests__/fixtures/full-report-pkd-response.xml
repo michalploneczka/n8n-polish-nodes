@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+  <s:Body>
+    <DanePobierzPelnyRaportResponse xmlns="http://CIS/BIR/PUBL/2014/07">
+      <DanePobierzPelnyRaportResult>&lt;root&gt;&lt;dane&gt;&lt;praw_pkdKod&gt;6201Z&lt;/praw_pkdKod&gt;&lt;praw_pkdNazwa&gt;Dzia&amp;#322;alno&amp;#347;&amp;#263; zwi&amp;#261;zana z oprogramowaniem&lt;/praw_pkdNazwa&gt;&lt;praw_pkdPrzewazajaca&gt;1&lt;/praw_pkdPrzewazajaca&gt;&lt;/dane&gt;&lt;dane&gt;&lt;praw_pkdKod&gt;6202Z&lt;/praw_pkdKod&gt;&lt;praw_pkdNazwa&gt;Doradztwo w zakresie informatyki&lt;/praw_pkdNazwa&gt;&lt;praw_pkdPrzewazajaca&gt;0&lt;/praw_pkdPrzewazajaca&gt;&lt;/dane&gt;&lt;/root&gt;</DanePobierzPelnyRaportResult>
+    </DanePobierzPelnyRaportResponse>
+  </s:Body>
+</s:Envelope>

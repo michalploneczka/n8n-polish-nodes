@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+  <s:Body>
+    <ZalogujResponse xmlns="http://CIS/BIR/PUBL/2014/07">
+      <ZalogujResult>test-session-id-12345</ZalogujResult>
+    </ZalogujResponse>
+  </s:Body>
+</s:Envelope>

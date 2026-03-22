@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+  <s:Body>
+    <DaneSzukajPodmiotyResponse xmlns="http://CIS/BIR/PUBL/2014/07">
+      <DaneSzukajPodmiotyResult></DaneSzukajPodmiotyResult>
+    </DaneSzukajPodmiotyResponse>
+  </s:Body>
+</s:Envelope>

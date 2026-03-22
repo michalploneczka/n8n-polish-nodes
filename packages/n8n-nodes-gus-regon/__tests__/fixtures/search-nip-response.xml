@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+  <s:Body>
+    <DaneSzukajPodmiotyResponse xmlns="http://CIS/BIR/PUBL/2014/07">
+      <DaneSzukajPodmiotyResult>&lt;root&gt;&lt;dane&gt;&lt;Regon&gt;012345678&lt;/Regon&gt;&lt;Nip&gt;1234567890&lt;/Nip&gt;&lt;Nazwa&gt;EXAMPLE SP. Z O.O.&lt;/Nazwa&gt;&lt;Wojewodztwo&gt;MAZOWIECKIE&lt;/Wojewodztwo&gt;&lt;Powiat&gt;m. Warszawa&lt;/Powiat&gt;&lt;Gmina&gt;Warszawa&lt;/Gmina&gt;&lt;Miejscowosc&gt;Warszawa&lt;/Miejscowosc&gt;&lt;KodPocztowy&gt;00-001&lt;/KodPocztowy&gt;&lt;Ulica&gt;ul. Test&lt;/Ulica&gt;&lt;NrNieruchomosci&gt;1&lt;/NrNieruchomosci&gt;&lt;Typ&gt;P&lt;/Typ&gt;&lt;/dane&gt;&lt;/root&gt;</DaneSzukajPodmiotyResult>
+    </DaneSzukajPodmiotyResponse>
+  </s:Body>
+</s:Envelope>

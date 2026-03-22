@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+  <s:Body>
+    <DanePobierzPelnyRaportResponse xmlns="http://CIS/BIR/PUBL/2014/07">
+      <DanePobierzPelnyRaportResult>&lt;root&gt;&lt;dane&gt;&lt;praw_regon9&gt;012345678&lt;/praw_regon9&gt;&lt;praw_nip&gt;1234567890&lt;/praw_nip&gt;&lt;praw_nazwa&gt;EXAMPLE SP. Z O.O.&lt;/praw_nazwa&gt;&lt;praw_adSiedzKraj_Symbol&gt;PL&lt;/praw_adSiedzKraj_Symbol&gt;&lt;praw_adSiedzWojewodztwo_Symbol&gt;14&lt;/praw_adSiedzWojewodztwo_Symbol&gt;&lt;praw_adSiedzMiejscowosc_Nazwa&gt;Warszawa&lt;/praw_adSiedzMiejscowosc_Nazwa&gt;&lt;praw_adSiedzUlica_Nazwa&gt;ul. Test&lt;/praw_adSiedzUlica_Nazwa&gt;&lt;praw_adSiedzNumerNieruchomosci&gt;1&lt;/praw_adSiedzNumerNieruchomosci&gt;&lt;praw_adSiedzKodPocztowy&gt;00-001&lt;/praw_adSiedzKodPocztowy&gt;&lt;praw_formaFinansowania_Symbol&gt;1&lt;/praw_formaFinansowania_Symbol&gt;&lt;praw_dataRozpoczeciaDzialalnosci&gt;2020-01-15&lt;/praw_dataRozpoczeciaDzialalnosci&gt;&lt;/dane&gt;&lt;/root&gt;</DanePobierzPelnyRaportResult>
+    </DanePobierzPelnyRaportResponse>
+  </s:Body>
+</s:Envelope>
