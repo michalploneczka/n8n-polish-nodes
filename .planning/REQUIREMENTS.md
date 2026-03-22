@@ -149,7 +149,7 @@
 - [x] **REGON-06**: Resource: Companies — operacja Search by KRS
 - [x] **REGON-07**: Resource: Companies — operacja Get full data + PKD codes
 - [x] **REGON-08**: Styl programmatic — SOAP wymusza execute()
-- [ ] **REGON-09**: Obsługa błędów, testy nock (SOAP/XML), package.json, codex, ikona, README
+- [x] **REGON-09**: Obsługa błędów, testy nock (SOAP/XML), package.json, codex, ikona, README
 
 ## v2 Requirements
 
