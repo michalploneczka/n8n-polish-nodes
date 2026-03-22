@@ -141,6 +141,7 @@ describe('Order Operations', () => {
 			shipmentPriceNet: 8.13,
 			discount: 0,
 			paymentTransactionId: 'TX-001',
+			itemsMode: 'json',
 			items,
 			additionalFields: {},
 		});

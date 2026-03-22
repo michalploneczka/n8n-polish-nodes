@@ -107,30 +107,46 @@ export class LinkerCloud implements INodeType {
 						const shipmentPriceNet = this.getNodeParameter('shipmentPriceNet', i) as number;
 						const discount = this.getNodeParameter('discount', i) as number;
 						const paymentTransactionId = this.getNodeParameter('paymentTransactionId', i) as string;
-						const itemsRaw = this.getNodeParameter('items', i) as string;
 						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
 
+						const itemsMode = this.getNodeParameter('itemsMode', i, 'ui') as string;
 						let parsedItems: IDataObject[];
-						try {
-							parsedItems = JSON.parse(itemsRaw) as IDataObject[];
-							// Ensure required array fields default to empty arrays
-							parsedItems = parsedItems.map(item => ({
+
+						if (itemsMode === 'ui') {
+							const itemsUi = this.getNodeParameter('itemsUi', i, {}) as IDataObject;
+							const itemValues = (itemsUi.itemValues as IDataObject[]) || [];
+							parsedItems = itemValues.map(item => ({
 								...item,
-								serial_numbers: item.serial_numbers || [],
-								custom_properties: item.custom_properties || [],
-								source_data: item.source_data || [],
-								batch_numbers: item.batch_numbers || [],
+								serial_numbers: [],
+								custom_properties: [],
+								source_data: [],
+								batch_numbers: [],
 							}));
-						} catch {
-							throw new NodeApiError(this.getNode(), {}, {
-								message: 'Invalid JSON in Items field. Expected array of objects.',
-							});
+						} else {
+							const itemsRaw = this.getNodeParameter('items', i) as string;
+							try {
+								parsedItems = JSON.parse(itemsRaw) as IDataObject[];
+								parsedItems = parsedItems.map(item => ({
+									...item,
+									serial_numbers: item.serial_numbers || [],
+									custom_properties: item.custom_properties || [],
+									source_data: item.source_data || [],
+									batch_numbers: item.batch_numbers || [],
+								}));
+							} catch {
+								throw new NodeApiError(this.getNode(), {}, {
+									message: 'Invalid JSON in Items field. Expected array of objects.',
+								});
+							}
 						}
 
 						// Parse JSON string fields from additionalFields
 						const tags = additionalFields.tags ? JSON.parse(additionalFields.tags as string) : [];
 						const customProperties = additionalFields.customProperties ? JSON.parse(additionalFields.customProperties as string) : [];
 						const validationErrors = additionalFields.validationErrors ? JSON.parse(additionalFields.validationErrors as string) : [];
+						if (additionalFields.deliveryConfiguration) {
+							additionalFields.deliveryConfiguration = JSON.parse(additionalFields.deliveryConfiguration as string);
+						}
 						delete additionalFields.tags;
 						delete additionalFields.customProperties;
 						delete additionalFields.validationErrors;
@@ -173,6 +189,7 @@ export class LinkerCloud implements INodeType {
 						if (updateFields.tags) updateFields.tags = JSON.parse(updateFields.tags as string);
 						if (updateFields.customProperties) updateFields.customProperties = JSON.parse(updateFields.customProperties as string);
 						if (updateFields.validationErrors) updateFields.validationErrors = JSON.parse(updateFields.validationErrors as string);
+						if (updateFields.deliveryConfiguration) updateFields.deliveryConfiguration = JSON.parse(updateFields.deliveryConfiguration as string);
 
 						const response = await linkerCloudApiRequest.call(this, 'PUT', `/public-api/v1/orders/${orderId}`, updateFields);
 						returnData.push({ json: response as IDataObject });
@@ -403,20 +420,28 @@ export class LinkerCloud implements INodeType {
 						const priceNet = this.getNodeParameter('priceNet', i) as number;
 						const supplier = this.getNodeParameter('supplier', i) as string;
 						const supplierObjectRaw = this.getNodeParameter('supplierObject', i) as string;
-						const itemsRaw = this.getNodeParameter('items', i) as string;
 						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as IDataObject;
 
 						let supplierObject: IDataObject;
-						let items: IDataObject[];
 						try {
 							supplierObject = JSON.parse(supplierObjectRaw) as IDataObject;
 						} catch {
 							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Supplier Object field.' });
 						}
-						try {
-							items = JSON.parse(itemsRaw) as IDataObject[];
-						} catch {
-							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Items field.' });
+
+						const itemsMode = this.getNodeParameter('itemsMode', i, 'ui') as string;
+						let items: IDataObject[];
+
+						if (itemsMode === 'ui') {
+							const itemsUi = this.getNodeParameter('itemsUi', i, {}) as IDataObject;
+							items = (itemsUi.itemValues as IDataObject[]) || [];
+						} else {
+							const itemsRaw = this.getNodeParameter('items', i) as string;
+							try {
+								items = JSON.parse(itemsRaw) as IDataObject[];
+							} catch {
+								throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Items field.' });
+							}
 						}
 
 						const customProperties = additionalFields.customProperties
@@ -450,20 +475,28 @@ export class LinkerCloud implements INodeType {
 						const priceNet = this.getNodeParameter('priceNet', i) as number;
 						const supplier = this.getNodeParameter('supplier', i) as string;
 						const supplierObjectRaw = this.getNodeParameter('supplierObject', i) as string;
-						const itemsRaw = this.getNodeParameter('items', i) as string;
 						const additionalFields = this.getNodeParameter('confirmAdditionalFields', i, {}) as IDataObject;
 
 						let supplierObject: IDataObject;
-						let items: IDataObject[];
 						try {
 							supplierObject = JSON.parse(supplierObjectRaw) as IDataObject;
 						} catch {
 							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Supplier Object field.' });
 						}
-						try {
-							items = JSON.parse(itemsRaw) as IDataObject[];
-						} catch {
-							throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Items field.' });
+
+						const confirmItemsMode = this.getNodeParameter('confirmItemsMode', i, 'ui') as string;
+						let items: IDataObject[];
+
+						if (confirmItemsMode === 'ui') {
+							const itemsUi = this.getNodeParameter('confirmItemsUi', i, {}) as IDataObject;
+							items = (itemsUi.itemValues as IDataObject[]) || [];
+						} else {
+							const itemsRaw = this.getNodeParameter('items', i) as string;
+							try {
+								items = JSON.parse(itemsRaw) as IDataObject[];
+							} catch {
+								throw new NodeApiError(this.getNode(), {}, { message: 'Invalid JSON in Items field.' });
+							}
 						}
 
 						const customProperties = additionalFields.customProperties
