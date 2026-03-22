@@ -1,0 +1,14 @@
+{
+	"node": "n8n-nodes-gus-regon.gusRegon",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Data & Storage"],
+	"subcategories": {
+		"Data & Storage": ["Other Data & Storage"]
+	},
+	"resources": {
+		"primaryDocumentation": [
+			{ "url": "https://api.stat.gov.pl/Home/RegonApi" }
+		]
+	}
+}
