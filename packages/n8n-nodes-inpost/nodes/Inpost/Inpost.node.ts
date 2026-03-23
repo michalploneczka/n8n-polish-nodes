@@ -8,12 +8,16 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 
 import { inpostApiRequest, inpostApiRequestAllItems } from './GenericFunctions';
+import { pointOperations, pointFields } from './resources/points';
 import { shipmentOperations, shipmentFields } from './resources/shipments';
+import { trackingOperations, trackingFields } from './resources/tracking';
 
 export class Inpost implements INodeType {
-	// Expose GenericFunctions imports as static properties to avoid unused-import tsc error
+	// Expose imports as static properties to avoid unused-import tsc error
 	static inpostApiRequest = inpostApiRequest;
 	static inpostApiRequestAllItems = inpostApiRequestAllItems;
+	static pointOperations = pointOperations;
+	static trackingOperations = trackingOperations;
 
 	description: INodeTypeDescription = {
 		displayName: 'InPost ShipX',
@@ -44,14 +48,27 @@ export class Inpost implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'Point',
+						value: 'point',
+						description: 'Paczkomaty parcel locker points',
+					},
+					{
 						name: 'Shipment',
 						value: 'shipment',
+					},
+					{
+						name: 'Tracking',
+						value: 'tracking',
 					},
 				],
 				default: 'shipment',
 			},
 			shipmentOperations,
 			...shipmentFields,
+			pointOperations,
+			...pointFields,
+			trackingOperations,
+			...trackingFields,
 		],
 	};
 
@@ -185,7 +202,6 @@ export class Inpost implements INodeType {
 						);
 						returnData.push({ json: response as IDataObject });
 					} else if (operation === 'get') {
-						// TODO: Implemented in Plan 02
 						const shipmentId = this.getNodeParameter('shipmentId', i) as string;
 						const response = await inpostApiRequest.call(
 							this,
@@ -194,7 +210,6 @@ export class Inpost implements INodeType {
 						);
 						returnData.push({ json: response as IDataObject });
 					} else if (operation === 'getAll') {
-						// TODO: Full implementation in Plan 02
 						const credentials = await this.getCredentials('inpostApi');
 						const orgId = credentials.organizationId as string;
 						const shipments = await inpostApiRequestAllItems.call(
@@ -206,24 +221,26 @@ export class Inpost implements INodeType {
 							returnData.push({ json: shipment });
 						}
 					} else if (operation === 'cancel') {
-						// TODO: Implemented in Plan 02
+						const credentials = await this.getCredentials('inpostApi');
+						const orgId = credentials.organizationId as string;
 						const shipmentId = this.getNodeParameter('shipmentId', i) as string;
 						await inpostApiRequest.call(
 							this,
 							'DELETE',
-							`/v1/shipments/${shipmentId}`,
+							`/v1/organizations/${orgId}/shipments/${shipmentId}`,
 						);
-						returnData.push({ json: { success: true, id: shipmentId } });
+						returnData.push({ json: { success: true, shipmentId } });
 					} else if (operation === 'getLabel') {
-						// TODO: Full implementation in Plan 02
+						const credentials = await this.getCredentials('inpostApi');
+						const orgId = credentials.organizationId as string;
 						const shipmentId = this.getNodeParameter('shipmentId', i) as string;
 						const labelFormat = this.getNodeParameter('labelFormat', i) as string;
 						const response = await inpostApiRequest.call(
 							this,
 							'GET',
-							`/v1/shipments/${shipmentId}/label`,
+							`/v1/organizations/${orgId}/shipments/${shipmentId}/label`,
 							{},
-							{ format: labelFormat },
+							{ format: 'pdf', type: labelFormat },
 							{ encoding: 'arraybuffer', json: false },
 						);
 						const binaryData = await this.helpers.prepareBinaryData(
@@ -235,6 +252,51 @@ export class Inpost implements INodeType {
 							json: { shipmentId },
 							binary: { data: binaryData },
 						});
+					}
+				} else if (resource === 'point') {
+					if (operation === 'get') {
+						const pointName = this.getNodeParameter('pointName', i) as string;
+						const response = await inpostApiRequest.call(
+							this,
+							'GET',
+							`/v1/points/${pointName}`,
+						);
+						returnData.push({ json: response as IDataObject });
+					} else if (operation === 'getAll') {
+						const filters = this.getNodeParameter('filters', i, {}) as IDataObject;
+						const qs: IDataObject = {};
+						if (filters.name) {
+							qs.name = filters.name;
+						}
+						if (filters.city) {
+							qs.city = filters.city;
+						}
+						if (filters.type) {
+							qs.type = filters.type;
+						}
+						if (filters.functions) {
+							qs.functions = filters.functions;
+						}
+						const points = await inpostApiRequestAllItems.call(
+							this,
+							'GET',
+							'/v1/points',
+							{},
+							qs,
+						);
+						for (const point of points) {
+							returnData.push({ json: point });
+						}
+					}
+				} else if (resource === 'tracking') {
+					if (operation === 'get') {
+						const trackingNumber = this.getNodeParameter('trackingNumber', i) as string;
+						const response = await inpostApiRequest.call(
+							this,
+							'GET',
+							`/v1/tracking/${trackingNumber}`,
+						);
+						returnData.push({ json: response as IDataObject });
 					}
 				}
 			} catch (error) {
