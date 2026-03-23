@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Completed 03-03-PLAN.md
-last_updated: "2026-03-23T12:14:48.778Z"
+status: Milestone complete
+stopped_at: Completed 15-02-PLAN.md
+last_updated: "2026-03-23T13:07:37.658Z"
 progress:
   total_phases: 15
-  completed_phases: 8
-  total_plans: 36
-  completed_plans: 36
+  completed_phases: 9
+  total_plans: 38
+  completed_plans: 38
 ---
 
 # Project State
@@ -19,11 +19,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 03 — inpost-shipx
+**Current focus:** Phase 15 — integracja-z-https-api-nfz-gov-pl-app-itl-api
 
 ## Current Position
 
-Phase: 10
+Phase: 15
 Plan: Not started
 
 ## Performance Metrics
@@ -82,6 +82,8 @@ Plan: Not started
 | Phase 03 P01 | 8min | 2 tasks | 9 files |
 | Phase 03 P02 | 4min | 2 tasks | 3 files |
 | Phase 03 P03 | 10min | 2 tasks | 4 files |
+| Phase 15 P01 | 3min | 2 tasks | 6 files |
+| Phase 15 P02 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -153,6 +155,8 @@ Recent decisions affecting current work:
 - [Phase 03]: Cancel and getLabel use org-scoped endpoints per InPost ShipX API spec
 - [Phase 03]: Resource files force-added due to root .gitignore excluding resources/ globally
 - [Phase 03]: Kept existing SVG icon (parcel-style design) rather than replacing with text-based IP icon
+- [Phase 15]: No credentials property for public API nodes (NFZ follows NBP pattern)
+- [Phase 15]: Miscellaneous > Other category for codex (n8n has no Healthcare category)
 
 ### Roadmap Evolution
 
@@ -176,6 +180,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T12:03:32.047Z
-Stopped at: Completed 03-03-PLAN.md
+Last session: 2026-03-23T13:03:18.815Z
+Stopped at: Completed 15-02-PLAN.md
 Resume file: None

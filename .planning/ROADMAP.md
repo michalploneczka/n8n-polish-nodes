@@ -474,7 +474,7 @@ Plans:
 **Goal:** Users can search healthcare treatment waiting times, providers, and service dictionaries from NFZ (National Health Fund of Poland) public API with no authentication required
 **Requirements**: NFZ-01, NFZ-02, NFZ-03, NFZ-04, NFZ-05, NFZ-06, NFZ-07, NFZ-08, NFZ-09, NFZ-10
 **Depends on:** Phase 14
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 **Success Criteria** (what must be TRUE):
   1. Node exists as a declarative node with NO credentials -- public open data API
@@ -485,7 +485,7 @@ Plans:
   6. Build, lint, and tests pass; package is ready for npm publish
 
 Plans:
-- [ ] 15-01-PLAN.md -- Package scaffold (package.json, tsconfig, eslint, jest, icon) + declarative node with Queue (3 ops), Benefit (1 op), Locality (1 op), Province (1 op) resources
+- [x] 15-01-PLAN.md -- Package scaffold (package.json, tsconfig, eslint, jest, icon) + declarative node with Queue (3 ops), Benefit (1 op), Locality (1 op), Province (1 op) resources
 - [ ] 15-02-PLAN.md -- Nock tests (description + HTTP contracts), codex, README, build + lint verification
 
 **Technical Notes:**
