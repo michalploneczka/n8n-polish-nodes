@@ -34,6 +34,9 @@ Kompletny ekosystem polskich integracji n8n — od wysyłki SMS, przez faktury, 
 - [ ] NODE #8: iFirma — Invoices/Expenses/Contractors (programmatic, HMAC-SHA1)
 - [ ] NODE #9: Allegro — Offers/Orders/Shipping (programmatic, OAuth2 Authorization Code)
 - [x] NODE #11: GUS REGON (BIR) — Search by NIP/REGON/KRS (programmatic, SOAP/XML) — Validated in Phase 10: gus-regon
+- [x] NODE: KRS — Company lookup by KRS number (getCurrentExtract, getFullExtract), declarative, no credentials — Validated in Phase 11: KRS, Biala Lista VAT, VIES
+- [x] NODE: Biala Lista VAT — Subject search (NIP/NIPs/REGON/REGONs/Bank Account/Bank Accounts) + Account verification (NIP/REGON), declarative, no credentials — Validated in Phase 11: KRS, Biala Lista VAT, VIES
+- [x] NODE: VIES — EU VAT number validation (28 country codes), declarative, no credentials — Validated in Phase 11: KRS, Biala Lista VAT, VIES
 
 ### Out of Scope
 
@@ -96,4 +99,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-22 after Phase 10 completion — GUS REGON (BIR) node delivered (21 tests passing, SOAP/XML session-managed, 4 operations: Search by NIP/REGON/KRS + Get Full Data with PKD codes)*
+*Last updated: 2026-03-23 after Phase 11 completion — KRS, Biala Lista VAT, VIES nodes delivered (48 tests passing, all declarative, no credentials: KRS 2 operations, VIES 1 operation with 28 EU country codes, Biala Lista VAT 8 operations across subject search and account verification)*
