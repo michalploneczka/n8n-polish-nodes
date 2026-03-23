@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to plan
-stopped_at: Completed 13-03-PLAN.md
-last_updated: "2026-03-23T10:33:10.604Z"
+stopped_at: Completed 03-03-PLAN.md
+last_updated: "2026-03-23T12:14:48.778Z"
 progress:
   total_phases: 15
-  completed_phases: 7
-  total_plans: 33
-  completed_plans: 33
+  completed_phases: 8
+  total_plans: 36
+  completed_plans: 36
 ---
 
 # Project State
@@ -19,11 +19,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 13 — node-dla-integracji-z-api-ceneo-mozliwosc-weryfikowania-cen-rynkowych
+**Current focus:** Phase 03 — inpost-shipx
 
 ## Current Position
 
-Phase: 14
+Phase: 10
 Plan: Not started
 
 ## Performance Metrics
@@ -79,6 +79,9 @@ Plan: Not started
 | Phase 13 P01 | 12min | 2 tasks | 9 files |
 | Phase 13 P02 | 5min | 1 tasks | 1 files |
 | Phase 13 P03 | 20min | 2 tasks | 4 files |
+| Phase 03 P01 | 8min | 2 tasks | 9 files |
+| Phase 03 P02 | 4min | 2 tasks | 3 files |
+| Phase 03 P03 | 10min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -144,6 +147,12 @@ Recent decisions affecting current work:
 - [Phase 13]: eslint-disable for no-http-request-with-manual-auth (3 instances) due to programmatic token flow
 - [Phase 13]: Static class properties to expose GenericFunctions imports (avoids unused-import tsc error)
 - [Phase 13]: v3 tests mock two httpRequest calls (GetToken + endpoint), v2 tests mock one call
+- [Phase 03]: Static class properties to expose GenericFunctions imports (avoids unused-import tsc error)
+- [Phase 03]: eslint-disable for no-http-request-with-manual-auth justified by environment-based dynamic URL construction
+- [Phase 03]: Locker vs courier service-aware field visibility using displayOptions
+- [Phase 03]: Cancel and getLabel use org-scoped endpoints per InPost ShipX API spec
+- [Phase 03]: Resource files force-added due to root .gitignore excluding resources/ globally
+- [Phase 03]: Kept existing SVG icon (parcel-style design) rather than replacing with text-based IP icon
 
 ### Roadmap Evolution
 
@@ -167,6 +176,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T10:03:46.202Z
-Stopped at: Completed 13-03-PLAN.md
+Last session: 2026-03-23T12:03:32.047Z
+Stopped at: Completed 03-03-PLAN.md
 Resume file: None

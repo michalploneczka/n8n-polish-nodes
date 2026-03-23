@@ -106,8 +106,8 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md -- Package scaffold, credentials (Bearer + orgId + env toggle), GenericFunctions (API helper + pagination), node skeleton with Shipment Create
-- [ ] 03-02-PLAN.md -- Remaining operations (Shipments Get/List/Cancel/Label + Points List/Get + Tracking Get) wired into execute()
+- [x] 03-01-PLAN.md -- Package scaffold, credentials (Bearer + orgId + env toggle), GenericFunctions (API helper + pagination), node skeleton with Shipment Create
+- [x] 03-02-PLAN.md -- Remaining operations (Shipments Get/List/Cancel/Label + Points List/Get + Tracking Get) wired into execute()
 - [ ] 03-03-PLAN.md -- Nock tests for all operations, codex, SVG icon, README, build + lint verification
 
 **Technical Notes:**
@@ -344,7 +344,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 |-------|----------------|--------|-----------|
 | 1. Monorepo Bootstrap + SMSAPI + CEIDG | 11/11 | Complete | 2026-03-21 |
 | 2. Fakturownia | 1/4 | In Progress|  |
-| 3. InPost ShipX | 0/3 | Not started | - |
+| 3. InPost ShipX | 0/3 | Planned    |  |
 | 4. Przelewy24 | 0/7 | Not started | - |
 | 5. BaseLinker | 0/8 | Not started | - |
 | 6. Shoper | 0/7 | Not started | - |
@@ -357,7 +357,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 **Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
 **Requirements**: KRS-01, KRS-02, KRS-03, KRS-04, BL-01, BL-02, BL-03, BL-04, BL-05, BL-06, VIES-01, VIES-02, VIES-03, VIES-04
 **Depends on:** Phase 10
-**Plans:** 3/3 plans complete
+**Plans:** 0/3 plans executed
 **Success Criteria** (what must be TRUE):
   1. User can look up a company by KRS number and get current or full historical extract as structured JSON
   2. User can search VAT taxpayers by NIP/REGON/bank account (single and batch up to 30) with required date parameter
