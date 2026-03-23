@@ -151,6 +151,29 @@
 - [x] **REGON-08**: Styl programmatic — SOAP wymusza execute()
 - [x] **REGON-09**: Obsługa błędów, testy nock (SOAP/XML), package.json, codex, ikona, README
 
+### KRS Node
+
+- [ ] **KRS-01**: Resource: Company — operacja Get Current Extract (OdpisAktualny) po numerze KRS
+- [ ] **KRS-02**: Resource: Company — operacja Get Full Extract (OdpisPelny) po numerze KRS
+- [ ] **KRS-03**: Styl deklaratywny, brak credentials (publiczne API, brak autoryzacji)
+- [ ] **KRS-04**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+
+### Biala Lista VAT Node
+
+- [ ] **BL-01**: Resource: Subject — operacje Search by NIP, Search by NIPs (batch max 30)
+- [ ] **BL-02**: Resource: Subject — operacje Search by REGON, Search by REGONs (batch max 30)
+- [ ] **BL-03**: Resource: Subject — operacje Search by Bank Account, Search by Bank Accounts (batch max 30)
+- [ ] **BL-04**: Resource: Verification — operacje Check NIP + Bank Account, Check REGON + Bank Account
+- [ ] **BL-05**: Wymagany parametr date (YYYY-MM-DD) na kazdej operacji, styl deklaratywny, brak credentials
+- [ ] **BL-06**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+
+### VIES Node
+
+- [ ] **VIES-01**: Resource: VAT Number — operacja Validate (sprawdzenie numeru VAT UE)
+- [ ] **VIES-02**: Dropdown z kodami krajów UE (27 + XI Northern Ireland)
+- [ ] **VIES-03**: Styl deklaratywny, brak credentials (publiczne API EC)
+- [ ] **VIES-04**: Obsługa błędów (MS_UNAVAILABLE, MS_MAX_CONCURRENT_REQ), testy nock, package.json, codex, ikona, README
+
 ## v2 Requirements
 
 ### Trigger Nodes
@@ -192,12 +215,15 @@
 | IFIRMA-01..07 | Phase 8 | Pending |
 | ALLEGRO-01..08 | Phase 9 | Pending |
 | REGON-01..09 | Phase 10 | Pending |
+| KRS-01..04 | Phase 11 | Pending |
+| BL-01..06 | Phase 11 | Pending |
+| VIES-01..04 | Phase 11 | Pending |
 
 **Coverage:**
-- v1 requirements: 88 total
-- Mapped to phases: 88
+- v1 requirements: 102 total
+- Mapped to phases: 102
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 after roadmap creation (10 phases, fine granularity)*
+*Last updated: 2026-03-23 after Phase 11 planning (KRS, Biala Lista VAT, VIES)*

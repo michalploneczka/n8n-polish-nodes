@@ -354,15 +354,34 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 9. Allegro | 0/7 | Not started | - |
 | 10. GUS REGON | 3/3 | Complete    | 2026-03-22 |
 
-### Phase 11: node dla KRS, biala lista podatnikow VAT, VIES i GUS
-
-**Goal:** [To be planned]
-**Requirements**: TBD
+### Phase 11: KRS, Biala Lista VAT, VIES
+**Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
+**Requirements**: KRS-01, KRS-02, KRS-03, KRS-04, BL-01, BL-02, BL-03, BL-04, BL-05, BL-06, VIES-01, VIES-02, VIES-03, VIES-04
 **Depends on:** Phase 10
-**Plans:** 3/3 plans complete
+**Plans:** 3 plans
+**Success Criteria** (what must be TRUE):
+  1. User can look up a company by KRS number and get current or full historical extract as structured JSON
+  2. User can search VAT taxpayers by NIP/REGON/bank account (single and batch up to 30) with required date parameter
+  3. User can verify if a bank account belongs to a NIP/REGON holder (TAK/NIE response)
+  4. User can validate any EU VAT number by selecting country code from dropdown
+  5. All three nodes are declarative (no execute method), require no credentials, and build/lint/test cleanly
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 11 to break down)
+- [ ] 11-01-PLAN.md -- KRS node: package scaffold, declarative node (Get Current Extract, Get Full Extract), format=json in qs, tests, codex, icon, README
+- [ ] 11-02-PLAN.md -- VIES node: package scaffold, declarative node (Validate VAT Number), EU country code dropdown (28 options), tests, codex, icon, README
+- [ ] 11-03-PLAN.md -- Biala Lista VAT node: package scaffold, declarative node (6 search + 2 verification ops), required date param, tests, codex, icon, README
+
+**Technical Notes:**
+- All three follow NBP (Phase 14) no-credentials declarative pattern
+- Zero runtime dependencies for all three packages
+- KRS: format=json in requestDefaults.qs (default response is PDF)
+- KRS: rejestr optional param (P=entrepreneurs, S=associations, auto-detect if omitted)
+- Biala Lista VAT: date param required on every operation (YYYY-MM-DD)
+- Biala Lista VAT: rate limits 10 search/day, 5000 check/day
+- VIES: handle MS_UNAVAILABLE and MS_MAX_CONCURRENT_REQ in error messages
+- All three plans are Wave 1 (no dependencies between them, can run in parallel)
+
+---
 
 ### Phase 12: Linker Cloud
 **Goal:** Users can manage fulfillment orders, products, stock, shipments, inbound orders, and order returns via the Linker Cloud WMS/OMS API
