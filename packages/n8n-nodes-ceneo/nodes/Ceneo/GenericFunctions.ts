@@ -58,8 +58,6 @@ export async function ceneoApiRequestV3(
 	};
 
 	try {
-		// Ceneo v3 uses Bearer token obtained from AuthorizationService
-		// eslint-disable-next-line @n8n/community-nodes/no-http-request-with-manual-auth
 		return (await this.helpers.httpRequest(requestOptions)) as IDataObject | IDataObject[];
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error as JsonObject, {

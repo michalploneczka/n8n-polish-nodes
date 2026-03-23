@@ -1,4 +1,8 @@
-import type { ICredentialType, INodeProperties } from 'n8n-workflow';
+import type {
+	ICredentialTestRequest,
+	ICredentialType,
+	INodeProperties,
+} from 'n8n-workflow';
 
 export class CeneoApi implements ICredentialType {
 	name = 'ceneoApi';
@@ -21,5 +25,15 @@ export class CeneoApi implements ICredentialType {
 				'API key from Ceneo Partner Panel. Used for v2 endpoints directly and to obtain Bearer token for v3 endpoints.',
 		},
 	];
-	// No ICredentialTestRequest -- GetToken is two-step programmatic flow
+
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: 'https://developers.ceneo.pl',
+			url: '/AuthorizationService.svc/GetToken',
+			method: 'GET',
+			headers: {
+				Authorization: '=Basic {{$credentials?.apiKey}}',
+			},
+		},
+	};
 }
