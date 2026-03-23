@@ -38,16 +38,16 @@ created: 2026-03-23
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 13-01-01 | 01 | 1 | CENEO-01 | unit | `npm test -- --testNamePattern="credentials"` | ❌ W0 | ⬜ pending |
-| 13-01-02 | 01 | 1 | CENEO-07 | unit+nock | `npm test -- --testNamePattern="token"` | ❌ W0 | ⬜ pending |
-| 13-02-01 | 02 | 1 | CENEO-02 | unit+nock | `npm test -- --testNamePattern="GetTopCategory"` | ❌ W0 | ⬜ pending |
-| 13-02-02 | 02 | 1 | CENEO-03 | unit+nock | `npm test -- --testNamePattern="GetAllOffers"` | ❌ W0 | ⬜ pending |
-| 13-02-03 | 02 | 1 | CENEO-04 | unit+nock | `npm test -- --testNamePattern="Top10"` | ❌ W0 | ⬜ pending |
-| 13-02-04 | 02 | 1 | CENEO-05 | unit+nock | `npm test -- --testNamePattern="categories"` | ❌ W0 | ⬜ pending |
-| 13-03-01 | 03 | 2 | CENEO-06 | unit | `npm test -- --testNamePattern="error"` | ❌ W0 | ⬜ pending |
-| 13-03-02 | 03 | 2 | CENEO-08 | unit | `npm test -- --testNamePattern="metadata"` | ❌ W0 | ⬜ pending |
+| 13-01-01 | 01 | 1 | CENEO-01 | unit | `npm test -- --testNamePattern="credentials"` | no W0 | pending |
+| 13-01-02 | 01 | 1 | CENEO-07 | unit+nock | `npm test -- --testNamePattern="token"` | no W0 | pending |
+| 13-02-01 | 02 | 2 | CENEO-02 | unit+nock | `npm test -- --testNamePattern="GetTopCategory"` | no W0 | pending |
+| 13-02-02 | 02 | 2 | CENEO-03 | unit+nock | `npm test -- --testNamePattern="GetAllOffers"` | no W0 | pending |
+| 13-02-03 | 02 | 2 | CENEO-04 | unit+nock | `npm test -- --testNamePattern="Top10"` | no W0 | pending |
+| 13-02-04 | 02 | 2 | CENEO-05 | unit+nock | `npm test -- --testNamePattern="categories"` | no W0 | pending |
+| 13-03-01 | 03 | 3 | CENEO-06 | unit | `npm test -- --testNamePattern="error"` | no W0 | pending |
+| 13-03-02 | 03 | 3 | CENEO-08 | unit | `npm test -- --testNamePattern="metadata"` | no W0 | pending |
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+*Status: pending / green / red / flaky*
 
 ---
 
