@@ -163,10 +163,10 @@ export class Nfz implements INodeType {
 				},
 				options: [
 					{
-						name: 'Get All',
+						name: 'Get Many',
 						value: 'getAll',
-						description: 'Get all provinces',
-						action: 'Get all provinces',
+						description: 'Get many provinces',
+						action: 'Get many provinces',
 						routing: {
 							request: {
 								method: 'GET',
@@ -217,9 +217,9 @@ export class Nfz implements INodeType {
 					{ name: 'All Provinces', value: '' },
 					{ name: 'Dolnoslaskie (01)', value: '01' },
 					{ name: 'Kujawsko-Pomorskie (02)', value: '02' },
+					{ name: 'Lodzkie (05)', value: '05' },
 					{ name: 'Lubelskie (03)', value: '03' },
 					{ name: 'Lubuskie (04)', value: '04' },
-					{ name: 'Lodzkie (05)', value: '05' },
 					{ name: 'Malopolskie (06)', value: '06' },
 					{ name: 'Mazowieckie (07)', value: '07' },
 					{ name: 'Opolskie (08)', value: '08' },
@@ -330,14 +330,17 @@ export class Nfz implements INodeType {
 				displayName: 'Limit',
 				name: 'limit',
 				type: 'number',
+				typeOptions: {
+					minValue: 1,
+				},
 				displayOptions: {
 					show: {
 						resource: ['queue'],
 						operation: ['search'],
 					},
 				},
-				default: 25,
-				description: 'Number of results per page',
+				default: 50,
+				description: 'Max number of results to return',
 				routing: {
 					send: {
 						type: 'query',
@@ -412,14 +415,17 @@ export class Nfz implements INodeType {
 				displayName: 'Limit',
 				name: 'limit',
 				type: 'number',
+				typeOptions: {
+					minValue: 1,
+				},
 				displayOptions: {
 					show: {
 						resource: ['queue'],
 						operation: ['getManyPlaces'],
 					},
 				},
-				default: 25,
-				description: 'Number of results per page',
+				default: 50,
+				description: 'Max number of results to return',
 				routing: {
 					send: {
 						type: 'query',
@@ -472,14 +478,17 @@ export class Nfz implements INodeType {
 				displayName: 'Limit',
 				name: 'limit',
 				type: 'number',
+				typeOptions: {
+					minValue: 1,
+				},
 				displayOptions: {
 					show: {
 						resource: ['benefit'],
 						operation: ['search'],
 					},
 				},
-				default: 25,
-				description: 'Number of results per page',
+				default: 50,
+				description: 'Max number of results to return',
 				routing: {
 					send: {
 						type: 'query',
@@ -532,14 +541,17 @@ export class Nfz implements INodeType {
 				displayName: 'Limit',
 				name: 'limit',
 				type: 'number',
+				typeOptions: {
+					minValue: 1,
+				},
 				displayOptions: {
 					show: {
 						resource: ['locality'],
 						operation: ['search'],
 					},
 				},
-				default: 25,
-				description: 'Number of results per page',
+				default: 50,
+				description: 'Max number of results to return',
 				routing: {
 					send: {
 						type: 'query',

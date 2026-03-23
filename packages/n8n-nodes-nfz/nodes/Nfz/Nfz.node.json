@@ -1,0 +1,14 @@
+{
+  "node": "n8n-nodes-nfz.nfz",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Miscellaneous"],
+  "subcategories": {
+    "Miscellaneous": ["Other"]
+  },
+  "resources": {
+    "primaryDocumentation": [
+      { "url": "https://api.nfz.gov.pl/app-itl-api/" }
+    ]
+  }
+}
