@@ -26,7 +26,7 @@ Kompletny ekosystem polskich integracji n8n — od wysyłki SMS, przez faktury, 
 
 - [ ] NODE #2: Fakturownia.pl — Invoices/Clients/Products CRUD + PDF download (deklaratywny)
 - [ ] NODE #2: Fakturownia.pl — Invoices/Clients/Products CRUD + PDF download (deklaratywny)
-- [ ] NODE #3: InPost ShipX — Shipments CRUD + Label/Tracking, Points List (programmatic)
+- [x] NODE #3: InPost ShipX — Shipments CRUD + Label/Tracking, Points List (programmatic) — Validated in Phase 03: inpost-shipx
 - [ ] NODE #4: Przelewy24 — Transactions Register/Verify/Refund, Payment Methods (programmatic, CRC checksum)
 - [ ] NODE #5: BaseLinker — Orders/Products/Shipping przez single-endpoint API (programmatic)
 - [ ] NODE #6: Shoper — Products/Orders/Customers/Categories (programmatic, OAuth2)
