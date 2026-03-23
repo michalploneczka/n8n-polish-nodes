@@ -153,26 +153,39 @@
 
 ### KRS Node
 
-- [ ] **KRS-01**: Resource: Company — operacja Get Current Extract (OdpisAktualny) po numerze KRS
-- [ ] **KRS-02**: Resource: Company — operacja Get Full Extract (OdpisPelny) po numerze KRS
-- [ ] **KRS-03**: Styl deklaratywny, brak credentials (publiczne API, brak autoryzacji)
-- [ ] **KRS-04**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+- [x] **KRS-01**: Resource: Company — operacja Get Current Extract (OdpisAktualny) po numerze KRS
+- [x] **KRS-02**: Resource: Company — operacja Get Full Extract (OdpisPelny) po numerze KRS
+- [x] **KRS-03**: Styl deklaratywny, brak credentials (publiczne API, brak autoryzacji)
+- [x] **KRS-04**: Obsługa błędów, testy nock, package.json, codex, ikona, README
 
 ### Biala Lista VAT Node
 
-- [ ] **BL-01**: Resource: Subject — operacje Search by NIP, Search by NIPs (batch max 30)
-- [ ] **BL-02**: Resource: Subject — operacje Search by REGON, Search by REGONs (batch max 30)
-- [ ] **BL-03**: Resource: Subject — operacje Search by Bank Account, Search by Bank Accounts (batch max 30)
-- [ ] **BL-04**: Resource: Verification — operacje Check NIP + Bank Account, Check REGON + Bank Account
-- [ ] **BL-05**: Wymagany parametr date (YYYY-MM-DD) na kazdej operacji, styl deklaratywny, brak credentials
-- [ ] **BL-06**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+- [x] **BL-01**: Resource: Subject — operacje Search by NIP, Search by NIPs (batch max 30)
+- [x] **BL-02**: Resource: Subject — operacje Search by REGON, Search by REGONs (batch max 30)
+- [x] **BL-03**: Resource: Subject — operacje Search by Bank Account, Search by Bank Accounts (batch max 30)
+- [x] **BL-04**: Resource: Verification — operacje Check NIP + Bank Account, Check REGON + Bank Account
+- [x] **BL-05**: Wymagany parametr date (YYYY-MM-DD) na kazdej operacji, styl deklaratywny, brak credentials
+- [x] **BL-06**: Obsługa błędów, testy nock, package.json, codex, ikona, README
 
 ### VIES Node
 
-- [ ] **VIES-01**: Resource: VAT Number — operacja Validate (sprawdzenie numeru VAT UE)
-- [ ] **VIES-02**: Dropdown z kodami krajów UE (27 + XI Northern Ireland)
-- [ ] **VIES-03**: Styl deklaratywny, brak credentials (publiczne API EC)
-- [ ] **VIES-04**: Obsługa błędów (MS_UNAVAILABLE, MS_MAX_CONCURRENT_REQ), testy nock, package.json, codex, ikona, README
+- [x] **VIES-01**: Resource: VAT Number — operacja Validate (sprawdzenie numeru VAT UE)
+- [x] **VIES-02**: Dropdown z kodami krajów UE (27 + XI Northern Ireland)
+- [x] **VIES-03**: Styl deklaratywny, brak credentials (publiczne API EC)
+- [x] **VIES-04**: Obsługa błędów (MS_UNAVAILABLE, MS_MAX_CONCURRENT_REQ), testy nock, package.json, codex, ikona, README
+
+### Ceneo Node
+
+- [ ] **CENEO-01**: Credentials — API Key only, stored in ceneoApi credential class with `icon = 'file:ceneo.svg' as const`
+- [ ] **CENEO-02**: Dual auth GenericFunctions — v3 endpoints use Bearer token from GetToken, v2 endpoints use raw apiKey as query param
+- [ ] **CENEO-03**: Token caching — per-execution reset via `resetTokenCache()` called at start of `execute()`
+- [ ] **CENEO-04**: Resource: Products — operacja Get Top Category Products (v3 GET `/api/v3/GetTopCategoryProducts`, params: categoryName, top)
+- [ ] **CENEO-05**: Resource: Products — operacja Get All Offers (v2 POST `webapi_data_critical.shop_getProductOffersBy_IDs`, param: shop_product_ids max 300)
+- [ ] **CENEO-06**: Resource: Products — operacja Get Top 10 Cheapest Offers (v2 POST `webapi_data_critical.shop_getProductTop10OffersByIDs`, param: shop_product_ids max 300)
+- [ ] **CENEO-07**: Resource: Categories — operacja List (v3 GET `/api/v3/GetCategories`, no required params)
+- [ ] **CENEO-08**: Resource: Account — operacja Get Limits (v2 `webapi_data_critical.GetExecutionLimits`)
+- [ ] **CENEO-09**: Styl programmatic — wymagany dla dual auth (v2/v3) i token management
+- [ ] **CENEO-10**: Obsługa błędów, testy nock (mock GetToken + all operations), package.json, codex (Data & Storage > Pricing), ikona, README
 
 ## v2 Requirements
 
@@ -198,6 +211,8 @@
 | OAuth2 PKCE flow | Tylko client_credentials i Authorization Code wymagane przez wybrane API |
 | Real-time webhooks server | n8n obsługuje to przez Webhook node — nie duplikuj |
 | SDK dependencies (np. smsapi-javascript-client) | Deklaratywny styl HTTP jest wystarczający, SDK = zbędna zależność |
+| Ceneo Offer Management, Bidding, Buy Now (Basket) | V2 scope — 24 endpoints, defer |
+| Ceneo XML output format | JSON only in V1 |
 
 ## Traceability
 
@@ -218,12 +233,13 @@
 | KRS-01..04 | Phase 11 | Pending |
 | BL-01..06 | Phase 11 | Pending |
 | VIES-01..04 | Phase 11 | Pending |
+| CENEO-01..10 | Phase 13 | Pending |
 
 **Coverage:**
-- v1 requirements: 102 total
-- Mapped to phases: 102
+- v1 requirements: 112 total
+- Mapped to phases: 112
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-23 after Phase 11 planning (KRS, Biala Lista VAT, VIES)*
+*Last updated: 2026-03-23 after Phase 13 planning (Ceneo)*

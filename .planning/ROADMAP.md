@@ -413,15 +413,35 @@ Plans:
 
 ---
 
-### Phase 13: node dla integracji z api Ceneo - mozliwosc weryfikowania cen rynkowych
-
-**Goal:** [To be planned]
-**Requirements**: TBD
+### Phase 13: Ceneo Price Comparison
+**Goal:** Users can verify market prices on Ceneo (Poland's largest price comparison platform) by querying product offers, top category products, and categories via dual-auth API (v2 apiKey + v3 Bearer token)
+**Requirements**: CENEO-01, CENEO-02, CENEO-03, CENEO-04, CENEO-05, CENEO-06, CENEO-07, CENEO-08, CENEO-09, CENEO-10
 **Depends on:** Phase 12
-**Plans:** 0 plans
+**Plans:** 3 plans
+**Success Criteria** (what must be TRUE):
+  1. User can get top products in any Ceneo category by name with configurable limit (1-100)
+  2. User can get all offers and top 10 cheapest offers for up to 300 product IDs
+  3. User can list all Ceneo categories for discovering category names
+  4. User can check API execution limits and remaining quota
+  5. Dual auth is transparent -- v3 endpoints use Bearer token (auto-acquired from GetToken), v2 endpoints use raw API key
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 13 to break down)
+- [ ] 13-01-PLAN.md -- Package scaffold, credentials (API Key), GenericFunctions (dual auth: v3 Bearer + v2 apiKey), resource definitions (product, category, account)
+- [ ] 13-02-PLAN.md -- Ceneo.node.ts with execute() routing all 5 operations to correct v2/v3 API helpers
+- [ ] 13-03-PLAN.md -- Nock tests (8 cases), codex (Data & Storage > Pricing), SVG icon, README, build + lint verification
+
+**Technical Notes:**
+- Programmatic node -- two-step auth (GetToken -> Bearer) and mixed v2/v3 endpoints require execute()
+- v3 endpoints: GET with Bearer token in Authorization header (GetTopCategoryProducts, GetCategories)
+- v2 endpoints: POST with apiKey as query param + resultFormatter=json (GetAllOffers, GetTop10CheapestOffers, GetExecutionLimits)
+- Token caching: per-execution reset via resetTokenCache() at start of execute()
+- Base URL: https://developers.ceneo.pl (fixed, not dynamic per customer)
+- eslint-disable for no-http-request-with-manual-auth (3 places in GenericFunctions)
+- shop_product_ids max 300 IDs, comma-separated
+- GetExecutionLimits included as Account > Get Limits (trivial, useful for debugging)
+- Follows LinkerCloud resource-split pattern with 3 resource files
+
+---
 
 ### Phase 14: NBP Exchange Rates
 **Goal:** Users can get official PLN exchange rates (Tables A, B, C) and gold prices from NBP (National Bank of Poland) public API with no authentication required
@@ -464,4 +484,4 @@ Plans:
 ---
 *Roadmap created: 2026-03-20*
 *Granularity: Fine (10 phases, 70 plans)*
-*Coverage: 88/88 v1 requirements mapped*
+*Coverage: 112/112 v1 requirements mapped*
