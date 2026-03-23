@@ -201,26 +201,19 @@ export const shipmentFields: INodeProperties[] = [
 				displayName: 'Receiver Details',
 				values: [
 					{
-						displayName: 'Name',
-						name: 'name',
+						displayName: 'Company Name',
+						name: 'company_name',
 						type: 'string',
 						default: '',
-						description: 'Full name of the receiver',
+						description: 'Company name of the receiver',
 					},
 					{
 						displayName: 'Email',
 						name: 'email',
 						type: 'string',
+						placeholder: 'name@email.com',
 						default: '',
 						description: 'Email address of the receiver',
-					},
-					{
-						displayName: 'Phone',
-						name: 'phone',
-						type: 'string',
-						default: '',
-						required: true,
-						description: 'Phone number (9 digits)',
 					},
 					{
 						displayName: 'First Name',
@@ -237,11 +230,19 @@ export const shipmentFields: INodeProperties[] = [
 						description: 'Last name of the receiver',
 					},
 					{
-						displayName: 'Company Name',
-						name: 'company_name',
+						displayName: 'Name',
+						name: 'name',
 						type: 'string',
 						default: '',
-						description: 'Company name of the receiver',
+						description: 'Full name of the receiver',
+					},
+					{
+						displayName: 'Phone',
+						name: 'phone',
+						type: 'string',
+						default: '',
+							required:	true,
+						description: 'Phone number (9 digits)',
 					},
 				],
 			},
@@ -285,7 +286,6 @@ export const shipmentFields: INodeProperties[] = [
 						type: 'string',
 						required: true,
 						default: '',
-						description: 'Building number',
 					},
 					{
 						displayName: 'City',
@@ -340,6 +340,27 @@ export const shipmentFields: INodeProperties[] = [
 				displayName: 'Parcel',
 				values: [
 					{
+						displayName: 'Height (Mm)',
+						name: 'height',
+						type: 'number',
+						default: 640,
+						description: 'Height in millimeters',
+					},
+					{
+						displayName: 'Length (Mm)',
+						name: 'length',
+						type: 'number',
+						default: 80,
+						description: 'Length in millimeters',
+					},
+					{
+						displayName: 'Non-Standard',
+						name: 'isNonStandard',
+						type: 'boolean',
+						default: false,
+						description: 'Whether the parcel is non-standard',
+					},
+					{
 						displayName: 'Template',
 						name: 'template',
 						type: 'options',
@@ -362,76 +383,23 @@ export const shipmentFields: INodeProperties[] = [
 								name: 'Custom',
 								value: 'custom',
 							},
-						],
-						displayOptions: {
-							show: {
-								'/service': ['inpost_locker_standard', 'inpost_locker_express'],
-							},
-						},
+						]
 					},
 					{
-						displayName: 'Length (mm)',
-						name: 'length',
-						type: 'number',
-						default: 80,
-						description: 'Length in millimeters',
-						displayOptions: {
-							show: {
-								'/service': [
-									'inpost_courier_standard',
-									'inpost_courier_express',
-									'inpost_courier_palette',
-								],
-							},
-						},
-					},
-					{
-						displayName: 'Width (mm)',
-						name: 'width',
-						type: 'number',
-						default: 360,
-						description: 'Width in millimeters',
-						displayOptions: {
-							show: {
-								'/service': [
-									'inpost_courier_standard',
-									'inpost_courier_express',
-									'inpost_courier_palette',
-								],
-							},
-						},
-					},
-					{
-						displayName: 'Height (mm)',
-						name: 'height',
-						type: 'number',
-						default: 640,
-						description: 'Height in millimeters',
-						displayOptions: {
-							show: {
-								'/service': [
-									'inpost_courier_standard',
-									'inpost_courier_express',
-									'inpost_courier_palette',
-								],
-							},
-						},
-					},
-					{
-						displayName: 'Weight (kg)',
+						displayName: 'Weight (Kg)',
 						name: 'weight',
 						type: 'number',
 						default: 5,
 						description: 'Weight in kilograms',
 					},
 					{
-						displayName: 'Non-Standard',
-						name: 'isNonStandard',
-						type: 'boolean',
-						default: false,
-						description: 'Whether the parcel is non-standard',
+						displayName: 'Width (Mm)',
+						name: 'width',
+						type: 'number',
+						default: 360,
+						description: 'Width in millimeters',
 					},
-				],
+			],
 			},
 		],
 	},
@@ -472,23 +440,6 @@ export const shipmentFields: INodeProperties[] = [
 				description: 'Custom reference (e.g., order number)',
 			},
 			{
-				displayName: 'Sending Method',
-				name: 'sendingMethod',
-				type: 'options',
-				default: 'dispatch_order',
-				description: 'How the parcel will be sent',
-				options: [
-					{
-						name: 'Dispatch Order',
-						value: 'dispatch_order',
-					},
-					{
-						name: 'Parcel Locker',
-						value: 'parcel_locker',
-					},
-				],
-			},
-			{
 				displayName: 'Sender',
 				name: 'senderDetails',
 				type: 'fixedCollection',
@@ -514,6 +465,7 @@ export const shipmentFields: INodeProperties[] = [
 								displayName: 'Email',
 								name: 'email',
 								type: 'string',
+								placeholder: 'name@email.com',
 								default: '',
 								description: 'Email address of the sender',
 							},
@@ -532,6 +484,23 @@ export const shipmentFields: INodeProperties[] = [
 								description: 'Company name of the sender',
 							},
 						],
+					},
+				],
+			},
+			{
+				displayName: 'Sending Method',
+				name: 'sendingMethod',
+				type: 'options',
+				default: 'dispatch_order',
+				description: 'How the parcel will be sent',
+				options: [
+					{
+						name: 'Dispatch Order',
+						value: 'dispatch_order',
+					},
+					{
+						name: 'Parcel Locker',
+						value: 'parcel_locker',
 					},
 				],
 			},
