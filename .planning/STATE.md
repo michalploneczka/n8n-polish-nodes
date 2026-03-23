@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to plan
-stopped_at: Completed 10-03-PLAN.md
-last_updated: "2026-03-22T22:33:02.299Z"
+stopped_at: Completed 11-03-PLAN.md
+last_updated: "2026-03-23T07:55:22.691Z"
 progress:
   total_phases: 15
-  completed_phases: 5
-  total_plans: 27
-  completed_plans: 27
+  completed_phases: 6
+  total_plans: 30
+  completed_plans: 30
 ---
 
 # Project State
@@ -19,11 +19,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 10 — gus-regon
+**Current focus:** Phase 11 — node-dla-krs-bia-a-lista-podatnik-w-vat-vies-i-gus
 
 ## Current Position
 
-Phase: 11
+Phase: 12
 Plan: Not started
 
 ## Performance Metrics
@@ -73,6 +73,9 @@ Plan: Not started
 | Phase 10 P01 | 2min | 2 tasks | 8 files |
 | Phase 10 P02 | 2min | 2 tasks | 2 files |
 | Phase 10 P03 | 5min | 2 tasks | 16 files |
+| Phase 11 P02 | 2min | 2 tasks | 9 files |
+| Phase 11 P01 | 3min | 2 tasks | 9 files |
+| Phase 11 P03 | 4min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -130,6 +133,9 @@ Recent decisions affecting current work:
 - [Phase 10]: Session-per-call pattern for getFullData (3 sessions = 9 HTTP calls) accepted for code simplicity
 - [Phase 10]: ESM transform in jest.config.js for entities and fast-xml-parser via transformIgnorePatterns + ts-jest allowJs
 - [Phase 10]: Disabled credential-test-required eslint rule for SOAP-based auth (cannot use ICredentialTestRequest)
+- [Phase 11]: No credentials for VIES -- public EC API, follows NBP pattern
+- [Phase 11]: No credentials property for public API (KRS follows NBP pattern)
+- [Phase 11]: Declarative node with no credentials following NBP pattern for public API
 
 ### Roadmap Evolution
 
@@ -153,6 +159,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T22:30:06.430Z
-Stopped at: Completed 10-03-PLAN.md
+Last session: 2026-03-23T07:50:19.189Z
+Stopped at: Completed 11-03-PLAN.md
 Resume file: None
