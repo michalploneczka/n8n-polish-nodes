@@ -103,23 +103,22 @@ Plans:
   3. User can track a shipment by tracking number and see status history
   4. User can switch between sandbox and production environments via a toggle in credentials
   5. User can list and search Paczkomaty (parcel locker points)
-**Plans**: 7 plans
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: InPost credentials -- Bearer Token + organization_id + environment toggle (sandbox: sandbox-api-shipx.inpost.pl / production: api-shipx.inpost.pl)
-- [ ] 03-02: Shipments Create operation -- complex nested input builder for receiver, parcels (dimensions, weight), service type, target_point, cod, insurance
-- [ ] 03-03: Shipments Get, List, Cancel operations -- standard CRUD with pagination
-- [ ] 03-04: Shipments Get Label operation -- binary PDF download with A4/A6 format selection
-- [ ] 03-05: Points and Tracking resources -- Points List/Get (Paczkomaty), Tracking Get by tracking number
-- [ ] 03-06: Error handling and continueOnFail -- NodeApiError wrapping, rate limit documentation (100 req/min), continueOnFail support
-- [ ] 03-07: Tests and package finalization -- nock tests for all operations, package.json, codex, SVG icon, README
+- [ ] 03-01-PLAN.md -- Package scaffold, credentials (Bearer + orgId + env toggle), GenericFunctions (API helper + pagination), node skeleton with Shipment Create
+- [ ] 03-02-PLAN.md -- Remaining operations (Shipments Get/List/Cancel/Label + Points List/Get + Tracking Get) wired into execute()
+- [ ] 03-03-PLAN.md -- Nock tests for all operations, codex, SVG icon, README, build + lint verification
 
 **Technical Notes:**
 - Fully programmatic node -- complex shipment creation logic requires execute()
 - Nested input: use fixedCollection for receiver data, parcels array
 - Binary label: reuse pattern from Phase 2 (Fakturownia PDF download)
 - Rate limit 100 req/min: document in README, do not implement automatic retry
-- Organization ID routing in request headers
+- Organization ID from credentials, interpolated into URL paths
+- Environment toggle: sandbox=sandbox-api-shipx-pl.easypack24.net, production=api-shipx-pl.easypack24.net
+- Locker vs courier: displayOptions control target_point vs address fields
+- Pagination: page/per_page with {items, total_pages} envelope (different from Fakturownia array response)
 
 ---
 
@@ -345,7 +344,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 |-------|----------------|--------|-----------|
 | 1. Monorepo Bootstrap + SMSAPI + CEIDG | 11/11 | Complete | 2026-03-21 |
 | 2. Fakturownia | 1/4 | In Progress|  |
-| 3. InPost ShipX | 0/7 | Not started | - |
+| 3. InPost ShipX | 0/3 | Not started | - |
 | 4. Przelewy24 | 0/7 | Not started | - |
 | 5. BaseLinker | 0/8 | Not started | - |
 | 6. Shoper | 0/7 | Not started | - |
