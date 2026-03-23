@@ -57,15 +57,15 @@
 
 ### InPost Node
 
-- [ ] **INPOST-01**: Credentials — Bearer Token + organization_id + environment toggle (sandbox/production)
-- [ ] **INPOST-02**: Resource: Shipments — operacja Create z polami: service, receiver (name/phone/email), target_point, parcels (dimensions+weight), cod, insurance
-- [ ] **INPOST-03**: Resource: Shipments — operacje Get, List, Cancel
-- [ ] **INPOST-04**: Resource: Shipments — operacja Get Label (PDF binary, format A4/A6)
-- [ ] **INPOST-05**: Resource: Points — operacje List, Get (Paczkomaty)
-- [ ] **INPOST-06**: Resource: Tracking — operacja Get by tracking number
-- [ ] **INPOST-07**: Styl programmatic (`execute()` method) — złożona logika tworzenia przesyłek
-- [ ] **INPOST-08**: Rate limit awareness — 100 req/min (nie wymuszaj retry automatycznie, dokumentuj w README)
-- [ ] **INPOST-09**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+- [x] **INPOST-01**: Credentials — Bearer Token + organization_id + environment toggle (sandbox/production)
+- [x] **INPOST-02**: Resource: Shipments — operacja Create z polami: service, receiver (name/phone/email), target_point, parcels (dimensions+weight), cod, insurance
+- [x] **INPOST-03**: Resource: Shipments — operacje Get, List, Cancel
+- [x] **INPOST-04**: Resource: Shipments — operacja Get Label (PDF binary, format A4/A6)
+- [x] **INPOST-05**: Resource: Points — operacje List, Get (Paczkomaty)
+- [x] **INPOST-06**: Resource: Tracking — operacja Get by tracking number
+- [x] **INPOST-07**: Styl programmatic (`execute()` method) — złożona logika tworzenia przesyłek
+- [x] **INPOST-08**: Rate limit awareness — 100 req/min (nie wymuszaj retry automatycznie, dokumentuj w README)
+- [x] **INPOST-09**: Obsługa błędów, testy nock, package.json, codex, ikona, README
 
 ### Przelewy24 Node
 
@@ -176,16 +176,29 @@
 
 ### Ceneo Node
 
-- [ ] **CENEO-01**: Credentials — API Key only, stored in ceneoApi credential class with `icon = 'file:ceneo.svg' as const`
-- [ ] **CENEO-02**: Dual auth GenericFunctions — v3 endpoints use Bearer token from GetToken, v2 endpoints use raw apiKey as query param
-- [ ] **CENEO-03**: Token caching — per-execution reset via `resetTokenCache()` called at start of `execute()`
-- [ ] **CENEO-04**: Resource: Products — operacja Get Top Category Products (v3 GET `/api/v3/GetTopCategoryProducts`, params: categoryName, top)
-- [ ] **CENEO-05**: Resource: Products — operacja Get All Offers (v2 POST `webapi_data_critical.shop_getProductOffersBy_IDs`, param: shop_product_ids max 300)
-- [ ] **CENEO-06**: Resource: Products — operacja Get Top 10 Cheapest Offers (v2 POST `webapi_data_critical.shop_getProductTop10OffersByIDs`, param: shop_product_ids max 300)
-- [ ] **CENEO-07**: Resource: Categories — operacja List (v3 GET `/api/v3/GetCategories`, no required params)
-- [ ] **CENEO-08**: Resource: Account — operacja Get Limits (v2 `webapi_data_critical.GetExecutionLimits`)
-- [ ] **CENEO-09**: Styl programmatic — wymagany dla dual auth (v2/v3) i token management
-- [ ] **CENEO-10**: Obsługa błędów, testy nock (mock GetToken + all operations), package.json, codex (Data & Storage > Pricing), ikona, README
+- [x] **CENEO-01**: Credentials — API Key only, stored in ceneoApi credential class with `icon = 'file:ceneo.svg' as const`
+- [x] **CENEO-02**: Dual auth GenericFunctions — v3 endpoints use Bearer token from GetToken, v2 endpoints use raw apiKey as query param
+- [x] **CENEO-03**: Token caching — per-execution reset via `resetTokenCache()` called at start of `execute()`
+- [x] **CENEO-04**: Resource: Products — operacja Get Top Category Products (v3 GET `/api/v3/GetTopCategoryProducts`, params: categoryName, top)
+- [x] **CENEO-05**: Resource: Products — operacja Get All Offers (v2 POST `webapi_data_critical.shop_getProductOffersBy_IDs`, param: shop_product_ids max 300)
+- [x] **CENEO-06**: Resource: Products — operacja Get Top 10 Cheapest Offers (v2 POST `webapi_data_critical.shop_getProductTop10OffersByIDs`, param: shop_product_ids max 300)
+- [x] **CENEO-07**: Resource: Categories — operacja List (v3 GET `/api/v3/GetCategories`, no required params)
+- [x] **CENEO-08**: Resource: Account — operacja Get Limits (v2 `webapi_data_critical.GetExecutionLimits`)
+- [x] **CENEO-09**: Styl programmatic — wymagany dla dual auth (v2/v3) i token management
+- [x] **CENEO-10**: Obsługa błędów, testy nock (mock GetToken + all operations), package.json, codex (Data & Storage > Pricing), ikona, README
+
+### NFZ Node
+
+- [ ] **NFZ-01**: Brak credentials — publiczne API, brak autoryzacji (wzorzec NBP)
+- [ ] **NFZ-02**: Resource: Queue — operacja Search (`/queues` z params: case, province, benefit, locality, benefitForChildren, page, limit)
+- [ ] **NFZ-03**: Resource: Queue — operacja Get (`/queues/{id}`)
+- [ ] **NFZ-04**: Resource: Queue — operacja Get Many Places (`/queues/{id}/many-places`)
+- [ ] **NFZ-05**: Resource: Benefit — operacja Search (`/benefits?name=...`)
+- [ ] **NFZ-06**: Resource: Locality — operacja Search (`/localities?name=...`)
+- [ ] **NFZ-07**: Styl deklaratywny z `api-version=1.3` i `format=json` w requestDefaults.qs
+- [ ] **NFZ-08**: Obsługa błędów HTTP jako NodeApiError z czytelnym komunikatem po angielsku
+- [ ] **NFZ-09**: Testy z nock — happy path + error handling, description validation
+- [ ] **NFZ-10**: package.json (n8n-community-node-package keyword), codex, SVG ikona, README
 
 ## v2 Requirements
 
@@ -234,12 +247,13 @@
 | BL-01..06 | Phase 11 | Pending |
 | VIES-01..04 | Phase 11 | Pending |
 | CENEO-01..10 | Phase 13 | Pending |
+| NFZ-01..10 | Phase 15 | Pending |
 
 **Coverage:**
-- v1 requirements: 112 total
-- Mapped to phases: 112
+- v1 requirements: 122 total
+- Mapped to phases: 122
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-23 after Phase 13 planning (Ceneo)*
+*Last updated: 2026-03-23 after Phase 15 planning (NFZ)*

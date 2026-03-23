@@ -470,17 +470,35 @@ Plans:
 
 ---
 
-### Phase 15: integracja z https://api.nfz.gov.pl/app-itl-api/
-
-**Goal:** [To be planned]
-**Requirements**: TBD
+### Phase 15: NFZ Treatment Waiting Times
+**Goal:** Users can search healthcare treatment waiting times, providers, and service dictionaries from NFZ (National Health Fund of Poland) public API with no authentication required
+**Requirements**: NFZ-01, NFZ-02, NFZ-03, NFZ-04, NFZ-05, NFZ-06, NFZ-07, NFZ-08, NFZ-09, NFZ-10
 **Depends on:** Phase 14
-**Plans:** 0 plans
+**Plans:** 2 plans
+
+**Success Criteria** (what must be TRUE):
+  1. Node exists as a declarative node with NO credentials -- public open data API
+  2. User can search treatment waiting times by case type, province, benefit name, and locality
+  3. User can get details of a specific queue entry and alternative appointment locations
+  4. User can search benefit and locality dictionaries
+  5. Province dropdown includes all 16 Polish voivodeships for easy filtering
+  6. Build, lint, and tests pass; package is ready for npm publish
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 15 to break down)
+- [ ] 15-01-PLAN.md -- Package scaffold (package.json, tsconfig, eslint, jest, icon) + declarative node with Queue (3 ops), Benefit (1 op), Locality (1 op), Province (1 op) resources
+- [ ] 15-02-PLAN.md -- Nock tests (description + HTTP contracts), codex, README, build + lint verification
+
+**Technical Notes:**
+- Follows NBP no-credentials declarative pattern exactly
+- Zero runtime dependencies
+- api-version=1.3 and format=json in requestDefaults.qs
+- Case type (Stable/Urgent) required for queue search
+- Province dropdown with all 16 voivodeships (01-16)
+- JSON API response format (data[].attributes) -- document in README
+- Rate limit 10 req/sec -- document in README
+- Incapsula WAF may block requests -- needs live testing; Accept: application/json header in requestDefaults should help
 
 ---
 *Roadmap created: 2026-03-20*
 *Granularity: Fine (10 phases, 70 plans)*
-*Coverage: 112/112 v1 requirements mapped*
+*Coverage: 122/122 v1 requirements mapped*
