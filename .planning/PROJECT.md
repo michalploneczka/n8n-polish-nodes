@@ -99,4 +99,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-23 after Phase 11 completion — KRS, Biala Lista VAT, VIES nodes delivered (48 tests passing, all declarative, no credentials: KRS 2 operations, VIES 1 operation with 28 EU country codes, Biala Lista VAT 8 operations across subject search and account verification)*
+*Last updated: 2026-03-23 after Phase 15 completion — NFZ Treatment Waiting Times node delivered (19 tests passing, declarative, no credentials: 4 resources — Queue Search/Get/Get Many Places, Benefit Search, Locality Search, Province List — querying NFZ public API for healthcare waiting times)*
