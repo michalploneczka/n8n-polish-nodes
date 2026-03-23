@@ -417,7 +417,7 @@ Plans:
 **Goal:** Users can verify market prices on Ceneo (Poland's largest price comparison platform) by querying product offers, top category products, and categories via dual-auth API (v2 apiKey + v3 Bearer token)
 **Requirements**: CENEO-01, CENEO-02, CENEO-03, CENEO-04, CENEO-05, CENEO-06, CENEO-07, CENEO-08, CENEO-09, CENEO-10
 **Depends on:** Phase 12
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 **Success Criteria** (what must be TRUE):
   1. User can get top products in any Ceneo category by name with configurable limit (1-100)
   2. User can get all offers and top 10 cheapest offers for up to 300 product IDs
@@ -426,8 +426,8 @@ Plans:
   5. Dual auth is transparent -- v3 endpoints use Bearer token (auto-acquired from GetToken), v2 endpoints use raw API key
 
 Plans:
-- [ ] 13-01-PLAN.md -- Package scaffold, credentials (API Key), GenericFunctions (dual auth: v3 Bearer + v2 apiKey), resource definitions (product, category, account)
-- [ ] 13-02-PLAN.md -- Ceneo.node.ts with execute() routing all 5 operations to correct v2/v3 API helpers
+- [x] 13-01-PLAN.md -- Package scaffold, credentials (API Key), GenericFunctions (dual auth: v3 Bearer + v2 apiKey), resource definitions (product, category, account)
+- [x] 13-02-PLAN.md -- Ceneo.node.ts with execute() routing all 5 operations to correct v2/v3 API helpers
 - [ ] 13-03-PLAN.md -- Nock tests (8 cases), codex (Data & Storage > Pricing), SVG icon, README, build + lint verification
 
 **Technical Notes:**
