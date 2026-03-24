@@ -205,4 +205,18 @@ describe('Error Handling', () => {
 
 		await expect(node.execute.call(mock)).rejects.toThrow('Ceneo API');
 	});
+
+	it('should handle continueOnFail', async () => {
+		const mock = createCeneoMock({
+			resource: 'account',
+			operation: 'getLimits',
+		}, true);
+		(mock.helpers.httpRequest as jest.Mock)
+			.mockRejectedValueOnce(new Error('Connection refused'));
+
+		const result = await node.execute.call(mock);
+
+		expect(result[0]).toHaveLength(1);
+		expect(result[0][0].json.error).toBeDefined();
+	});
 });
