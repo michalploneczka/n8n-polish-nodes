@@ -215,5 +215,57 @@ describe('Vies Node', () => {
 				);
 			});
 		});
+
+		it('API returns 400 for malformed VAT number', () => {
+			const scope = createNockScope(BASE_URL)
+				.get(`${API_PATH}/ms/PL/vat/INVALID`)
+				.reply(400, { errorWrapperDTO: { error: 'INVALID_INPUT', message: 'Invalid VAT number format' } });
+
+			const https = require('https');
+			return new Promise<void>((resolve) => {
+				https.get(
+					`${BASE_URL}${API_PATH}/ms/PL/vat/INVALID`,
+					(res: { statusCode: number; on: (event: string, cb: (chunk: string) => void) => void }) => {
+						expect(res.statusCode).toBe(400);
+						let data = '';
+						res.on('data', (chunk: string) => {
+							data += chunk;
+						});
+						res.on('end', () => {
+							const body = JSON.parse(data);
+							expect(body.errorWrapperDTO.error).toBe('INVALID_INPUT');
+							expect(scope.isDone()).toBe(true);
+							resolve();
+						});
+					},
+				);
+			});
+		});
+
+		it('API returns 500 when service is down', () => {
+			const scope = createNockScope(BASE_URL)
+				.get(`${API_PATH}/ms/PL/vat/5213017228`)
+				.reply(500, { errorWrapperDTO: { error: 'MS_UNAVAILABLE', message: 'Member State service unavailable' } });
+
+			const https = require('https');
+			return new Promise<void>((resolve) => {
+				https.get(
+					`${BASE_URL}${API_PATH}/ms/PL/vat/5213017228`,
+					(res: { statusCode: number; on: (event: string, cb: (chunk: string) => void) => void }) => {
+						expect(res.statusCode).toBe(500);
+						let data = '';
+						res.on('data', (chunk: string) => {
+							data += chunk;
+						});
+						res.on('end', () => {
+							const body = JSON.parse(data);
+							expect(body.errorWrapperDTO.error).toBe('MS_UNAVAILABLE');
+							expect(scope.isDone()).toBe(true);
+							resolve();
+						});
+					},
+				);
+			});
+		});
 	});
 });
