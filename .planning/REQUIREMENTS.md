@@ -210,10 +210,20 @@
 
 ### Unit Test Quality
 
-- [ ] **UTEST-01**: SMSAPI nock scopes exercised — all HTTP Integration tests make actual https.get/request calls and verify scope.isDone() is true
-- [ ] **UTEST-02**: VIES HTTP error tests — nock contract tests for 400 (bad request) and 500 (service unavailable) status codes
-- [ ] **UTEST-03**: Ceneo continueOnFail test — verifies that when continueOnFail=true, API errors return error in json.error instead of throwing
+- [x] **UTEST-01**: SMSAPI nock scopes exercised — all HTTP Integration tests make actual https.get/request calls and verify scope.isDone() is true
+- [x] **UTEST-02**: VIES HTTP error tests — nock contract tests for 400 (bad request) and 500 (service unavailable) status codes
+- [x] **UTEST-03**: Ceneo continueOnFail test — verifies that when continueOnFail=true, API errors return error in json.error instead of throwing
 
+
+
+
+### Integration Tests (Docker)
+
+- [ ] **INT-01**: All 12 custom node types registered in n8n Docker container -- verified via /types/nodes.json internal endpoint
+- [ ] **INT-02**: All 7 credential types registered in n8n Docker container -- verified via /types/credentials.json internal endpoint
+- [ ] **INT-03**: 12 smoke workflows (one per node) import successfully via POST /api/v1/workflows
+- [ ] **INT-04**: docker-compose.test.yml starts n8n with all 12 packages volume-mounted, ephemeral data, port 5679
+- [ ] **INT-05**: CI integration test job gates publishing -- integration tests must pass before npm publish workflow triggers
 
 ## v2 Requirements
 
@@ -265,12 +275,13 @@
 | NFZ-01..10 | Phase 15 | Pending |
 | STRUCT-01..05 | Phase 16 | Pending |
 | UTEST-01..03 | Phase 17 | Pending |
+| INT-01..05 | Phase 18 | Pending |
 
 **Coverage:**
-- v1 requirements: 130 total
-- Mapped to phases: 130
+- v1 requirements: 135 total
+- Mapped to phases: 135
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-24 after Phase 17 planning (Unit Test Quality)*
+*Last updated: 2026-03-24 after Phase 18 planning (Integration Tests Docker)*

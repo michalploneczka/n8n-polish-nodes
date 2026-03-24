@@ -521,13 +521,14 @@ Plans:
 
 ### Phase 18: Testy integracyjne z n8n w Dockerze - workflow runner z prawdziwym n8n
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Integration tests that spin up a real n8n instance in Docker, verify all 12 custom nodes and credentials load correctly, validate smoke workflow imports, and gate CI/CD publishing on these tests passing
+**Requirements**: INT-01, INT-02, INT-03, INT-04, INT-05
 **Depends on:** Phase 17
-**Plans:** 0 plans
+**Plans:** 2 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 18 to break down)
+- [ ] 18-01-PLAN.md -- Docker test infrastructure: docker-compose.test.yml, integration-test.sh, Jest config, helpers with dynamic node list generator
+- [ ] 18-02-PLAN.md -- Integration tests (node/credential registration + workflow import), 12 smoke workflow fixtures, CI/CD gating (ci.yml + publish.yml)
 
 ---
 *Roadmap created: 2026-03-20*
