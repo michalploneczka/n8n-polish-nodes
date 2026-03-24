@@ -22,6 +22,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 8: iFirma** - HMAC-SHA1 request signing pattern for accounting
 - [ ] **Phase 9: Allegro** - OAuth2 Authorization Code flow for marketplace integration
 - [x] **Phase 10: GUS REGON** - SOAP/XML session-based API for government business registry (completed 2026-03-22)
+- [ ] **Phase 19: E2E testy - publiczne API** - NBP, NFZ, KRS, Biała Lista VAT, VIES + CEIDG (z kluczem)
+- [ ] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud
+- [ ] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth
 
 ## Phase Details
 
@@ -352,6 +355,9 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 8. iFirma | 0/6 | Not started | - |
 | 9. Allegro | 0/7 | Not started | - |
 | 10. GUS REGON | 3/3 | Complete    | 2026-03-22 |
+| 19. E2E: publiczne API | 0/0 | Not started | - |
+| 20. E2E: API z kluczem | 0/0 | Not started | - |
+| 21. E2E: Fakturownia + InPost | 0/0 | Not started | - |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
 **Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
@@ -524,13 +530,84 @@ Plans:
 **Goal:** Integration tests that spin up a real n8n instance in Docker, verify all 12 custom nodes and credentials load correctly, validate smoke workflow imports, and gate CI/CD publishing on these tests passing
 **Requirements**: INT-01, INT-02, INT-03, INT-04, INT-05
 **Depends on:** Phase 17
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
-- [ ] 18-01-PLAN.md -- Docker test infrastructure: docker-compose.test.yml, integration-test.sh, Jest config, helpers with dynamic node list generator
+- [x] 18-01-PLAN.md -- Docker test infrastructure: docker-compose.test.yml, integration-test.sh, Jest config, helpers with dynamic node list generator
 - [ ] 18-02-PLAN.md -- Integration tests (node/credential registration + workflow import), 12 smoke workflow fixtures, CI/CD gating (ci.yml + publish.yml)
+
+---
+
+### Phase 19: E2E testy - publiczne API (NBP, NFZ, KRS, Biała Lista VAT, VIES, CEIDG)
+
+**Goal:** End-to-end tests hitting real APIs locally — 5 public no-auth APIs (NBP, NFZ, KRS, Biała Lista VAT, VIES) and CEIDG (API key auth). Tests run against live endpoints, verifying actual HTTP responses match node output schemas. Local-only execution (no CI).
+**Requirements**: E2E-01, E2E-02, E2E-03, E2E-04, E2E-05, E2E-06, E2E-07
+**Depends on:** Phase 18
+**Plans:** 0 plans (not yet planned)
+**Success Criteria** (what must be TRUE):
+  1. Each of the 6 nodes can execute at least one operation against the real API and return valid structured data
+  2. NBP: get current exchange rate for EUR returns numeric mid value
+  3. NFZ: search queues returns non-empty results for a known benefit
+  4. KRS: get extract for a known KRS number returns company data
+  5. Biała Lista VAT: search by a known NIP returns subject data with valid date
+  6. VIES: validate a known valid EU VAT number returns valid=true
+  7. CEIDG: search by known NIP returns company data (requires API key from env)
+  8. Tests are runnable locally via `pnpm run test:e2e` with optional CEIDG_API_KEY env var
+  9. Tests gracefully skip if external API is unavailable (no hard failures on network issues)
+
+**Technical Notes:**
+- Jest config: jest.config.e2e.js with long timeout (30s per test)
+- Tests use real n8n Docker container (reuse docker-compose.test.yml from Phase 18)
+- CEIDG requires API key — read from CEIDG_API_KEY env var, skip if not set
+- Public APIs may have rate limits (Biała Lista VAT: 10 search/day) — use known-good test data
+- All tests read-only operations — no side effects on external systems
+
+---
+
+### Phase 20: E2E testy - API z kluczem (SMSAPI, Ceneo, GUS REGON, Linkercloud)
+
+**Goal:** End-to-end tests for 4 nodes requiring API key authentication — SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud. Tests run locally against real/sandbox APIs verifying actual responses.
+**Requirements**: E2E-08, E2E-09, E2E-10, E2E-11, E2E-12
+**Depends on:** Phase 19
+**Plans:** 0 plans (not yet planned)
+**Success Criteria** (what must be TRUE):
+  1. SMSAPI: send SMS in test mode (test=1) returns success without consuming credits
+  2. SMSAPI: list contacts and check balance return valid JSON
+  3. Ceneo: get categories returns non-empty list, get execution limits returns quota info
+  4. GUS REGON: search by known NIP returns company data via SOAP session
+  5. Linkercloud: list orders returns valid response (empty or with data)
+  6. All tests read from env vars for API keys (SMSAPI_TOKEN, CENEO_API_KEY, GUS_REGON_KEY, LINKERCLOUD_API_KEY, LINKERCLOUD_DOMAIN)
+  7. Tests skip gracefully if credentials not provided
+
+**Technical Notes:**
+- SMSAPI test mode (test=1) is safe — no SMS sent, no credits used
+- GUS REGON has a free test key: abcde12345abcde12345 (test environment)
+- Ceneo and Linkercloud require real API keys — skip if not available
+- Reuse E2E infrastructure from Phase 19
+
+---
+
+### Phase 21: E2E testy - Fakturownia + InPost (sandbox/token auth)
+
+**Goal:** End-to-end tests for Fakturownia (subdomain + API token) and InPost (Bearer token + sandbox environment). Tests run locally against sandbox/trial APIs.
+**Requirements**: E2E-13, E2E-14, E2E-15
+**Depends on:** Phase 20
+**Plans:** 0 plans (not yet planned)
+**Success Criteria** (what must be TRUE):
+  1. Fakturownia: list invoices returns valid response from trial account
+  2. Fakturownia: create and retrieve an invoice round-trips correctly
+  3. InPost: list shipments returns valid response from sandbox
+  4. InPost: create a test shipment in sandbox returns shipment ID
+  5. All tests read credentials from env vars (FAKTUROWNIA_API_TOKEN, FAKTUROWNIA_SUBDOMAIN, INPOST_TOKEN, INPOST_ORG_ID)
+  6. Tests skip gracefully if credentials not provided
+
+**Technical Notes:**
+- Fakturownia trial: 30-day free account, full API access
+- InPost sandbox: api-shipx-pl.easypack24.net (different base URL)
+- InPost create shipment requires valid address data — use sandbox-safe test data
+- Both nodes use programmatic style — tests verify execute() with real HTTP
 
 ---
 *Roadmap created: 2026-03-20*
 *Granularity: Fine (10 phases, 70 plans)*
-*Coverage: 122/122 v1 requirements mapped*
+*Coverage: 122/122 v1 requirements mapped + 15 E2E requirements*

@@ -219,11 +219,35 @@
 
 ### Integration Tests (Docker)
 
-- [ ] **INT-01**: All 12 custom node types registered in n8n Docker container -- verified via /types/nodes.json internal endpoint
-- [ ] **INT-02**: All 7 credential types registered in n8n Docker container -- verified via /types/credentials.json internal endpoint
-- [ ] **INT-03**: 12 smoke workflows (one per node) import successfully via POST /api/v1/workflows
-- [ ] **INT-04**: docker-compose.test.yml starts n8n with all 12 packages volume-mounted, ephemeral data, port 5679
-- [ ] **INT-05**: CI integration test job gates publishing -- integration tests must pass before npm publish workflow triggers
+- [x] **INT-01**: All 12 custom node types registered in n8n Docker container -- verified via /types/nodes.json internal endpoint
+- [x] **INT-02**: All 7 credential types registered in n8n Docker container -- verified via /types/credentials.json internal endpoint
+- [x] **INT-03**: 12 smoke workflows (one per node) import successfully via POST /api/v1/workflows
+- [x] **INT-04**: docker-compose.test.yml starts n8n with all 12 packages volume-mounted, ephemeral data, port 5679
+- [x] **INT-05**: CI integration test job gates publishing -- integration tests must pass before npm publish workflow triggers
+
+### E2E Tests — Public APIs (no auth / free key)
+
+- [ ] **E2E-01**: E2E test infrastructure — jest.config.e2e.js, test:e2e script, env var loading for API keys
+- [ ] **E2E-02**: NBP E2E — get current EUR exchange rate returns numeric mid value from real API
+- [ ] **E2E-03**: NFZ E2E — search queues for known benefit returns non-empty results from real API
+- [ ] **E2E-04**: KRS E2E — get extract for known KRS number returns company data from real API
+- [ ] **E2E-05**: Biała Lista VAT E2E — search by known NIP returns subject data from real API
+- [ ] **E2E-06**: VIES E2E — validate known valid EU VAT number returns valid=true from real API
+- [ ] **E2E-07**: CEIDG E2E — search by known NIP returns company data (requires CEIDG_API_KEY env var, skip if absent)
+
+### E2E Tests — API Key Auth
+
+- [ ] **E2E-08**: SMSAPI E2E — send SMS in test mode (test=1), list contacts, check balance via real API
+- [ ] **E2E-09**: Ceneo E2E — get categories and execution limits via real API
+- [ ] **E2E-10**: GUS REGON E2E — search by known NIP via SOAP session against test environment
+- [ ] **E2E-11**: Linkercloud E2E — list orders via real API
+- [ ] **E2E-12**: E2E tests skip gracefully when API keys not provided (no hard failures)
+
+### E2E Tests — Sandbox/Token Auth
+
+- [ ] **E2E-13**: Fakturownia E2E — list invoices, create+retrieve invoice round-trip via trial API
+- [ ] **E2E-14**: InPost E2E — list shipments, create test shipment via sandbox API
+- [ ] **E2E-15**: E2E tests read credentials from env vars, skip if not provided
 
 ## v2 Requirements
 
@@ -276,11 +300,15 @@
 | STRUCT-01..05 | Phase 16 | Pending |
 | UTEST-01..03 | Phase 17 | Pending |
 | INT-01..05 | Phase 18 | Pending |
+| E2E-01..07 | Phase 19 | Pending |
+| E2E-08..12 | Phase 20 | Pending |
+| E2E-13..15 | Phase 21 | Pending |
 
 **Coverage:**
 - v1 requirements: 135 total
 - Mapped to phases: 135
 - Unmapped: 0
+- E2E requirements: 15 (Phases 19-21)
 
 ---
 *Requirements defined: 2026-03-20*
