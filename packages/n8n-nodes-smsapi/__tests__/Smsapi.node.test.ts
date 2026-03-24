@@ -1,8 +1,6 @@
-import { NodeApiError } from 'n8n-workflow';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore — resolved via jest moduleNameMapper
 import { setupNock, teardownNock, createNockScope } from '@n8n-polish-nodes/test-utils';
-import type { INode } from 'n8n-workflow';
 import { Smsapi } from '../nodes/Smsapi/Smsapi.node';
 import { SmsapiApi } from '../credentials/SmsapiApi.credentials';
 
@@ -298,69 +296,84 @@ describe('HTTP Integration', () => {
 			.query({ format: 'json' })
 			.reply(200, { name: 'test', points: 100 });
 
-		// Verify nock interceptor was set up (scope created without error)
-		expect(scope).toBeDefined();
-		// Note: actual HTTP call happens via n8n runtime during credential test;
-		// here we verify the nock interceptor matches the expected contract
+		const https = require('https');
+		return new Promise<void>((resolve) => {
+			https.get(
+				'https://api.smsapi.pl/profile?format=json',
+				(res: { statusCode: number; on: (event: string, cb: (chunk: string) => void) => void }) => {
+					expect(res.statusCode).toBe(200);
+					let data = '';
+					res.on('data', (chunk: string) => {
+						data += chunk;
+					});
+					res.on('end', () => {
+						const body = JSON.parse(data);
+						expect(body.name).toBe('test');
+						expect(body.points).toBe(100);
+						expect(scope.isDone()).toBe(true);
+						resolve();
+					});
+				},
+			);
+		});
 	});
 
-	it('handles 401 unauthorized - produces NodeApiError with English message', () => {
+	it('handles 401 unauthorized', () => {
 		const scope = createNockScope('https://api.smsapi.pl')
 			.get('/profile')
 			.query({ format: 'json' })
 			.reply(401, { message: 'Authorization failed' });
 
-		expect(scope).toBeDefined();
-
-		// Validate that NodeApiError correctly wraps SMSAPI 401 error payloads (SMSAPI-08)
-		const mockNode: INode = {
-			id: 'test-id',
-			name: 'SMSAPI',
-			type: 'n8n-nodes-smsapi.smsapi',
-			typeVersion: 1,
-			position: [0, 0],
-			parameters: {},
-		};
-
-		const error = new NodeApiError(mockNode, {
-			httpCode: '401',
-			message: 'Authorization failed',
+		const https = require('https');
+		return new Promise<void>((resolve) => {
+			https.get(
+				'https://api.smsapi.pl/profile?format=json',
+				(res: { statusCode: number; on: (event: string, cb: (chunk: string) => void) => void }) => {
+					expect(res.statusCode).toBe(401);
+					let data = '';
+					res.on('data', (chunk: string) => {
+						data += chunk;
+					});
+					res.on('end', () => {
+						const body = JSON.parse(data);
+						expect(body.message).toBe('Authorization failed');
+						expect(scope.isDone()).toBe(true);
+						resolve();
+					});
+				},
+			);
 		});
-
-		expect(error).toBeInstanceOf(NodeApiError);
-		expect(error.message).toBeTruthy();
-		expect(typeof error.message).toBe('string');
-		// Ensure English message (no non-ASCII characters in core error)
-		expect(error.message.length).toBeGreaterThan(0);
 	});
 
-	it('handles 400 bad request for SMS send - produces NodeApiError with English message', () => {
+	it('handles 400 bad request for SMS send', () => {
 		const scope = createNockScope('https://api.smsapi.pl')
 			.post('/sms.do')
 			.query({ format: 'json' })
 			.reply(400, { error: 101, message: 'Authorization failed' });
 
-		expect(scope).toBeDefined();
-
-		// Validate that NodeApiError correctly wraps SMSAPI 400 error payloads (SMSAPI-08)
-		const mockNode: INode = {
-			id: 'test-id',
-			name: 'SMSAPI',
-			type: 'n8n-nodes-smsapi.smsapi',
-			typeVersion: 1,
-			position: [0, 0],
-			parameters: {},
-		};
-
-		const error = new NodeApiError(mockNode, {
-			httpCode: '400',
-			message: 'Authorization failed',
-			description: 'Error code 101',
+		const https = require('https');
+		return new Promise<void>((resolve) => {
+			const req = https.request(
+				{
+					hostname: 'api.smsapi.pl',
+					path: '/sms.do?format=json',
+					method: 'POST',
+				},
+				(res: { statusCode: number; on: (event: string, cb: (chunk: string) => void) => void }) => {
+					expect(res.statusCode).toBe(400);
+					let data = '';
+					res.on('data', (chunk: string) => {
+						data += chunk;
+					});
+					res.on('end', () => {
+						const body = JSON.parse(data);
+						expect(body.error).toBe(101);
+						expect(scope.isDone()).toBe(true);
+						resolve();
+					});
+				},
+			);
+			req.end();
 		});
-
-		expect(error).toBeInstanceOf(NodeApiError);
-		expect(error.message).toBeTruthy();
-		expect(typeof error.message).toBe('string');
-		expect(error.message.length).toBeGreaterThan(0);
 	});
 });
