@@ -16,7 +16,8 @@
     "build:all": "pnpm --filter './packages/*' run build",
     "lint:all": "pnpm --filter './packages/*' run lint",
     "test:all": "pnpm --filter './packages/*' run test",
-    "clean:all": "pnpm --filter './packages/*' run clean"
+    "clean:all": "pnpm --filter './packages/*' run clean",
+    "test:structural": "jest --config jest.config.structural.js"
   },
   "devDependencies": {
     "@n8n/node-cli": "^0.23.0",
