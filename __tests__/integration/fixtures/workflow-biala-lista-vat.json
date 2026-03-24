@@ -1,0 +1,27 @@
+{
+  "name": "Smoke Test - Biala Lista VAT",
+  "nodes": [
+    {
+      "id": "trigger-1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {}
+    },
+    {
+      "id": "biala-lista-vat-1",
+      "name": "Biala Lista VAT",
+      "type": "n8n-nodes-biala-lista-vat.bialaListaVat",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "Biala Lista VAT", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

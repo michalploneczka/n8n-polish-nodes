@@ -1,0 +1,27 @@
+{
+  "name": "Smoke Test - KRS",
+  "nodes": [
+    {
+      "id": "trigger-1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {}
+    },
+    {
+      "id": "krs-1",
+      "name": "KRS",
+      "type": "n8n-nodes-krs.krs",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "KRS", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

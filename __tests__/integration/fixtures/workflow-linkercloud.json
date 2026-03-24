@@ -1,0 +1,27 @@
+{
+  "name": "Smoke Test - LinkerCloud",
+  "nodes": [
+    {
+      "id": "trigger-1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {}
+    },
+    {
+      "id": "linkercloud-1",
+      "name": "LinkerCloud",
+      "type": "n8n-nodes-linkercloud.linkerCloud",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "LinkerCloud", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

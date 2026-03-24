@@ -1,0 +1,27 @@
+{
+  "name": "Smoke Test - Ceneo",
+  "nodes": [
+    {
+      "id": "trigger-1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {}
+    },
+    {
+      "id": "ceneo-1",
+      "name": "Ceneo",
+      "type": "n8n-nodes-ceneo.ceneo",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "Ceneo", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}
