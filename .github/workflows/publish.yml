@@ -10,7 +10,29 @@ permissions:
   id-token: write
 
 jobs:
+  integration-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build:all
+      - name: Start n8n test container
+        run: docker compose -f docker-compose.test.yml -p n8n-integration-test up -d --wait
+      - name: Run integration tests
+        run: npx jest --config jest.config.integration.js
+      - name: Teardown
+        if: always()
+        run: docker compose -f docker-compose.test.yml -p n8n-integration-test down --volumes --remove-orphans
+
   publish:
+    needs: integration-check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
