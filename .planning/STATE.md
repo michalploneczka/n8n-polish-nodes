@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to plan
-stopped_at: Completed 16-02-PLAN.md
-last_updated: "2026-03-24T19:51:39.884Z"
+stopped_at: Completed 17-01-PLAN.md
+last_updated: "2026-03-24T20:31:11.494Z"
 progress:
   total_phases: 18
-  completed_phases: 10
-  total_plans: 40
-  completed_plans: 40
+  completed_phases: 11
+  total_plans: 41
+  completed_plans: 41
 ---
 
 # Project State
@@ -19,11 +19,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 16 — testy-strukturalne-walidacja-konfiguracji-wszystkich-packages-package-json-codex-ikony-build
+**Current focus:** Phase 17 — unit-testy-z-mockami-http-nock-dla-wszystkich-nodow
 
 ## Current Position
 
-Phase: 17
+Phase: 18
 Plan: Not started
 
 ## Performance Metrics
@@ -86,6 +86,7 @@ Plan: Not started
 | Phase 15 P02 | 3min | 2 tasks | 4 files |
 | Phase 16 P01 | 2min | 2 tasks | 5 files |
 | Phase 16 P02 | 3min | 2 tasks | 3 files |
+| Phase 17 P01 | 2min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -163,6 +164,7 @@ Recent decisions affecting current work:
 - [Phase 16]: Icons validated in icons/ directory (actual project structure) not nodes/NodeName/
 - [Phase 16]: ts-jest diagnostics disabled in structural config to avoid n8n-workflow type issues
 - [Phase 16]: Added Sales to allowed codex categories (used by LinkerCloud)
+- [Phase 17]: Removed unused NodeApiError/INode imports from SMSAPI test after converting to HTTP integration pattern
 
 ### Roadmap Evolution
 
@@ -189,6 +191,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T19:47:54.538Z
-Stopped at: Completed 16-02-PLAN.md
+Last session: 2026-03-24T20:27:54.759Z
+Stopped at: Completed 17-01-PLAN.md
 Resume file: None

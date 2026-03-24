@@ -514,7 +514,7 @@ Plans:
 **Goal:** Close unit test quality gaps across all packages -- fix SMSAPI vacuous nock tests, add VIES HTTP error tests, add Ceneo continueOnFail test
 **Requirements**: UTEST-01, UTEST-02, UTEST-03
 **Depends on:** Phase 16
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 17-01-PLAN.md -- Fix SMSAPI nock verification, add VIES error tests, add Ceneo continueOnFail test
