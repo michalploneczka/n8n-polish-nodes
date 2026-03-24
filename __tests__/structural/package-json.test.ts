@@ -37,7 +37,7 @@ describe.each(packages)('Package %s', (pkgName) => {
 
   it('has correct author.email', () => {
     const author = pkg.author as Record<string, string>;
-    expect(author.email).toBe('mp@codersgroup.pl');
+    expect(author.email).toBe('michal.ploneczka@gmail.com');
   });
 
   it('has correct author.url', () => {

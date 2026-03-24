@@ -20,7 +20,7 @@ describe('Consistent metadata across all packages', () => {
   it('all packages have identical author.email', () => {
     for (const { name, pkg } of allPkgs) {
       const author = pkg.author as Record<string, string>;
-      expect(author.email).toBe('mp@codersgroup.pl');
+      expect(author.email).toBe('michal.ploneczka@gmail.com');
     }
   });
 
