@@ -208,6 +208,12 @@
 - [x] **STRUCT-04**: Build output alignment — dist/ files match n8n.nodes and n8n.credentials paths in package.json (conditional on dist/ existence)
 - [x] **STRUCT-05**: Cross-package consistency — identical author, license, repository, n8nNodesApiVersion across all packages; source files exist for all declared nodes/credentials
 
+### Unit Test Quality
+
+- [ ] **UTEST-01**: SMSAPI nock scopes exercised — all HTTP Integration tests make actual https.get/request calls and verify scope.isDone() is true
+- [ ] **UTEST-02**: VIES HTTP error tests — nock contract tests for 400 (bad request) and 500 (service unavailable) status codes
+- [ ] **UTEST-03**: Ceneo continueOnFail test — verifies that when continueOnFail=true, API errors return error in json.error instead of throwing
+
 
 ## v2 Requirements
 
@@ -258,12 +264,13 @@
 | CENEO-01..10 | Phase 13 | Pending |
 | NFZ-01..10 | Phase 15 | Pending |
 | STRUCT-01..05 | Phase 16 | Pending |
+| UTEST-01..03 | Phase 17 | Pending |
 
 **Coverage:**
-- v1 requirements: 127 total
-- Mapped to phases: 127
+- v1 requirements: 130 total
+- Mapped to phases: 130
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-24 after Phase 16 planning (Structural Tests)*
+*Last updated: 2026-03-24 after Phase 17 planning (Unit Test Quality)*

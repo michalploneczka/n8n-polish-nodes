@@ -511,13 +511,13 @@ Plans:
 
 ### Phase 17: Unit testy z mockami HTTP (nock) dla wszystkich nodow
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Close unit test quality gaps across all packages -- fix SMSAPI vacuous nock tests, add VIES HTTP error tests, add Ceneo continueOnFail test
+**Requirements**: UTEST-01, UTEST-02, UTEST-03
 **Depends on:** Phase 16
-**Plans:** 0 plans
+**Plans:** 1 plan
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 17 to break down)
+- [ ] 17-01-PLAN.md -- Fix SMSAPI nock verification, add VIES error tests, add Ceneo continueOnFail test
 
 ### Phase 18: Testy integracyjne z n8n w Dockerze - workflow runner z prawdziwym n8n
 
