@@ -17,7 +17,8 @@
     "lint:all": "pnpm --filter './packages/*' run lint",
     "test:all": "pnpm --filter './packages/*' run test",
     "clean:all": "pnpm --filter './packages/*' run clean",
-    "test:structural": "jest --config jest.config.structural.js"
+    "test:structural": "jest --config jest.config.structural.js",
+    "test:integration": "bash scripts/integration-test.sh"
   },
   "devDependencies": {
     "@n8n/node-cli": "^0.23.0",
