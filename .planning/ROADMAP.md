@@ -543,7 +543,11 @@ Plans:
 **Goal:** End-to-end tests hitting real APIs locally — 5 public no-auth APIs (NBP, NFZ, KRS, Biała Lista VAT, VIES) and CEIDG (API key auth). Tests run against live endpoints, verifying actual HTTP responses match node output schemas. Local-only execution (no CI).
 **Requirements**: E2E-01, E2E-02, E2E-03, E2E-04, E2E-05, E2E-06, E2E-07
 **Depends on:** Phase 18
-**Plans:** 0 plans (not yet planned)
+**Plans:** 2 plans
+
+Plans:
+- [ ] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
+- [ ] 19-02-PLAN.md -- E2E test suites: 6 describe blocks (NBP, NFZ, KRS, Biala Lista VAT, VIES, CEIDG) with real API assertions and graceful error handling
 **Success Criteria** (what must be TRUE):
   1. Each of the 6 nodes can execute at least one operation against the real API and return valid structured data
   2. NBP: get current exchange rate for EUR returns numeric mid value
@@ -569,7 +573,11 @@ Plans:
 **Goal:** End-to-end tests for 4 nodes requiring API key authentication — SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud. Tests run locally against real/sandbox APIs verifying actual responses.
 **Requirements**: E2E-08, E2E-09, E2E-10, E2E-11, E2E-12
 **Depends on:** Phase 19
-**Plans:** 0 plans (not yet planned)
+**Plans:** 2 plans
+
+Plans:
+- [ ] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
+- [ ] 19-02-PLAN.md -- E2E test suites: 6 describe blocks (NBP, NFZ, KRS, Biala Lista VAT, VIES, CEIDG) with real API assertions and graceful error handling
 **Success Criteria** (what must be TRUE):
   1. SMSAPI: send SMS in test mode (test=1) returns success without consuming credits
   2. SMSAPI: list contacts and check balance return valid JSON
@@ -592,7 +600,11 @@ Plans:
 **Goal:** End-to-end tests for Fakturownia (subdomain + API token) and InPost (Bearer token + sandbox environment). Tests run locally against sandbox/trial APIs.
 **Requirements**: E2E-13, E2E-14, E2E-15
 **Depends on:** Phase 20
-**Plans:** 0 plans (not yet planned)
+**Plans:** 2 plans
+
+Plans:
+- [ ] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
+- [ ] 19-02-PLAN.md -- E2E test suites: 6 describe blocks (NBP, NFZ, KRS, Biala Lista VAT, VIES, CEIDG) with real API assertions and graceful error handling
 **Success Criteria** (what must be TRUE):
   1. Fakturownia: list invoices returns valid response from trial account
   2. Fakturownia: create and retrieve an invoice round-trips correctly
