@@ -99,4 +99,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-24 after Phase 16 completion — Root-level structural test suite delivered (5 test files, 499 tests, 12 packages). Auto-discovers all packages and validates: package.json fields (STRUCT-01), codex metadata schemas (STRUCT-02), SVG icons (STRUCT-03), build output alignment (STRUCT-04), cross-package consistency (STRUCT-05). Run via `npm run test:structural`.*
+*Last updated: 2026-03-24 after Phase 17 completion — Unit test quality gaps closed: SMSAPI nock scopes now exercised with isDone() verification, VIES has HTTP error (400/500) tests, Ceneo has continueOnFail coverage. All per-package test suites pass (SMSAPI 24, VIES 15, Ceneo 9).*
