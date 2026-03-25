@@ -84,4 +84,4 @@ Full API reference: [https://api-krs.ms.gov.pl/](https://api-krs.ms.gov.pl/)
 
 ## Author
 
-[Michal Ploneczka](https://codersgroup.pl) (mp@codersgroup.pl)
+[Michal Ploneczka](https://codersgroup.pl) (michal.ploneczka@gmail.com)

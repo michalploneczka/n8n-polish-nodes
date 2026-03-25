@@ -82,4 +82,4 @@ Full API reference: [https://dane.biznes.gov.pl/api](https://dane.biznes.gov.pl/
 
 ## Author
 
-[Michal Ploneczka](https://codersgroup.pl) (mp@codersgroup.pl)
+[Michal Ploneczka](https://codersgroup.pl) (michal.ploneczka@gmai.com)

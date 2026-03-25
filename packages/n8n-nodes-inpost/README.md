@@ -129,4 +129,4 @@ Below is a minimal workflow that creates a locker shipment:
 
 ## Author
 
-[Michal Ploneczka](https://codersgroup.pl) (mp@codersgroup.pl)
+[Michal Ploneczka](https://codersgroup.pl) (michal.ploneczka@gmail.com)

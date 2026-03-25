@@ -106,4 +106,4 @@ Full API reference: [https://www.smsapi.pl/docs](https://www.smsapi.pl/docs)
 
 ## Author
 
-[Michal Ploneczka](https://codersgroup.pl) (mp@codersgroup.pl)
+[Michal Ploneczka](https://codersgroup.pl) (michal.ploneczka@gmail.com)

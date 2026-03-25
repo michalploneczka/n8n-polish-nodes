@@ -117,4 +117,4 @@ Below is a minimal workflow that creates a VAT invoice:
 
 ## Author
 
-[Michal Ploneczka](https://codersgroup.pl) (mp@codersgroup.pl)
+[Michal Ploneczka](https://codersgroup.pl) (michal.ploneczka@gmail.com)

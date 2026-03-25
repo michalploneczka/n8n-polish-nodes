@@ -11,3 +11,8 @@ coverage/
 .n8n/
 package-lock.json
 resources/
+
+# Claude AI
+claude.md
+.claude/
+.planning/

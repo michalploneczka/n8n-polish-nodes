@@ -7,19 +7,20 @@ Collection of [n8n](https://n8n.io) community nodes for Polish services. Each no
 
 ## Available Nodes
 
-| Node | Service | npm Package | Status |
-|------|---------|-------------|--------|
-| SMSAPI | [smsapi.pl](https://www.smsapi.pl) | `n8n-nodes-smsapi` | In Development |
-| CEIDG | [dane.biznes.gov.pl](https://dane.biznes.gov.pl) | `n8n-nodes-ceidg` | In Development |
-| Fakturownia | [fakturownia.pl](https://fakturownia.pl) | `n8n-nodes-fakturownia` | Planned |
-| InPost | [inpost.pl](https://inpost.pl) | `n8n-nodes-inpost` | Planned |
-| Przelewy24 | [przelewy24.pl](https://www.przelewy24.pl) | `n8n-nodes-przelewy24` | Planned |
-| BaseLinker | [baselinker.com](https://baselinker.com) | `n8n-nodes-baselinker` | Planned |
-| Shoper | [shoper.pl](https://www.shoper.pl) | `n8n-nodes-shoper` | Planned |
-| wFirma | [wfirma.pl](https://wfirma.pl) | `n8n-nodes-wfirma` | Planned |
-| iFirma | [ifirma.pl](https://www.ifirma.pl) | `n8n-nodes-ifirma` | Planned |
-| Allegro | [allegro.pl](https://allegro.pl) | `n8n-nodes-allegro` | Planned |
-| GUS REGON | [api.stat.gov.pl](https://api.stat.gov.pl) | `n8n-nodes-gus-regon` | Planned |
+| Node | Service | npm Package | Description |
+|------|---------|-------------|-------------|
+| SMSAPI | [smsapi.pl](https://www.smsapi.pl) | `n8n-nodes-smsapi` | Polish SMS gateway |
+| CEIDG | [dane.biznes.gov.pl](https://dane.biznes.gov.pl) | `n8n-nodes-ceidg` | Polish business registry lookup |
+| Fakturownia | [fakturownia.pl](https://fakturownia.pl) | `n8n-nodes-fakturownia` | Polish invoicing platform |
+| InPost | [inpost.pl](https://inpost.pl) | `n8n-nodes-inpost` | Polish parcel locker & courier service |
+| Biala Lista VAT | [mf.gov.pl](https://www.podatki.gov.pl/wykaz-podatnikow-vat-wyszukiwarka) | `n8n-nodes-biala-lista-vat` | Polish VAT taxpayer white list verification |
+| KRS | [krs.gov.pl](https://www.krs.gov.pl) | `n8n-nodes-krs` | Polish National Court Register company lookup |
+| GUS REGON | [api.stat.gov.pl](https://api.stat.gov.pl) | `n8n-nodes-gus-regon` | Polish REGON business registry (SOAP) |
+| VIES | [ec.europa.eu](https://ec.europa.eu/taxation_customs/vies) | `n8n-nodes-vies` | EU VAT number validation |
+| NBP | [api.nbp.pl](https://api.nbp.pl) | `n8n-nodes-nbp` | Exchange rates from National Bank of Poland |
+| NFZ | [api.nfz.gov.pl](https://api.nfz.gov.pl) | `n8n-nodes-nfz` | Healthcare waiting times from National Health Fund |
+| Ceneo | [ceneo.pl](https://ceneo.pl) | `n8n-nodes-ceneo` | Polish price comparison platform |
+| LinkerCloud | [linkercloud.pl](https://linkercloud.pl) | `n8n-nodes-linkercloud` | Polish WMS/OMS fulfillment platform |
 
 ## Installation
 

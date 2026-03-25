@@ -96,4 +96,4 @@ Full API reference: [https://api.nbp.pl/](https://api.nbp.pl/)
 
 ## Author
 
-[Michal Ploneczka](https://codersgroup.pl) (mp@codersgroup.pl)
+[Michal Ploneczka](https://codersgroup.pl) (michal.ploneczka@gmail.com)

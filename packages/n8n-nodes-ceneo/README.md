@@ -118,4 +118,4 @@ This workflow checks top laptop prices on Ceneo every hour and filters products 
 
 ## Author
 
-[Michal Ploneczka](https://codersgroup.pl) (mp@codersgroup.pl)
+[Michal Ploneczka](https://codersgroup.pl) (michal.ploneczka@gmail.com)
