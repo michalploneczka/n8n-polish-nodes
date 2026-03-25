@@ -24,7 +24,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 10: GUS REGON** - SOAP/XML session-based API for government business registry (completed 2026-03-22)
 - [x] **Phase 19: E2E testy - publiczne API** - NBP, NFZ, KRS, Biała Lista VAT, VIES + CEIDG (z kluczem) (completed 2026-03-25)
 - [x] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud (completed 2026-03-25)
-- [ ] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth
+- [x] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth (completed 2026-03-25)
 
 ## Phase Details
 
@@ -357,7 +357,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 10. GUS REGON | 3/3 | Complete    | 2026-03-22 |
 | 19. E2E: publiczne API | 1/2 | Complete    | 2026-03-25 |
 | 20. E2E: API z kluczem | 1/2 | Complete    | 2026-03-25 |
-| 21. E2E: Fakturownia + InPost | 0/0 | Not started | - |
+| 21. E2E: Fakturownia + InPost | 1/2 | Complete    | 2026-03-25 |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
 **Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
@@ -600,10 +600,10 @@ Plans:
 **Goal:** End-to-end tests for Fakturownia (subdomain + API token) and InPost (Bearer token + sandbox environment). Tests run locally against sandbox/trial APIs.
 **Requirements**: E2E-13, E2E-14, E2E-15
 **Depends on:** Phase 20
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
-- [ ] 21-01-PLAN.md -- E2E fixtures: 4 workflow fixtures (Fakturownia list/create, InPost list/create) + e2e-test.sh env var passthrough
+- [x] 21-01-PLAN.md -- E2E fixtures: 4 workflow fixtures (Fakturownia list/create, InPost list/create) + e2e-test.sh env var passthrough
 - [ ] 21-02-PLAN.md -- E2E test blocks: Fakturownia + InPost describe blocks with credential skip logic and sandbox assertions
 **Success Criteria** (what must be TRUE):
   1. Fakturownia: list invoices returns valid response from trial account

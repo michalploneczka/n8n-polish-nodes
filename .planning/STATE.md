@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Completed 20-02-PLAN.md
-last_updated: "2026-03-25T12:54:48.261Z"
+status: Milestone complete
+stopped_at: Completed 21-02-PLAN.md
+last_updated: "2026-03-25T14:53:49.651Z"
 progress:
   total_phases: 21
-  completed_phases: 14
-  total_plans: 47
-  completed_plans: 47
+  completed_phases: 15
+  total_plans: 49
+  completed_plans: 49
 ---
 
 # Project State
@@ -19,7 +19,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 20 — e2e-testy-api-z-kluczem
+**Current focus:** Phase 21 — e2e-testy-fakturownia-inpost
 
 ## Current Position
 
@@ -93,6 +93,8 @@ Plan: Not started
 | Phase 19 P02 | 4min | 1 tasks | 1 files |
 | Phase 20 P01 | 1min | 2 tasks | 8 files |
 | Phase 20 P02 | 1min | 1 tasks | 1 files |
+| Phase 21 P01 | 1min | 2 tasks | 5 files |
+| Phase 21 P02 | 1min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -179,6 +181,8 @@ Recent decisions affecting current work:
 - [Phase 19]: unwrapResult helper handles both array-of-items and direct API response from n8n webhook
 - [Phase 20]: GUS_REGON_KEY defaults to public test key abcde12345abcde12345 so tests run without env var
 - [Phase 20]: GUS REGON uses unconditional describe (always runs) with public test key
+- [Phase 21]: Positions field as JSON string in fakturownia-create fixture (node calls JSON.parse)
+- [Phase 21]: InPost credential includes environment: sandbox to use sandbox base URL
 
 ### Roadmap Evolution
 
@@ -205,6 +209,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T12:51:11.107Z
-Stopped at: Completed 20-02-PLAN.md
+Last session: 2026-03-25T14:49:44.924Z
+Stopped at: Completed 21-02-PLAN.md
 Resume file: None
