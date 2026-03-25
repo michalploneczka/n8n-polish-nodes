@@ -576,8 +576,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
-- [ ] 19-02-PLAN.md -- E2E test suites: 6 describe blocks (NBP, NFZ, KRS, Biala Lista VAT, VIES, CEIDG) with real API assertions and graceful error handling
+- [ ] 20-01-PLAN.md -- E2E fixtures (7 workflow JSONs) + e2e-test.sh env var passthrough for SMSAPI, Ceneo, GUS REGON, LinkerCloud
+- [ ] 20-02-PLAN.md -- E2E test suites: 4 describe blocks (SMSAPI, Ceneo, GUS REGON, LinkerCloud) with credential creation, real API assertions, graceful skip
 **Success Criteria** (what must be TRUE):
   1. SMSAPI: send SMS in test mode (test=1) returns success without consuming credits
   2. SMSAPI: list contacts and check balance return valid JSON
