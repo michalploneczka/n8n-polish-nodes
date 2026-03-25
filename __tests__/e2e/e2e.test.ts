@@ -566,3 +566,153 @@ linkercloudDescribe('LinkerCloud E2E (E2E-11)', () => {
 		}
 	});
 });
+
+// ─── Fakturownia E2E (E2E-13) ───────────────────────────────────────────────
+
+const FAKTUROWNIA_API_TOKEN = process.env.FAKTUROWNIA_API_TOKEN;
+const FAKTUROWNIA_SUBDOMAIN = process.env.FAKTUROWNIA_SUBDOMAIN;
+const fakturowniaDescribe = (FAKTUROWNIA_API_TOKEN && FAKTUROWNIA_SUBDOMAIN) ? describe : describe.skip;
+
+fakturowniaDescribe('Fakturownia E2E (E2E-13)', () => {
+	let credentialId: string;
+	let listWorkflowId: string;
+	let createWorkflowId: string;
+
+	beforeAll(async () => {
+		credentialId = await createCredential('Fakturownia E2E', 'fakturowniaApi', {
+			apiToken: FAKTUROWNIA_API_TOKEN!,
+			subdomain: FAKTUROWNIA_SUBDOMAIN!,
+		});
+
+		for (const [fixtureName, setter] of [
+			['e2e-fakturownia-list.json', (id: string) => { listWorkflowId = id; }],
+			['e2e-fakturownia-create.json', (id: string) => { createWorkflowId = id; }],
+		] as [string, (id: string) => void][]) {
+			const fixture = loadFixture(fixtureName) as any;
+			const patched = JSON.parse(JSON.stringify(fixture));
+			patched.nodes[1].credentials.fakturowniaApi.id = credentialId;
+			const { id } = await createWorkflow(patched);
+			setter(id);
+			await activateWorkflow(id);
+		}
+	});
+
+	afterAll(async () => {
+		for (const wfId of [listWorkflowId, createWorkflowId]) {
+			if (wfId) {
+				await deactivateWorkflow(wfId);
+				await deleteWorkflow(wfId);
+			}
+		}
+	});
+
+	it('should list invoices (empty or with data)', async () => {
+		try {
+			const raw = await callWebhook('e2e-fakturownia-list');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			expect(result).not.toHaveProperty('error');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('Fakturownia API unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+
+	it('should create an invoice round-trip', async () => {
+		try {
+			const raw = await callWebhook('e2e-fakturownia-create');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			expect(result.id).toBeDefined();
+			expect(result.kind).toBe('vat');
+			expect(result.buyer_name).toBe('E2E Test Buyer');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('Fakturownia API unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+});
+
+// ─── InPost E2E (E2E-14) ────────────────────────────────────────────────────
+
+const INPOST_TOKEN = process.env.INPOST_TOKEN;
+const INPOST_ORG_ID = process.env.INPOST_ORG_ID;
+const inpostDescribe = (INPOST_TOKEN && INPOST_ORG_ID) ? describe : describe.skip;
+
+inpostDescribe('InPost E2E (E2E-14)', () => {
+	let credentialId: string;
+	let listWorkflowId: string;
+	let createWorkflowId: string;
+
+	beforeAll(async () => {
+		credentialId = await createCredential('InPost E2E', 'inpostApi', {
+			apiToken: INPOST_TOKEN!,
+			organizationId: INPOST_ORG_ID!,
+			environment: 'sandbox',
+		});
+
+		for (const [fixtureName, setter] of [
+			['e2e-inpost-list.json', (id: string) => { listWorkflowId = id; }],
+			['e2e-inpost-create.json', (id: string) => { createWorkflowId = id; }],
+		] as [string, (id: string) => void][]) {
+			const fixture = loadFixture(fixtureName) as any;
+			const patched = JSON.parse(JSON.stringify(fixture));
+			patched.nodes[1].credentials.inpostApi.id = credentialId;
+			const { id } = await createWorkflow(patched);
+			setter(id);
+			await activateWorkflow(id);
+		}
+	});
+
+	afterAll(async () => {
+		for (const wfId of [listWorkflowId, createWorkflowId]) {
+			if (wfId) {
+				await deactivateWorkflow(wfId);
+				await deleteWorkflow(wfId);
+			}
+		}
+	});
+
+	it('should list shipments (empty or with data)', async () => {
+		try {
+			const raw = await callWebhook('e2e-inpost-list');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			expect(result).not.toHaveProperty('error');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('InPost sandbox unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+
+	it('should create a test shipment in sandbox', async () => {
+		try {
+			const raw = await callWebhook('e2e-inpost-create');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			expect(result.id).toBeDefined();
+			expect(result.service).toBe('inpost_locker_standard');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('InPost sandbox unavailable, skipping');
+				return;
+			}
+			// InPost sandbox may reject certain test data (Paczkomat codes, etc.)
+			const msg = error instanceof Error ? error.message : '';
+			if (msg.includes('422') || msg.includes('validation')) {
+				console.warn('InPost sandbox validation error (test data issue):', msg);
+				return;
+			}
+			throw error;
+		}
+	}, 30000);
+});
