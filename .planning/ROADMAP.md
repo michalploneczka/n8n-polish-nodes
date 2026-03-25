@@ -370,7 +370,7 @@ Phases execute in numeric order. Phases 4-9 deferred to v2.
 | 20. E2E: API z kluczem | 2/2 | Complete | 2026-03-25 |
 | 21. E2E: Fakturownia + InPost | 2/2 | Complete | 2026-03-25 |
 | 22. Tech Debt & Documentation | 0/0 | Planned | — |
-| 23. CI & Test Reliability | 0/0 | Planned | — |
+| 23. CI & Test Reliability | 0/1 | Planned | — |
 | 24. Documentation & Tracking Cleanup | 0/0 | Planned | — |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
@@ -663,14 +663,11 @@ Plans:
 **Goal:** Close functional gaps in CI pipeline and test reliability — wire structural tests into CI, declare missing dependencies, fix silent test skips and missing API fallbacks
 **Requirements**: None (integration gap closure from v1.0 audit)
 **Depends on:** Phase 22
-**Plans:** 0 plans
+**Plans:** 1 plan
 **Gap Closure:** Closes MISSING-1, MISSING-3 from v1.0-MILESTONE-AUDIT.md + Phase 18/19 tech debt
 
-**Tasks:**
-1. Wire `test:structural` into ci.yml — 499 structural tests currently only run locally
-2. Declare `nock` as devDependency in shared/test-utils/package.json — currently relies on shamefully-hoist
-3. Fix INT-03 silent 401 skip in Phase 18 integration tests — tests pass as no-ops if auth not bypassed
-4. Fix `activateWorkflow` in Phase 19 E2E helpers — add POST /activate with PATCH fallback per plan spec
+Plans:
+- [ ] 23-01-PLAN.md — CI pipeline wiring (test:structural), nock dependency declaration, INT-03 auth fix, activateWorkflow verification
 
 **Success Criteria** (what must be TRUE):
   1. `test:structural` runs in CI pipeline and failures block merge
