@@ -1,0 +1,38 @@
+{
+  "name": "E2E - Biala Lista VAT",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-biala-lista-vat",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-biala-lista-vat",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "biala-lista-vat-1",
+      "name": "Biala Lista VAT",
+      "type": "n8n-nodes-biala-lista-vat.bialaListaVat",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "subject",
+        "operation": "searchByNip",
+        "nip": "5213017228",
+        "date": "={{ $now.format('yyyy-MM-dd') }}"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Biala Lista VAT", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

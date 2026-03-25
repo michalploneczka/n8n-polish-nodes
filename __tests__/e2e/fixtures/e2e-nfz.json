@@ -1,0 +1,39 @@
+{
+  "name": "E2E - NFZ",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-nfz",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-nfz",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "nfz-1",
+      "name": "NFZ",
+      "type": "n8n-nodes-nfz.nfz",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "queue",
+        "operation": "search",
+        "case": 1,
+        "benefit": "ortop",
+        "limit": 5
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "NFZ", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

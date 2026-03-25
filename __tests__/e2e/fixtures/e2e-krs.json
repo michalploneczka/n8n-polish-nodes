@@ -1,0 +1,37 @@
+{
+  "name": "E2E - KRS",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-krs",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-krs",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "krs-1",
+      "name": "KRS",
+      "type": "n8n-nodes-krs.krs",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "company",
+        "operation": "getCurrentExtract",
+        "krsNumber": "0000019193"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "KRS", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

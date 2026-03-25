@@ -1,0 +1,43 @@
+{
+  "name": "E2E - CEIDG",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-ceidg",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-ceidg",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "ceidg-1",
+      "name": "CEIDG",
+      "type": "n8n-nodes-ceidg.ceidg",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "company",
+        "operation": "searchByNip",
+        "nip": "6351723862"
+      },
+      "credentials": {
+        "ceidgApi": {
+          "id": "PLACEHOLDER",
+          "name": "CEIDG E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "CEIDG", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

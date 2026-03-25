@@ -1,0 +1,38 @@
+{
+  "name": "E2E - VIES",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-vies",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-vies",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "vies-1",
+      "name": "VIES",
+      "type": "n8n-nodes-vies.vies",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "vatNumber",
+        "operation": "validate",
+        "countryCode": "PL",
+        "vatNumber": "5213017228"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "VIES", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}
