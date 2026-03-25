@@ -26,7 +26,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud (completed 2026-03-25)
 - [x] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth (completed 2026-03-25)
 - [ ] **Phase 22: Tech Debt & Documentation Cleanup** - ESLint fix, REQUIREMENTS.md sync, docker-compose fix, cosmetic fixes
-- [ ] **Phase 23: CI & Test Reliability** - Wire test:structural into CI, declare nock dependency, fix silent 401 skip, fix activateWorkflow fallback
+- [x] **Phase 23: CI & Test Reliability** - Wire test:structural into CI, declare nock dependency, fix silent 401 skip, fix activateWorkflow fallback (completed 2026-03-25)
 - [ ] **Phase 24: Documentation & Tracking Cleanup** - Root README npm badges, VERIFICATION.md fixes, Phase 22 formal tracking, SUMMARY frontmatter backfill
 
 ## Phase Details
@@ -370,7 +370,7 @@ Phases execute in numeric order. Phases 4-9 deferred to v2.
 | 20. E2E: API z kluczem | 2/2 | Complete | 2026-03-25 |
 | 21. E2E: Fakturownia + InPost | 2/2 | Complete | 2026-03-25 |
 | 22. Tech Debt & Documentation | 0/0 | Planned | — |
-| 23. CI & Test Reliability | 0/1 | Planned    |  |
+| 23. CI & Test Reliability | 0/1 | Complete    | 2026-03-25 |
 | 24. Documentation & Tracking Cleanup | 0/0 | Planned | — |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
@@ -663,7 +663,7 @@ Plans:
 **Goal:** Close functional gaps in CI pipeline and test reliability — wire structural tests into CI, declare missing dependencies, fix silent test skips and missing API fallbacks
 **Requirements**: None (integration gap closure from v1.0 audit)
 **Depends on:** Phase 22
-**Plans:** 0/1 plans executed
+**Plans:** 1/1 plans complete
 **Gap Closure:** Closes MISSING-1, MISSING-3 from v1.0-MILESTONE-AUDIT.md + Phase 18/19 tech debt
 
 Plans:
