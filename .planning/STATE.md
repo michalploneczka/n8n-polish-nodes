@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to plan
-stopped_at: Phase 18 context gathered
-last_updated: "2026-03-24T20:43:27.866Z"
+stopped_at: Completed 19-02-PLAN.md
+last_updated: "2026-03-25T06:58:02.950Z"
 progress:
-  total_phases: 18
-  completed_phases: 11
-  total_plans: 41
-  completed_plans: 41
+  total_phases: 21
+  completed_phases: 13
+  total_plans: 45
+  completed_plans: 45
 ---
 
 # Project State
@@ -19,11 +19,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 17 — unit-testy-z-mockami-http-nock-dla-wszystkich-nodow
+**Current focus:** Phase 19 — e2e-testy-publiczne-api
 
 ## Current Position
 
-Phase: 18
+Phase: 20
 Plan: Not started
 
 ## Performance Metrics
@@ -87,6 +87,10 @@ Plan: Not started
 | Phase 16 P01 | 2min | 2 tasks | 5 files |
 | Phase 16 P02 | 3min | 2 tasks | 3 files |
 | Phase 17 P01 | 2min | 3 tasks | 3 files |
+| Phase 18 P01 | 2min | 2 tasks | 5 files |
+| Phase 18 P02 | 2min | 2 tasks | 15 files |
+| Phase 19 P01 | 3min | 2 tasks | 10 files |
+| Phase 19 P02 | 4min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -165,6 +169,12 @@ Recent decisions affecting current work:
 - [Phase 16]: ts-jest diagnostics disabled in structural config to avoid n8n-workflow type issues
 - [Phase 16]: Added Sales to allowed codex categories (used by LinkerCloud)
 - [Phase 17]: Removed unused NodeApiError/INode imports from SMSAPI test after converting to HTTP integration pattern
+- [Phase 18]: Port 5679 for test container to avoid conflict with dev compose on 5678
+- [Phase 18]: Pinned n8n image to 2.12.3 for reproducible integration tests
+- [Phase 18]: Dynamic node list generation from packages/*/package.json instead of hardcoded list
+- [Phase 18]: Owner setup + login fallback for n8n API auth in workflow import tests
+- [Phase 19]: 30s test timeout for E2E (vs 120s integration) -- public API calls should complete fast
+- [Phase 19]: unwrapResult helper handles both array-of-items and direct API response from n8n webhook
 
 ### Roadmap Evolution
 
@@ -191,6 +201,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T20:43:27.863Z
-Stopped at: Phase 18 context gathered
-Resume file: .planning/phases/18-testy-integracyjne-z-n8n-w-dockerze-workflow-runner-z-prawdziwym-n8n/18-CONTEXT.md
+Last session: 2026-03-25T06:51:44.970Z
+Stopped at: Completed 19-02-PLAN.md
+Resume file: None

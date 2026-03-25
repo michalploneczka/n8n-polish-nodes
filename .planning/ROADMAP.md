@@ -22,7 +22,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 8: iFirma** - HMAC-SHA1 request signing pattern for accounting
 - [ ] **Phase 9: Allegro** - OAuth2 Authorization Code flow for marketplace integration
 - [x] **Phase 10: GUS REGON** - SOAP/XML session-based API for government business registry (completed 2026-03-22)
-- [ ] **Phase 19: E2E testy - publiczne API** - NBP, NFZ, KRS, Biała Lista VAT, VIES + CEIDG (z kluczem)
+- [x] **Phase 19: E2E testy - publiczne API** - NBP, NFZ, KRS, Biała Lista VAT, VIES + CEIDG (z kluczem) (completed 2026-03-25)
 - [ ] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud
 - [ ] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth
 
@@ -355,7 +355,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 8. iFirma | 0/6 | Not started | - |
 | 9. Allegro | 0/7 | Not started | - |
 | 10. GUS REGON | 3/3 | Complete    | 2026-03-22 |
-| 19. E2E: publiczne API | 0/0 | Not started | - |
+| 19. E2E: publiczne API | 1/2 | Complete    | 2026-03-25 |
 | 20. E2E: API z kluczem | 0/0 | Not started | - |
 | 21. E2E: Fakturownia + InPost | 0/0 | Not started | - |
 
@@ -543,10 +543,10 @@ Plans:
 **Goal:** End-to-end tests hitting real APIs locally — 5 public no-auth APIs (NBP, NFZ, KRS, Biała Lista VAT, VIES) and CEIDG (API key auth). Tests run against live endpoints, verifying actual HTTP responses match node output schemas. Local-only execution (no CI).
 **Requirements**: E2E-01, E2E-02, E2E-03, E2E-04, E2E-05, E2E-06, E2E-07
 **Depends on:** Phase 18
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
-- [ ] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
+- [x] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
 - [ ] 19-02-PLAN.md -- E2E test suites: 6 describe blocks (NBP, NFZ, KRS, Biala Lista VAT, VIES, CEIDG) with real API assertions and graceful error handling
 **Success Criteria** (what must be TRUE):
   1. Each of the 6 nodes can execute at least one operation against the real API and return valid structured data
