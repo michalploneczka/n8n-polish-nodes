@@ -27,7 +27,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth (completed 2026-03-25)
 - [ ] **Phase 22: Tech Debt & Documentation Cleanup** - ESLint fix, REQUIREMENTS.md sync, docker-compose fix, cosmetic fixes
 - [x] **Phase 23: CI & Test Reliability** - Wire test:structural into CI, declare nock dependency, fix silent 401 skip, fix activateWorkflow fallback (completed 2026-03-25)
-- [ ] **Phase 24: Documentation & Tracking Cleanup** - Root README npm badges, VERIFICATION.md fixes, Phase 22 formal tracking, SUMMARY frontmatter backfill
+- [x] **Phase 24: Documentation & Tracking Cleanup** - Root README npm badges, VERIFICATION.md fixes, Phase 22 formal tracking, SUMMARY frontmatter backfill (completed 2026-03-25)
 
 ## Phase Details
 
@@ -371,7 +371,7 @@ Phases execute in numeric order. Phases 4-9 deferred to v2.
 | 21. E2E: Fakturownia + InPost | 2/2 | Complete | 2026-03-25 |
 | 22. Tech Debt & Documentation | 1/1 | Complete | 2026-03-25 |
 | 23. CI & Test Reliability | 1/1 | Complete | 2026-03-25 |
-| 24. Documentation & Tracking Cleanup | 0/2 | Planned    |  |
+| 24. Documentation & Tracking Cleanup | 0/2 | Complete    | 2026-03-25 |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
 **Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
@@ -684,7 +684,7 @@ Plans:
 **Goal:** Close all documentation and tracking gaps identified by v1.0 audit — npm badges in root README, fix VERIFICATION inconsistencies, formalize Phase 22, backfill SUMMARY frontmatter
 **Requirements**: None (documentation gap closure from v1.0 audit)
 **Depends on:** Phase 23
-**Plans:** 0/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 24-01-PLAN.md -- npm version badges in root README + fix Phase 13 VERIFICATION.md status inconsistency
