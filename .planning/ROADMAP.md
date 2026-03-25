@@ -23,7 +23,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 9: Allegro** - OAuth2 Authorization Code flow for marketplace integration
 - [x] **Phase 10: GUS REGON** - SOAP/XML session-based API for government business registry (completed 2026-03-22)
 - [x] **Phase 19: E2E testy - publiczne API** - NBP, NFZ, KRS, Biała Lista VAT, VIES + CEIDG (z kluczem) (completed 2026-03-25)
-- [ ] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud
+- [x] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud (completed 2026-03-25)
 - [ ] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth
 
 ## Phase Details
@@ -356,7 +356,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 9. Allegro | 0/7 | Not started | - |
 | 10. GUS REGON | 3/3 | Complete    | 2026-03-22 |
 | 19. E2E: publiczne API | 1/2 | Complete    | 2026-03-25 |
-| 20. E2E: API z kluczem | 0/0 | Not started | - |
+| 20. E2E: API z kluczem | 1/2 | Complete    | 2026-03-25 |
 | 21. E2E: Fakturownia + InPost | 0/0 | Not started | - |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
@@ -573,10 +573,10 @@ Plans:
 **Goal:** End-to-end tests for 4 nodes requiring API key authentication — SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud. Tests run locally against real/sandbox APIs verifying actual responses.
 **Requirements**: E2E-08, E2E-09, E2E-10, E2E-11, E2E-12
 **Depends on:** Phase 19
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
-- [ ] 20-01-PLAN.md -- E2E fixtures (7 workflow JSONs) + e2e-test.sh env var passthrough for SMSAPI, Ceneo, GUS REGON, LinkerCloud
+- [x] 20-01-PLAN.md -- E2E fixtures (7 workflow JSONs) + e2e-test.sh env var passthrough for SMSAPI, Ceneo, GUS REGON, LinkerCloud
 - [ ] 20-02-PLAN.md -- E2E test suites: 4 describe blocks (SMSAPI, Ceneo, GUS REGON, LinkerCloud) with credential creation, real API assertions, graceful skip
 **Success Criteria** (what must be TRUE):
   1. SMSAPI: send SMS in test mode (test=1) returns success without consuming credits
