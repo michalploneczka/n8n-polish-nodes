@@ -1,0 +1,60 @@
+{
+  "name": "E2E - InPost Create",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-inpost-create",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-inpost-create",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "inpost-1",
+      "name": "InPost ShipX",
+      "type": "n8n-nodes-inpost.inpost",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "shipment",
+        "operation": "create",
+        "service": "inpost_locker_standard",
+        "targetPoint": "KRA010",
+        "receiver": {
+          "receiverDetails": {
+            "name": "Test Receiver",
+            "phone": "500600700",
+            "email": "test@example.com"
+          }
+        },
+        "parcels": {
+          "parcelValues": [
+            {
+              "template": "small",
+              "weight": 1
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "credentials": {
+        "inpostApi": {
+          "id": "PLACEHOLDER",
+          "name": "InPost E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "InPost ShipX", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

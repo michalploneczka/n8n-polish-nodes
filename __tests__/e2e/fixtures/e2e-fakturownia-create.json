@@ -1,0 +1,47 @@
+{
+  "name": "E2E - Fakturownia Create",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-fakturownia-create",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-fakturownia-create",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "fakturownia-1",
+      "name": "Fakturownia",
+      "type": "n8n-nodes-fakturownia.fakturownia",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "invoice",
+        "operation": "create",
+        "kind": "vat",
+        "buyerName": "E2E Test Buyer",
+        "buyerTaxNo": "1234567890",
+        "positions": "[{\"name\":\"E2E Test Product\",\"quantity\":1,\"total_price_gross\":\"100.00\",\"tax\":\"23\"}]",
+        "additionalFields": {}
+      },
+      "credentials": {
+        "fakturowniaApi": {
+          "id": "PLACEHOLDER",
+          "name": "Fakturownia E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Fakturownia", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

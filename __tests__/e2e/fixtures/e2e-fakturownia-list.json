@@ -1,0 +1,43 @@
+{
+  "name": "E2E - Fakturownia List",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-fakturownia-list",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-fakturownia-list",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "fakturownia-1",
+      "name": "Fakturownia",
+      "type": "n8n-nodes-fakturownia.fakturownia",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "invoice",
+        "operation": "list",
+        "filters": {}
+      },
+      "credentials": {
+        "fakturowniaApi": {
+          "id": "PLACEHOLDER",
+          "name": "Fakturownia E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Fakturownia", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}
