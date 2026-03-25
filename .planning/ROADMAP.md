@@ -369,9 +369,9 @@ Phases execute in numeric order. Phases 4-9 deferred to v2.
 | 19. E2E: publiczne API | 2/2 | Complete | 2026-03-25 |
 | 20. E2E: API z kluczem | 2/2 | Complete | 2026-03-25 |
 | 21. E2E: Fakturownia + InPost | 2/2 | Complete | 2026-03-25 |
-| 22. Tech Debt & Documentation | 0/0 | Planned | — |
-| 23. CI & Test Reliability | 0/1 | Complete    | 2026-03-25 |
-| 24. Documentation & Tracking Cleanup | 0/0 | Planned | — |
+| 22. Tech Debt & Documentation | 1/1 | Complete | 2026-03-25 |
+| 23. CI & Test Reliability | 1/1 | Complete | 2026-03-25 |
+| 24. Documentation & Tracking Cleanup | 0/2 | Planned | — |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
 **Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
@@ -639,7 +639,10 @@ Plans:
 **Goal:** Close all tech debt and documentation gaps identified by v1.0 milestone audit — fix docker-compose module names, Biala Lista VAT cosmetic issues, sync REQUIREMENTS.md with actual state, update ROADMAP.md progress
 **Requirements**: None (tech debt / documentation gap closure)
 **Depends on:** Phase 21
-**Plans:** 0 plans (inline execution)
+**Plans:** 1 plan (retroactive)
+
+Plans:
+- [x] 22-01-PLAN.md -- docker-compose fix, Biala Lista cosmetic fix, REQUIREMENTS.md sync, ROADMAP progress update, defer phases 4-9
 **Gap Closure:** Closes gaps from v1.0-MILESTONE-AUDIT.md
 
 **Tasks:**
@@ -681,7 +684,11 @@ Plans:
 **Goal:** Close all documentation and tracking gaps identified by v1.0 audit — npm badges in root README, fix VERIFICATION inconsistencies, formalize Phase 22, backfill SUMMARY frontmatter
 **Requirements**: None (documentation gap closure from v1.0 audit)
 **Depends on:** Phase 23
-**Plans:** 0 plans
+**Plans:** 2 plans
+
+Plans:
+- [ ] 24-01-PLAN.md -- npm version badges in root README + fix Phase 13 VERIFICATION.md status inconsistency
+- [ ] 24-02-PLAN.md -- formalize Phase 22 tracking files + backfill requirements_completed in all SUMMARY files
 **Gap Closure:** Closes MISSING-2 from v1.0-MILESTONE-AUDIT.md + documentation tech debt
 
 **Tasks:**
