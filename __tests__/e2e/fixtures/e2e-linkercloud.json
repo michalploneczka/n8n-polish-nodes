@@ -1,0 +1,44 @@
+{
+  "name": "E2E - LinkerCloud",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-linkercloud",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-linkercloud",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "linkercloud-1",
+      "name": "Linker Cloud",
+      "type": "n8n-nodes-linkercloud.linkerCloud",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "order",
+        "operation": "list",
+        "returnAll": false,
+        "limit": 5
+      },
+      "credentials": {
+        "linkerCloudApi": {
+          "id": "PLACEHOLDER",
+          "name": "LinkerCloud E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Linker Cloud", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

@@ -1,0 +1,42 @@
+{
+  "name": "E2E - SMSAPI Balance",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-smsapi-balance",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-smsapi-balance",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "smsapi-1",
+      "name": "SMSAPI",
+      "type": "n8n-nodes-smsapi.smsapi",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "account",
+        "operation": "getBalance"
+      },
+      "credentials": {
+        "smsapiApi": {
+          "id": "PLACEHOLDER",
+          "name": "SMSAPI E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "SMSAPI", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

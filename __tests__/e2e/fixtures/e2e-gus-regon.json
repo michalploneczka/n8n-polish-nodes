@@ -1,0 +1,43 @@
+{
+  "name": "E2E - GUS REGON",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-gus-regon",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-gus-regon",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "gus-1",
+      "name": "GUS REGON",
+      "type": "n8n-nodes-gus-regon.gusRegon",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "company",
+        "operation": "searchByNip",
+        "nip": "7171642051"
+      },
+      "credentials": {
+        "gusRegonApi": {
+          "id": "PLACEHOLDER",
+          "name": "GUS REGON E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "GUS REGON", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}

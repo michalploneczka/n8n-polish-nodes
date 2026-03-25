@@ -1,0 +1,42 @@
+{
+  "name": "E2E - Ceneo Limits",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "e2e-ceneo-limits",
+      "position": [250, 300],
+      "parameters": {
+        "path": "e2e-ceneo-limits",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "ceneo-1",
+      "name": "Ceneo",
+      "type": "n8n-nodes-ceneo.ceneo",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "resource": "account",
+        "operation": "getLimits"
+      },
+      "credentials": {
+        "ceneoApi": {
+          "id": "PLACEHOLDER",
+          "name": "Ceneo E2E"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Ceneo", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {}
+}
