@@ -57,6 +57,14 @@ describe('n8n Integration Tests', () => {
 				// Login failed — workflow import tests may be skipped
 			}
 		}
+
+		// Fail fast if auth not obtained -- INT-03 tests must not silently skip
+		if (!apiKey) {
+			throw new Error(
+				'Failed to obtain n8n API key -- owner setup and login both failed. ' +
+				'INT-03 workflow import tests require authentication in the Docker test environment.',
+			);
+		}
 	}, 90000);
 
 	describe('Node Registration (INT-01)', () => {
@@ -144,14 +152,6 @@ describe('n8n Integration Tests', () => {
 					headers,
 					body: JSON.stringify(workflowJson),
 				});
-
-				if (response.status === 401) {
-					// Auth required but not available — skip gracefully
-					console.warn(
-						`Skipping ${fixtureFile}: API requires authentication (401)`,
-					);
-					return;
-				}
 
 				expect(response.status).toBe(200);
 				const result = await response.json();
