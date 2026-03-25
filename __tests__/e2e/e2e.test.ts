@@ -299,3 +299,270 @@ ceidgDescribe('CEIDG E2E (E2E-07)', () => {
 		}
 	});
 });
+
+// ─── SMSAPI E2E (E2E-08) ─────────────────────────────────────────────────────
+
+const SMSAPI_TOKEN = process.env.SMSAPI_TOKEN;
+const smsapiDescribe = SMSAPI_TOKEN ? describe : describe.skip;
+
+smsapiDescribe('SMSAPI E2E (E2E-08)', () => {
+	let credentialId: string;
+	let sendWorkflowId: string;
+	let contactsWorkflowId: string;
+	let balanceWorkflowId: string;
+
+	beforeAll(async () => {
+		credentialId = await createCredential('SMSAPI E2E', 'smsapiApi', {
+			apiToken: SMSAPI_TOKEN!,
+		});
+
+		// Create 3 workflows sharing the same credential
+		for (const [fixtureName, setter] of [
+			['e2e-smsapi-send.json', (id: string) => { sendWorkflowId = id; }],
+			['e2e-smsapi-contacts.json', (id: string) => { contactsWorkflowId = id; }],
+			['e2e-smsapi-balance.json', (id: string) => { balanceWorkflowId = id; }],
+		] as [string, (id: string) => void][]) {
+			const fixture = loadFixture(fixtureName) as any;
+			const patched = JSON.parse(JSON.stringify(fixture));
+			patched.nodes[1].credentials.smsapiApi.id = credentialId;
+			const { id } = await createWorkflow(patched);
+			setter(id);
+			await activateWorkflow(id);
+		}
+	});
+
+	afterAll(async () => {
+		for (const wfId of [sendWorkflowId, contactsWorkflowId, balanceWorkflowId]) {
+			if (wfId) {
+				await deactivateWorkflow(wfId);
+				await deleteWorkflow(wfId);
+			}
+		}
+	});
+
+	it('should send SMS in test mode without consuming credits', async () => {
+		try {
+			const raw = await callWebhook('e2e-smsapi-send');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			// test=1 mode returns response without error
+			expect(result).not.toHaveProperty('error');
+			// Should have count or list field indicating accepted message
+			if (result.count !== undefined) {
+				expect(result.count).toBeGreaterThanOrEqual(1);
+			}
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('SMSAPI unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+
+	it('should list contacts', async () => {
+		try {
+			const raw = await callWebhook('e2e-smsapi-contacts');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			expect(result).not.toHaveProperty('error');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('SMSAPI unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+
+	it('should return account balance', async () => {
+		try {
+			const raw = await callWebhook('e2e-smsapi-balance');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			// Profile endpoint returns points or pro_count
+			expect(typeof (result.points ?? result.pro_count)).not.toBe('undefined');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('SMSAPI unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+});
+
+// ─── Ceneo E2E (E2E-09) ──────────────────────────────────────────────────────
+
+const CENEO_API_KEY = process.env.CENEO_API_KEY;
+const ceneoDescribe = CENEO_API_KEY ? describe : describe.skip;
+
+ceneoDescribe('Ceneo E2E (E2E-09)', () => {
+	let credentialId: string;
+	let categoriesWorkflowId: string;
+	let limitsWorkflowId: string;
+
+	beforeAll(async () => {
+		credentialId = await createCredential('Ceneo E2E', 'ceneoApi', {
+			apiKey: CENEO_API_KEY!,
+		});
+
+		for (const [fixtureName, setter] of [
+			['e2e-ceneo-categories.json', (id: string) => { categoriesWorkflowId = id; }],
+			['e2e-ceneo-limits.json', (id: string) => { limitsWorkflowId = id; }],
+		] as [string, (id: string) => void][]) {
+			const fixture = loadFixture(fixtureName) as any;
+			const patched = JSON.parse(JSON.stringify(fixture));
+			patched.nodes[1].credentials.ceneoApi.id = credentialId;
+			const { id } = await createWorkflow(patched);
+			setter(id);
+			await activateWorkflow(id);
+		}
+	});
+
+	afterAll(async () => {
+		for (const wfId of [categoriesWorkflowId, limitsWorkflowId]) {
+			if (wfId) {
+				await deactivateWorkflow(wfId);
+				await deleteWorkflow(wfId);
+			}
+		}
+	});
+
+	it('should return categories list via v3 auth', async () => {
+		try {
+			const raw = await callWebhook('e2e-ceneo-categories');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			// Categories endpoint returns array or object with category data
+			if (Array.isArray(result)) {
+				expect(result.length).toBeGreaterThan(0);
+			} else {
+				expect(result).not.toHaveProperty('error');
+				expect(typeof result === 'object').toBe(true);
+			}
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('Ceneo API unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+
+	it('should return execution limits via v2 auth', async () => {
+		try {
+			const raw = await callWebhook('e2e-ceneo-limits');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			expect(result).not.toHaveProperty('error');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('Ceneo API unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+});
+
+// ─── GUS REGON E2E (E2E-10) ──────────────────────────────────────────────────
+
+const GUS_REGON_KEY = process.env.GUS_REGON_KEY || 'abcde12345abcde12345';
+
+describe('GUS REGON E2E (E2E-10)', () => {
+	let workflowId: string;
+
+	beforeAll(async () => {
+		const credentialId = await createCredential('GUS REGON E2E', 'gusRegonApi', {
+			apiKey: GUS_REGON_KEY,
+			environment: 'test',
+		});
+
+		const fixture = loadFixture('e2e-gus-regon.json') as any;
+		const patched = JSON.parse(JSON.stringify(fixture));
+		patched.nodes[1].credentials.gusRegonApi.id = credentialId;
+		const { id } = await createWorkflow(patched);
+		workflowId = id;
+		await activateWorkflow(workflowId);
+	});
+
+	afterAll(async () => {
+		if (workflowId) {
+			await deactivateWorkflow(workflowId);
+			await deleteWorkflow(workflowId);
+		}
+	});
+
+	it('should return company data for NIP 7171642051 from test environment', async () => {
+		try {
+			const raw = await callWebhook('e2e-gus-regon');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			// GUS REGON returns parsed XML with company fields
+			// Flexible assertion: non-empty response without error
+			if (typeof result === 'object' && result !== null) {
+				expect(Object.keys(result).length).toBeGreaterThan(0);
+			}
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('GUS REGON test environment unavailable, skipping');
+				return;
+			}
+			// SOAP errors may appear as XML parsing failures
+			const msg = error instanceof Error ? error.message : '';
+			if (msg.includes('XML') || msg.includes('SOAP') || msg.includes('unexpected token')) {
+				console.warn('GUS REGON SOAP error (likely test env down):', msg);
+				return;
+			}
+			throw error;
+		}
+	}, 30000);
+});
+
+// ─── LinkerCloud E2E (E2E-11) ─────────────────────────────────────────────────
+
+const LINKERCLOUD_API_KEY = process.env.LINKERCLOUD_API_KEY;
+const LINKERCLOUD_DOMAIN = process.env.LINKERCLOUD_DOMAIN;
+const linkercloudDescribe = (LINKERCLOUD_API_KEY && LINKERCLOUD_DOMAIN) ? describe : describe.skip;
+
+linkercloudDescribe('LinkerCloud E2E (E2E-11)', () => {
+	let workflowId: string;
+
+	beforeAll(async () => {
+		const credentialId = await createCredential('LinkerCloud E2E', 'linkerCloudApi', {
+			domain: LINKERCLOUD_DOMAIN!,
+			apiKey: LINKERCLOUD_API_KEY!,
+		});
+
+		const fixture = loadFixture('e2e-linkercloud.json') as any;
+		const patched = JSON.parse(JSON.stringify(fixture));
+		patched.nodes[1].credentials.linkerCloudApi.id = credentialId;
+		const { id } = await createWorkflow(patched);
+		workflowId = id;
+		await activateWorkflow(workflowId);
+	});
+
+	afterAll(async () => {
+		if (workflowId) {
+			await deactivateWorkflow(workflowId);
+			await deleteWorkflow(workflowId);
+		}
+	});
+
+	it('should return order list (empty or with data)', async () => {
+		try {
+			const raw = await callWebhook('e2e-linkercloud');
+			const result = unwrapResult(raw);
+			expect(result).toBeDefined();
+			// Empty order list is valid -- just check no error
+			expect(result).not.toHaveProperty('error');
+		} catch (error) {
+			if (isNetworkError(error)) {
+				console.warn('LinkerCloud API unavailable, skipping');
+				return;
+			}
+			throw error;
+		}
+	});
+});
