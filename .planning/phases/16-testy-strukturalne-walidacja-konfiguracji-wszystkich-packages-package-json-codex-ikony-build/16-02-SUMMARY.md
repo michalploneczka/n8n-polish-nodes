@@ -25,7 +25,7 @@ patterns-established:
   - "Codex schema validation: node, nodeVersion, codexVersion, categories, subcategories, resources.primaryDocumentation"
   - "Conditional build output checks: validate dist/ paths only when built"
   - "Cross-package consistency: assert identical author, license, repo, n8n API version across all packages"
-requirements-completed: [STRUCT-02, STRUCT-04, STRUCT-05]
+requirements_completed: [STRUCT-02, STRUCT-04, STRUCT-05]
 metrics:
   duration: 3min
   completed: 2026-03-24

@@ -36,7 +36,7 @@ key-decisions:
 patterns-established:
   - "Fail-fast auth: test beforeAll blocks throw if required credentials not obtained"
 
-requirements-completed: []
+requirements_completed: []
 
 # Metrics
 duration: 3min

@@ -33,7 +33,7 @@ key-decisions:
 patterns-established:
   - "API-key-auth E2E pattern: env var check -> conditional describe -> beforeAll creates credential + patches fixture -> afterAll cleanup"
 
-requirements-completed: [E2E-08, E2E-09, E2E-10, E2E-11, E2E-12]
+requirements_completed: [E2E-08, E2E-09, E2E-10, E2E-11, E2E-12]
 
 # Metrics
 duration: 1min

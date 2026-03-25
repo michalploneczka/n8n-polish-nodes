@@ -36,7 +36,7 @@ key-decisions:
 patterns-established:
   - "API-key-auth fixture pattern: same as public API but with credentials block containing PLACEHOLDER id"
 
-requirements-completed: [E2E-08, E2E-09, E2E-10, E2E-11, E2E-12]
+requirements_completed: []
 
 # Metrics
 duration: 1min
