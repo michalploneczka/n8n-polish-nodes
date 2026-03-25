@@ -35,7 +35,7 @@ key-decisions:
 patterns-established:
   - "Conditional describe.skip with multi-env-var check: (VAR1 && VAR2) ? describe : describe.skip"
 
-requirements-completed: [E2E-13, E2E-14, E2E-15]
+requirements_completed: [E2E-13, E2E-14, E2E-15]
 
 duration: 1min
 completed: 2026-03-25

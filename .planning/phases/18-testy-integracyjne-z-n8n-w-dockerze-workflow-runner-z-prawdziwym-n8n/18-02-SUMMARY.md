@@ -47,7 +47,7 @@ patterns-established:
   - "Smoke workflow fixture pattern: Manual Trigger -> Custom Node (2-node minimal workflow)"
   - "CI integration job: needs unit tests, runs Docker Compose, teardown with if: always()"
 
-requirements-completed: [INT-01, INT-02, INT-03, INT-05]
+requirements_completed: [INT-01, INT-02, INT-03, INT-05]
 
 duration: 2min
 completed: 2026-03-24

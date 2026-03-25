@@ -27,6 +27,7 @@ metrics:
   completed: "2026-03-25"
   tasks: 2
   files: 5
+requirements_completed: []
 ---
 
 # Phase 21 Plan 01: E2E Fixtures for Fakturownia and InPost Summary

@@ -38,7 +38,7 @@ patterns-established:
   - "Integration test infrastructure: docker-compose.test.yml + scripts/integration-test.sh + jest.config.integration.js"
   - "Dynamic package discovery via fs.readdirSync on packages/ directory"
 
-requirements-completed: [INT-01, INT-02, INT-04]
+requirements_completed: [INT-04]
 
 duration: 2min
 completed: 2026-03-24
