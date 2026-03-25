@@ -9,18 +9,18 @@ Collection of [n8n](https://n8n.io) community nodes for Polish services. Each no
 
 | Node | Service | npm Package | Description |
 |------|---------|-------------|-------------|
-| SMSAPI | [smsapi.pl](https://www.smsapi.pl) | `n8n-nodes-smsapi` | Polish SMS gateway |
-| CEIDG | [dane.biznes.gov.pl](https://dane.biznes.gov.pl) | `n8n-nodes-ceidg` | Polish business registry lookup |
-| Fakturownia | [fakturownia.pl](https://fakturownia.pl) | `n8n-nodes-fakturownia` | Polish invoicing platform |
-| InPost | [inpost.pl](https://inpost.pl) | `n8n-nodes-inpost` | Polish parcel locker & courier service |
-| Biala Lista VAT | [mf.gov.pl](https://www.podatki.gov.pl/wykaz-podatnikow-vat-wyszukiwarka) | `n8n-nodes-biala-lista-vat` | Polish VAT taxpayer white list verification |
-| KRS | [krs.gov.pl](https://www.krs.gov.pl) | `n8n-nodes-krs` | Polish National Court Register company lookup |
-| GUS REGON | [api.stat.gov.pl](https://api.stat.gov.pl) | `n8n-nodes-gus-regon` | Polish REGON business registry (SOAP) |
-| VIES | [ec.europa.eu](https://ec.europa.eu/taxation_customs/vies) | `n8n-nodes-vies` | EU VAT number validation |
-| NBP | [api.nbp.pl](https://api.nbp.pl) | `n8n-nodes-nbp` | Exchange rates from National Bank of Poland |
-| NFZ | [api.nfz.gov.pl](https://api.nfz.gov.pl) | `n8n-nodes-nfz` | Healthcare waiting times from National Health Fund |
-| Ceneo | [ceneo.pl](https://ceneo.pl) | `n8n-nodes-ceneo` | Polish price comparison platform |
-| LinkerCloud | [linkercloud.pl](https://linkercloud.pl) | `n8n-nodes-linkercloud` | Polish WMS/OMS fulfillment platform |
+| SMSAPI | [smsapi.pl](https://www.smsapi.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-smsapi)](https://www.npmjs.com/package/n8n-nodes-smsapi) | Polish SMS gateway |
+| CEIDG | [dane.biznes.gov.pl](https://dane.biznes.gov.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-ceidg)](https://www.npmjs.com/package/n8n-nodes-ceidg) | Polish business registry lookup |
+| Fakturownia | [fakturownia.pl](https://fakturownia.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-fakturownia)](https://www.npmjs.com/package/n8n-nodes-fakturownia) | Polish invoicing platform |
+| InPost | [inpost.pl](https://inpost.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-inpost)](https://www.npmjs.com/package/n8n-nodes-inpost) | Polish parcel locker & courier service |
+| Biala Lista VAT | [mf.gov.pl](https://www.podatki.gov.pl/wykaz-podatnikow-vat-wyszukiwarka) | [![npm](https://img.shields.io/npm/v/n8n-nodes-biala-lista-vat)](https://www.npmjs.com/package/n8n-nodes-biala-lista-vat) | Polish VAT taxpayer white list verification |
+| KRS | [krs.gov.pl](https://www.krs.gov.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-krs)](https://www.npmjs.com/package/n8n-nodes-krs) | Polish National Court Register company lookup |
+| GUS REGON | [api.stat.gov.pl](https://api.stat.gov.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-gus-regon)](https://www.npmjs.com/package/n8n-nodes-gus-regon) | Polish REGON business registry (SOAP) |
+| VIES | [ec.europa.eu](https://ec.europa.eu/taxation_customs/vies) | [![npm](https://img.shields.io/npm/v/n8n-nodes-vies)](https://www.npmjs.com/package/n8n-nodes-vies) | EU VAT number validation |
+| NBP | [api.nbp.pl](https://api.nbp.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-nbp)](https://www.npmjs.com/package/n8n-nodes-nbp) | Exchange rates from National Bank of Poland |
+| NFZ | [api.nfz.gov.pl](https://api.nfz.gov.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-nfz)](https://www.npmjs.com/package/n8n-nodes-nfz) | Healthcare waiting times from National Health Fund |
+| Ceneo | [ceneo.pl](https://ceneo.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-ceneo)](https://www.npmjs.com/package/n8n-nodes-ceneo) | Polish price comparison platform |
+| LinkerCloud | [linkercloud.pl](https://linkercloud.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-linkercloud)](https://www.npmjs.com/package/n8n-nodes-linkercloud) | Polish WMS/OMS fulfillment platform |
 
 ## Installation
 
