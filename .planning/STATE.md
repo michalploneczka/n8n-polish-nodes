@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Milestone complete
-stopped_at: Completed 21-02-PLAN.md
-last_updated: "2026-03-25T14:53:49.651Z"
+stopped_at: Completed 23-01-PLAN.md
+last_updated: "2026-03-25T19:55:00Z"
 progress:
-  total_phases: 21
-  completed_phases: 15
-  total_plans: 49
-  completed_plans: 49
+  total_phases: 23
+  completed_phases: 16
+  total_plans: 50
+  completed_plans: 50
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Kompletny ekosystem polskich integracji n8n -- gotowe do instalacji community node'y dla 11 serwisow
-**Current focus:** Phase 21 — e2e-testy-fakturownia-inpost
+**Current focus:** Phase 23 — ci-test-reliability
 
 ## Current Position
 
-Phase: 21
-Plan: Not started
+Phase: 23
+Plan: 01 (completed)
 
 ## Performance Metrics
 
@@ -95,6 +95,7 @@ Plan: Not started
 | Phase 20 P02 | 1min | 1 tasks | 1 files |
 | Phase 21 P01 | 1min | 2 tasks | 5 files |
 | Phase 21 P02 | 1min | 1 tasks | 1 files |
+| Phase 23 P01 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -183,6 +184,8 @@ Recent decisions affecting current work:
 - [Phase 20]: GUS REGON uses unconditional describe (always runs) with public test key
 - [Phase 21]: Positions field as JSON string in fakturownia-create fixture (node calls JSON.parse)
 - [Phase 21]: InPost credential includes environment: sandbox to use sandbox base URL
+- [Phase 23]: No code change for activateWorkflow -- POST+PATCH fallback confirmed already correct
+- [Phase 23]: Pre-existing structural test failures (author.email mismatch) noted but out of scope
 
 ### Roadmap Evolution
 
@@ -210,5 +213,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-25T14:49:44.924Z
-Stopped at: Completed 21-02-PLAN.md
+Stopped at: Completed 23-01-PLAN.md
 Resume file: None
