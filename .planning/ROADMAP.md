@@ -26,6 +26,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud (completed 2026-03-25)
 - [x] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth (completed 2026-03-25)
 - [ ] **Phase 22: Tech Debt & Documentation Cleanup** - ESLint fix, REQUIREMENTS.md sync, docker-compose fix, cosmetic fixes
+- [ ] **Phase 23: CI & Test Reliability** - Wire test:structural into CI, declare nock dependency, fix silent 401 skip, fix activateWorkflow fallback
+- [ ] **Phase 24: Documentation & Tracking Cleanup** - Root README npm badges, VERIFICATION.md fixes, Phase 22 formal tracking, SUMMARY frontmatter backfill
 
 ## Phase Details
 
@@ -368,6 +370,8 @@ Phases execute in numeric order. Phases 4-9 deferred to v2.
 | 20. E2E: API z kluczem | 2/2 | Complete | 2026-03-25 |
 | 21. E2E: Fakturownia + InPost | 2/2 | Complete | 2026-03-25 |
 | 22. Tech Debt & Documentation | 0/0 | Planned | — |
+| 23. CI & Test Reliability | 0/0 | Planned | — |
+| 24. Documentation & Tracking Cleanup | 0/0 | Planned | — |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
 **Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
@@ -654,6 +658,48 @@ Plans:
   5. ROADMAP.md progress table is accurate
 
 ---
+
+### Phase 23: CI & Test Reliability
+**Goal:** Close functional gaps in CI pipeline and test reliability — wire structural tests into CI, declare missing dependencies, fix silent test skips and missing API fallbacks
+**Requirements**: None (integration gap closure from v1.0 audit)
+**Depends on:** Phase 22
+**Plans:** 0 plans
+**Gap Closure:** Closes MISSING-1, MISSING-3 from v1.0-MILESTONE-AUDIT.md + Phase 18/19 tech debt
+
+**Tasks:**
+1. Wire `test:structural` into ci.yml — 499 structural tests currently only run locally
+2. Declare `nock` as devDependency in shared/test-utils/package.json — currently relies on shamefully-hoist
+3. Fix INT-03 silent 401 skip in Phase 18 integration tests — tests pass as no-ops if auth not bypassed
+4. Fix `activateWorkflow` in Phase 19 E2E helpers — add POST /activate with PATCH fallback per plan spec
+
+**Success Criteria** (what must be TRUE):
+  1. `test:structural` runs in CI pipeline and failures block merge
+  2. `nock` is explicitly declared in shared/test-utils/package.json
+  3. INT-03 workflow import tests fail (not silently skip) when auth is not bypassed
+  4. `activateWorkflow` tries POST first, falls back to PATCH on failure
+
+---
+
+### Phase 24: Documentation & Tracking Cleanup
+**Goal:** Close all documentation and tracking gaps identified by v1.0 audit — npm badges in root README, fix VERIFICATION inconsistencies, formalize Phase 22, backfill SUMMARY frontmatter
+**Requirements**: None (documentation gap closure from v1.0 audit)
+**Depends on:** Phase 23
+**Plans:** 0 plans
+**Gap Closure:** Closes MISSING-2 from v1.0-MILESTONE-AUDIT.md + documentation tech debt
+
+**Tasks:**
+1. Add per-package npm version badges to root README.md (MISSING-2: INFRA-06 cosmetic gap)
+2. Fix Phase 13 VERIFICATION.md body/frontmatter status inconsistency (body says gaps_found, frontmatter says passed)
+3. Create Phase 22 PLAN.md, SUMMARY.md, VERIFICATION.md files (formalize existing commit 2e3285c work)
+4. Backfill `requirements_completed` frontmatter in SUMMARY files for Phases 3, 11, 15, 16, 17, 19
+
+**Success Criteria** (what must be TRUE):
+  1. Root README has npm version shield for each of the 12 packages
+  2. Phase 13 VERIFICATION.md has consistent status across frontmatter and body
+  3. Phase 22 has PLAN, SUMMARY, and VERIFICATION files documenting completed work
+  4. All phase SUMMARY files have accurate `requirements_completed` frontmatter
+
+---
 *Roadmap created: 2026-03-20*
-*Last updated: 2026-03-25 — Phase 22 added, phases 4-9 deferred to v2*
+*Last updated: 2026-03-25 — Phases 23-24 added (gap closure from v1.0 audit)*
 *Coverage: 134/134 v1 requirements satisfied + 54 deferred to v2*
