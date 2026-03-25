@@ -115,15 +115,39 @@ export async function createWorkflow(
 
 /**
  * Activates a workflow by ID.
+ * Tries POST /activate first, falls back to PATCH with {active: true} for older n8n versions.
  */
+let activateEndpoint: 'post' | 'patch' | null = null;
+
 export async function activateWorkflow(id: string): Promise<void> {
 	const apiKey = await setupN8nAuth();
+	const headers = {
+		'Content-Type': 'application/json',
+		'X-N8N-API-KEY': apiKey,
+	};
+
+	if (activateEndpoint !== 'patch') {
+		const response = await fetch(`${N8N_BASE_URL}/api/v1/workflows/${id}/activate`, {
+			method: 'POST',
+			headers,
+		});
+		if (response.ok) {
+			activateEndpoint = 'post';
+			return;
+		}
+		if (response.status === 404 || response.status === 405) {
+			activateEndpoint = 'patch';
+		} else {
+			throw new Error(
+				`Failed to activate workflow ${id}: ${response.status} ${await response.text()}`,
+			);
+		}
+	}
+
+	// PATCH fallback
 	const response = await fetch(`${N8N_BASE_URL}/api/v1/workflows/${id}`, {
 		method: 'PATCH',
-		headers: {
-			'Content-Type': 'application/json',
-			'X-N8N-API-KEY': apiKey,
-		},
+		headers,
 		body: JSON.stringify({ active: true }),
 	});
 
@@ -132,22 +156,45 @@ export async function activateWorkflow(id: string): Promise<void> {
 			`Failed to activate workflow ${id}: ${response.status} ${await response.text()}`,
 		);
 	}
+	activateEndpoint = 'patch';
 }
 
 /**
  * Deactivates a workflow by ID. Best-effort — does not throw on failure.
+ * Tries POST /deactivate first, falls back to PATCH with {active: false}.
  */
+let deactivateEndpoint: 'post' | 'patch' | null = null;
+
 export async function deactivateWorkflow(id: string): Promise<void> {
 	try {
 		const apiKey = await setupN8nAuth();
+		const headers = {
+			'Content-Type': 'application/json',
+			'X-N8N-API-KEY': apiKey,
+		};
+
+		if (deactivateEndpoint !== 'patch') {
+			const response = await fetch(`${N8N_BASE_URL}/api/v1/workflows/${id}/deactivate`, {
+				method: 'POST',
+				headers,
+			});
+			if (response.ok) {
+				deactivateEndpoint = 'post';
+				return;
+			}
+			if (response.status === 404 || response.status === 405) {
+				deactivateEndpoint = 'patch';
+			} else {
+				return; // Best-effort, don't throw
+			}
+		}
+
 		await fetch(`${N8N_BASE_URL}/api/v1/workflows/${id}`, {
 			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-N8N-API-KEY': apiKey,
-			},
+			headers,
 			body: JSON.stringify({ active: false }),
 		});
+		deactivateEndpoint = 'patch';
 	} catch {
 		// Best-effort cleanup
 	}
