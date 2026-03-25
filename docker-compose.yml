@@ -20,6 +20,14 @@ services:
       - ./packages/n8n-nodes-smsapi:/custom-nodes/node_modules/n8n-nodes-smsapi
       - ./packages/n8n-nodes-fakturownia:/custom-nodes/node_modules/n8n-nodes-fakturownia
       - ./packages/n8n-nodes-linkercloud:/custom-nodes/node_modules/n8n-nodes-linkercloud
+      - ./packages/n8n-nodes-nbp:/custom-nodes/node_modules/n8n-nodes-nbp
+      - ./packages/n8n-nodes-biala-lista-vat:/custom-nodes/node_modules/n8n-nodes-biala-lista-vat
+      - ./packages/n8n-nodes-ceneo:/custom-nodes/node_modules/n8n-nodes-ceneo
+      - ./packages/n8n-nodes-gus-regon:/custom-nodes/node_modules/n8n-nodes-gus-regon
+      - ./packages/n8n-nodes-krs:/custom-nodes/node_modules/n8n-nodes-krs
+      - ./packages/n8n-nodes-nfz:/custom-nodes/node_modules/n8n-nodes-nfz
+      - ./packages/n8n-nodes-vies:/custom-nodes/node_modules/n8n-nodes-vies
+      - ./packages/n8n-nodes-inpost:/custom-nodes/node_modules/n8n-nodes-inpost
 
 volumes:
   n8n_data:

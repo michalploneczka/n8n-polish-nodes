@@ -15,16 +15,17 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Monorepo Bootstrap + SMSAPI + CEIDG** - Establish infrastructure, shared tooling, CI/CD pipeline, and deliver the first two nodes (completed 2026-03-21)
 - [ ] **Phase 2: Fakturownia** - Pagination and binary PDF download patterns via invoice management node
 - [ ] **Phase 3: InPost ShipX** - Programmatic node with complex nested input, environment toggle, and binary label download
-- [ ] **Phase 4: Przelewy24** - Cryptographic CRC SHA384 signing pattern for payment transactions
-- [ ] **Phase 5: BaseLinker** - Unique RPC single-endpoint POST pattern for e-commerce orders/products/shipping
-- [ ] **Phase 6: Shoper** - OAuth2 client_credentials pattern with rate limiting for e-commerce
-- [ ] **Phase 7: wFirma** - XML response parsing pattern for accounting/invoicing
-- [ ] **Phase 8: iFirma** - HMAC-SHA1 request signing pattern for accounting
-- [ ] **Phase 9: Allegro** - OAuth2 Authorization Code flow for marketplace integration
+- [ ] ~~**Phase 4: Przelewy24**~~ - Deferred to v2
+- [ ] ~~**Phase 5: BaseLinker**~~ - Deferred to v2
+- [ ] ~~**Phase 6: Shoper**~~ - Deferred to v2
+- [ ] ~~**Phase 7: wFirma**~~ - Deferred to v2
+- [ ] ~~**Phase 8: iFirma**~~ - Deferred to v2
+- [ ] ~~**Phase 9: Allegro**~~ - Deferred to v2
 - [x] **Phase 10: GUS REGON** - SOAP/XML session-based API for government business registry (completed 2026-03-22)
 - [x] **Phase 19: E2E testy - publiczne API** - NBP, NFZ, KRS, Biała Lista VAT, VIES + CEIDG (z kluczem) (completed 2026-03-25)
 - [x] **Phase 20: E2E testy - API z kluczem** - SMSAPI (test mode), Ceneo, GUS REGON, Linkercloud (completed 2026-03-25)
 - [x] **Phase 21: E2E testy - Fakturownia + InPost** - Sandbox/token auth (completed 2026-03-25)
+- [ ] **Phase 22: Tech Debt & Documentation Cleanup** - ESLint fix, REQUIREMENTS.md sync, docker-compose fix, cosmetic fixes
 
 ## Phase Details
 
@@ -341,23 +342,32 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
+Phases execute in numeric order. Phases 4-9 deferred to v2.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Monorepo Bootstrap + SMSAPI + CEIDG | 11/11 | Complete | 2026-03-21 |
-| 2. Fakturownia | 1/4 | In Progress|  |
-| 3. InPost ShipX | 0/3 | Planned    |  |
-| 4. Przelewy24 | 0/7 | Not started | - |
-| 5. BaseLinker | 0/8 | Not started | - |
-| 6. Shoper | 0/7 | Not started | - |
-| 7. wFirma | 0/6 | Not started | - |
-| 8. iFirma | 0/6 | Not started | - |
-| 9. Allegro | 0/7 | Not started | - |
-| 10. GUS REGON | 3/3 | Complete    | 2026-03-22 |
-| 19. E2E: publiczne API | 1/2 | Complete    | 2026-03-25 |
-| 20. E2E: API z kluczem | 1/2 | Complete    | 2026-03-25 |
-| 21. E2E: Fakturownia + InPost | 1/2 | Complete    | 2026-03-25 |
+| 2. Fakturownia | 5/5 | Complete | 2026-03-21 |
+| 3. InPost ShipX | 3/3 | Complete | 2026-03-22 |
+| 4. Przelewy24 | — | Deferred to v2 | — |
+| 5. BaseLinker | — | Deferred to v2 | — |
+| 6. Shoper | — | Deferred to v2 | — |
+| 7. wFirma | — | Deferred to v2 | — |
+| 8. iFirma | — | Deferred to v2 | — |
+| 9. Allegro | — | Deferred to v2 | — |
+| 10. GUS REGON | 3/3 | Complete | 2026-03-22 |
+| 11. KRS + Biala Lista + VIES | 3/3 | Complete | 2026-03-22 |
+| 12. LinkerCloud | 6/6 | Complete | 2026-03-23 |
+| 13. Ceneo | 3/3 | Complete | 2026-03-23 |
+| 14. NBP | 2/2 | Complete | 2026-03-23 |
+| 15. NFZ | 2/2 | Complete | 2026-03-24 |
+| 16. Structural Tests | 2/2 | Complete | 2026-03-24 |
+| 17. Unit Tests | 1/1 | Complete | 2026-03-24 |
+| 18. Docker Integration | 2/2 | Complete | 2026-03-24 |
+| 19. E2E: publiczne API | 2/2 | Complete | 2026-03-25 |
+| 20. E2E: API z kluczem | 2/2 | Complete | 2026-03-25 |
+| 21. E2E: Fakturownia + InPost | 2/2 | Complete | 2026-03-25 |
+| 22. Tech Debt & Documentation | 0/0 | Planned | — |
 
 ### Phase 11: KRS, Biala Lista VAT, VIES
 **Goal:** Three declarative n8n nodes for Polish/EU public registries -- KRS (National Court Register), Biala Lista VAT (White List taxpayer verification), and VIES (EU VAT number validation) -- all using public APIs with no authentication
@@ -620,6 +630,30 @@ Plans:
 - Both nodes use programmatic style — tests verify execute() with real HTTP
 
 ---
+
+### Phase 22: Tech Debt & Documentation Cleanup
+**Goal:** Close all tech debt and documentation gaps identified by v1.0 milestone audit — fix docker-compose module names, Biala Lista VAT cosmetic issues, sync REQUIREMENTS.md with actual state, update ROADMAP.md progress
+**Requirements**: None (tech debt / documentation gap closure)
+**Depends on:** Phase 21
+**Plans:** 0 plans (inline execution)
+**Gap Closure:** Closes gaps from v1.0-MILESTONE-AUDIT.md
+
+**Tasks:**
+1. Fix docker-compose.yml — 4 wrong module names (n8n-krs → n8n-nodes-krs, etc.)
+2. Fix Biala Lista VAT — cosmetic word-break issues in action strings ('ni ps' → 'NIPs', 'rego ns' → 'REGONs')
+3. Add LC-01..LC-10 and NBP-01..NBP-06 to REQUIREMENTS.md (16 missing requirements)
+4. Update REQUIREMENTS.md — fix total count, update traceability statuses from "Pending" to actual
+5. Mark phases 4-9 as "Deferred to v2" in ROADMAP.md and REQUIREMENTS.md
+6. Update ROADMAP.md progress table to reflect actual execution state
+
+**Success Criteria** (what must be TRUE):
+  1. docker-compose.yml has correct n8n-nodes-* names for all 12 packages
+  2. Biala Lista VAT action strings display correctly (no word breaks)
+  3. REQUIREMENTS.md contains all 188 requirements (134 v1 + 54 deferred)
+  4. Traceability table statuses match actual phase completion
+  5. ROADMAP.md progress table is accurate
+
+---
 *Roadmap created: 2026-03-20*
-*Granularity: Fine (10 phases, 70 plans)*
-*Coverage: 122/122 v1 requirements mapped + 15 E2E requirements*
+*Last updated: 2026-03-25 — Phase 22 added, phases 4-9 deferred to v2*
+*Coverage: 134/134 v1 requirements satisfied + 54 deferred to v2*

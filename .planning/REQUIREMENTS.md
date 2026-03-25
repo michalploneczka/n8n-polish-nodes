@@ -67,7 +67,7 @@
 - [x] **INPOST-08**: Rate limit awareness — 100 req/min (nie wymuszaj retry automatycznie, dokumentuj w README)
 - [x] **INPOST-09**: Obsługa błędów, testy nock, package.json, codex, ikona, README
 
-### Przelewy24 Node
+### ~~Przelewy24 Node~~ (deferred to v2)
 
 - [ ] **P24-01**: Credentials — merchantId + CRC key + environment toggle (sandbox/production)
 - [ ] **P24-02**: CRC SHA384 checksum calculation — izolowana, unit-testowalna funkcja
@@ -80,7 +80,7 @@
 - [ ] **P24-09**: Styl programmatic — wymagany dla podpisu CRC
 - [ ] **P24-10**: Obsługa błędów, testy nock (+ testy jednostkowe CRC), package.json, codex, ikona, README
 
-### BaseLinker Node
+### ~~BaseLinker Node~~ (deferred to v2)
 
 - [ ] **BLNKR-01**: Credentials — API Token w header `X-BLToken`
 - [ ] **BLNKR-02**: Helper function dla single-endpoint RPC pattern: `POST /connector.php` z `method` + `parameters` w body
@@ -94,7 +94,7 @@
 - [ ] **BLNKR-10**: Styl programmatic — single-endpoint wymusza execute()
 - [ ] **BLNKR-11**: Obsługa błędów, testy nock, package.json, codex, ikona, README
 
-### Shoper Node
+### ~~Shoper Node~~ (deferred to v2)
 
 - [ ] **SHOPER-01**: Credentials — OAuth2 client_credentials (client_id, client_secret, shop_domain)
 - [ ] **SHOPER-02**: Automatyczny token refresh (OAuth2 client_credentials grant)
@@ -107,7 +107,7 @@
 - [ ] **SHOPER-09**: Rate limit 2 req/sec — retry z exponential backoff
 - [ ] **SHOPER-10**: Obsługa błędów, testy nock, package.json, codex, ikona, README
 
-### wFirma Node
+### ~~wFirma Node~~ (deferred to v2)
 
 - [ ] **WFIRMA-01**: Credentials — Basic Auth (login + hasło) lub API Key
 - [ ] **WFIRMA-02**: XML parser — fast-xml-parser do konwersji XML responses → JSON
@@ -118,7 +118,7 @@
 - [ ] **WFIRMA-07**: Styl programmatic — wymagany ze względu na XML responses
 - [ ] **WFIRMA-08**: Obsługa błędów, testy nock (XML responses), package.json, codex, ikona, README
 
-### iFirma Node
+### ~~iFirma Node~~ (deferred to v2)
 
 - [ ] **IFIRMA-01**: Credentials — API Key + HMAC-SHA1 signing key
 - [ ] **IFIRMA-02**: HMAC-SHA1 signature generation — izolowana, unit-testowalna funkcja per request
@@ -128,7 +128,7 @@
 - [ ] **IFIRMA-06**: Styl programmatic — wymagany dla HMAC signature
 - [ ] **IFIRMA-07**: Obsługa błędów, testy (+ jednostkowe HMAC), package.json, codex, ikona, README
 
-### Allegro Node
+### ~~Allegro Node~~ (deferred to v2)
 
 - [ ] **ALLEGRO-01**: Credentials — OAuth2 Authorization Code (clientId, clientSecret, redirectUri) + sandbox toggle
 - [ ] **ALLEGRO-02**: Automatic token refresh (OAuth2 access/refresh token flow)
@@ -200,6 +200,28 @@
 - [x] **NFZ-09**: Testy z nock — happy path + error handling, description validation
 - [x] **NFZ-10**: package.json (n8n-community-node-package keyword), codex, SVG ikona, README
 
+### LinkerCloud Node
+
+- [x] **LC-01**: Credentials — domain + apiKey (query param auth)
+- [x] **LC-02**: Resource: Orders — operacje List, Get, Create, Update, Cancel
+- [x] **LC-03**: Resource: Products — operacje List, Create, Update
+- [x] **LC-04**: Resource: Stock — operacje List, batch Update by SKU
+- [x] **LC-05**: Resource: Shipments — operacje Create, Create by Order#, Get Label (binary), Get Status, Cancel
+- [x] **LC-06**: Resource: Inbound Orders — operacje List, Get, Create, Update, Confirm
+- [x] **LC-07**: Resource: Order Returns — operacje List, Get, Create, Accept
+- [x] **LC-08**: Paginacja offset+limit z bracket-notation filters
+- [x] **LC-09**: Label download — base64 JSON response decoded to binary via prepareBinaryData
+- [x] **LC-10**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+
+### NBP Exchange Rates Node
+
+- [x] **NBP-01**: Brak credentials — publiczne API NBP, brak autoryzacji
+- [x] **NBP-02**: Resource: Exchange Rate — operacje Get Current, Get by Date, Get Date Range (Tables A, B, C)
+- [x] **NBP-03**: Resource: Gold Price — operacje Get Current, Get by Date, Get Date Range, Get Last N
+- [x] **NBP-04**: Styl deklaratywny z Accept: application/json w requestDefaults
+- [x] **NBP-05**: Date fields jako string (YYYY-MM-DD), max 93-day range
+- [x] **NBP-06**: Obsługa błędów, testy nock, package.json, codex, ikona, README
+
 ### Structural Tests
 
 - [x] **STRUCT-01**: package.json validation — all required fields (name, version, keywords, license, author, repository, files, n8n section, peerDependencies) validated per package
@@ -227,29 +249,38 @@
 
 ### E2E Tests — Public APIs (no auth / free key)
 
-- [ ] **E2E-01**: E2E test infrastructure — jest.config.e2e.js, test:e2e script, env var loading for API keys
-- [ ] **E2E-02**: NBP E2E — get current EUR exchange rate returns numeric mid value from real API
-- [ ] **E2E-03**: NFZ E2E — search queues for known benefit returns non-empty results from real API
-- [ ] **E2E-04**: KRS E2E — get extract for known KRS number returns company data from real API
-- [ ] **E2E-05**: Biała Lista VAT E2E — search by known NIP returns subject data from real API
-- [ ] **E2E-06**: VIES E2E — validate known valid EU VAT number returns valid=true from real API
-- [ ] **E2E-07**: CEIDG E2E — search by known NIP returns company data (requires CEIDG_API_KEY env var, skip if absent)
+- [x] **E2E-01**: E2E test infrastructure — jest.config.e2e.js, test:e2e script, env var loading for API keys
+- [x] **E2E-02**: NBP E2E — get current EUR exchange rate returns numeric mid value from real API
+- [x] **E2E-03**: NFZ E2E — search queues for known benefit returns non-empty results from real API
+- [x] **E2E-04**: KRS E2E — get extract for known KRS number returns company data from real API
+- [x] **E2E-05**: Biała Lista VAT E2E — search by known NIP returns subject data from real API
+- [x] **E2E-06**: VIES E2E — validate known valid EU VAT number returns valid=true from real API
+- [x] **E2E-07**: CEIDG E2E — search by known NIP returns company data (requires CEIDG_API_KEY env var, skip if absent)
 
 ### E2E Tests — API Key Auth
 
-- [ ] **E2E-08**: SMSAPI E2E — send SMS in test mode (test=1), list contacts, check balance via real API
-- [ ] **E2E-09**: Ceneo E2E — get categories and execution limits via real API
-- [ ] **E2E-10**: GUS REGON E2E — search by known NIP via SOAP session against test environment
-- [ ] **E2E-11**: Linkercloud E2E — list orders via real API
-- [ ] **E2E-12**: E2E tests skip gracefully when API keys not provided (no hard failures)
+- [x] **E2E-08**: SMSAPI E2E — send SMS in test mode (test=1), list contacts, check balance via real API
+- [x] **E2E-09**: Ceneo E2E — get categories and execution limits via real API
+- [x] **E2E-10**: GUS REGON E2E — search by known NIP via SOAP session against test environment
+- [x] **E2E-11**: Linkercloud E2E — list orders via real API
+- [x] **E2E-12**: E2E tests skip gracefully when API keys not provided (no hard failures)
 
 ### E2E Tests — Sandbox/Token Auth
 
-- [ ] **E2E-13**: Fakturownia E2E — list invoices, create+retrieve invoice round-trip via trial API
-- [ ] **E2E-14**: InPost E2E — list shipments, create test shipment via sandbox API
-- [ ] **E2E-15**: E2E tests read credentials from env vars, skip if not provided
+- [x] **E2E-13**: Fakturownia E2E — list invoices, create+retrieve invoice round-trip via trial API
+- [x] **E2E-14**: InPost E2E — list shipments, create test shipment via sandbox API
+- [x] **E2E-15**: E2E tests read credentials from env vars, skip if not provided
 
 ## v2 Requirements
+
+### Deferred from v1 (nodes not yet built)
+
+- **P24-01..10**: Przelewy24 — CRC SHA384 signing, payment transactions (10 requirements)
+- **BLNKR-01..11**: BaseLinker — single-endpoint RPC, orders/products/shipping (11 requirements)
+- **SHOPER-01..10**: Shoper — OAuth2 client_credentials, e-commerce (10 requirements)
+- **WFIRMA-01..08**: wFirma — XML responses, invoicing/accounting (8 requirements)
+- **IFIRMA-01..07**: iFirma — HMAC-SHA1 signing, invoicing (7 requirements)
+- **ALLEGRO-01..08**: Allegro — OAuth2 Authorization Code, marketplace (8 requirements)
 
 ### Trigger Nodes
 
@@ -280,36 +311,38 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01..07 | Phase 1 | Pending |
-| SMSAPI-01..13 | Phase 1 | Pending |
-| CEIDG-01..08 | Phase 1 | Pending |
-| FAKT-01..10 | Phase 2 | Pending |
-| INPOST-01..09 | Phase 3 | Pending |
-| P24-01..10 | Phase 4 | Pending |
-| BLNKR-01..11 | Phase 5 | Pending |
-| SHOPER-01..10 | Phase 6 | Pending |
-| WFIRMA-01..08 | Phase 7 | Pending |
-| IFIRMA-01..07 | Phase 8 | Pending |
-| ALLEGRO-01..08 | Phase 9 | Pending |
-| REGON-01..09 | Phase 10 | Pending |
-| KRS-01..04 | Phase 11 | Pending |
-| BL-01..06 | Phase 11 | Pending |
-| VIES-01..04 | Phase 11 | Pending |
-| CENEO-01..10 | Phase 13 | Pending |
-| NFZ-01..10 | Phase 15 | Pending |
-| STRUCT-01..05 | Phase 16 | Pending |
-| UTEST-01..03 | Phase 17 | Pending |
-| INT-01..05 | Phase 18 | Pending |
-| E2E-01..07 | Phase 19 | Pending |
-| E2E-08..12 | Phase 20 | Pending |
-| E2E-13..15 | Phase 21 | Pending |
+| INFRA-01..07 | Phase 1 | Complete |
+| SMSAPI-01..13 | Phase 1 | Complete |
+| CEIDG-01..08 | Phase 1 | Complete |
+| FAKT-01..10 | Phase 2 | Complete |
+| INPOST-01..09 | Phase 3 | Complete |
+| P24-01..10 | Phase 4 | Deferred to v2 |
+| BLNKR-01..11 | Phase 5 | Deferred to v2 |
+| SHOPER-01..10 | Phase 6 | Deferred to v2 |
+| WFIRMA-01..08 | Phase 7 | Deferred to v2 |
+| IFIRMA-01..07 | Phase 8 | Deferred to v2 |
+| ALLEGRO-01..08 | Phase 9 | Deferred to v2 |
+| REGON-01..09 | Phase 10 | Complete |
+| KRS-01..04 | Phase 11 | Complete |
+| BL-01..06 | Phase 11 | Complete |
+| VIES-01..04 | Phase 11 | Complete |
+| LC-01..10 | Phase 12 | Complete |
+| CENEO-01..10 | Phase 13 | Complete |
+| NBP-01..06 | Phase 14 | Complete |
+| NFZ-01..10 | Phase 15 | Complete |
+| STRUCT-01..05 | Phase 16 | Complete |
+| UTEST-01..03 | Phase 17 | Complete |
+| INT-01..05 | Phase 18 | Complete |
+| E2E-01..07 | Phase 19 | Complete |
+| E2E-08..12 | Phase 20 | Complete |
+| E2E-13..15 | Phase 21 | Complete |
 
 **Coverage:**
-- v1 requirements: 135 total
-- Mapped to phases: 135
-- Unmapped: 0
-- E2E requirements: 15 (Phases 19-21)
+- v1 requirements: 134 total (after deferring 54 to v2)
+- Satisfied: 134
+- Deferred to v2: 54 (P24, BLNKR, SHOPER, WFIRMA, IFIRMA, ALLEGRO)
+- Original total (v1+deferred): 188
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-24 after Phase 18 planning (Integration Tests Docker)*
+*Last updated: 2026-03-25 — Phase 22 gap closure: deferred phases 4-9 to v2, added LC/NBP reqs, updated statuses*
