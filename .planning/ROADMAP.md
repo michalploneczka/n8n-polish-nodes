@@ -547,7 +547,7 @@ Plans:
 
 Plans:
 - [x] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
-- [ ] 19-02-PLAN.md -- E2E test suites: 6 describe blocks (NBP, NFZ, KRS, Biala Lista VAT, VIES, CEIDG) with real API assertions and graceful error handling
+- [ ] 21-02-PLAN.md -- E2E test blocks: Fakturownia + InPost describe blocks with credential skip logic and sandbox assertions
 **Success Criteria** (what must be TRUE):
   1. Each of the 6 nodes can execute at least one operation against the real API and return valid structured data
   2. NBP: get current exchange rate for EUR returns numeric mid value
@@ -603,8 +603,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 19-01-PLAN.md -- E2E infrastructure: jest.config.e2e.js, helpers.ts (workflow lifecycle functions), 6 webhook workflow fixtures, e2e-test.sh script, test:e2e root script
-- [ ] 19-02-PLAN.md -- E2E test suites: 6 describe blocks (NBP, NFZ, KRS, Biala Lista VAT, VIES, CEIDG) with real API assertions and graceful error handling
+- [ ] 21-01-PLAN.md -- E2E fixtures: 4 workflow fixtures (Fakturownia list/create, InPost list/create) + e2e-test.sh env var passthrough
+- [ ] 21-02-PLAN.md -- E2E test blocks: Fakturownia + InPost describe blocks with credential skip logic and sandbox assertions
 **Success Criteria** (what must be TRUE):
   1. Fakturownia: list invoices returns valid response from trial account
   2. Fakturownia: create and retrieve an invoice round-trips correctly
