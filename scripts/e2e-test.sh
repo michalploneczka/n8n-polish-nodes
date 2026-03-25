@@ -17,6 +17,12 @@ echo "Starting n8n test container..."
 docker compose -f "$COMPOSE_FILE" -p "$PROJECT_NAME" up -d --wait
 
 echo "Running E2E tests..."
-CEIDG_API_KEY="${CEIDG_API_KEY:-}" npx jest --config jest.config.e2e.js "$@"
+CEIDG_API_KEY="${CEIDG_API_KEY:-}" \
+SMSAPI_TOKEN="${SMSAPI_TOKEN:-}" \
+CENEO_API_KEY="${CENEO_API_KEY:-}" \
+GUS_REGON_KEY="${GUS_REGON_KEY:-abcde12345abcde12345}" \
+LINKERCLOUD_API_KEY="${LINKERCLOUD_API_KEY:-}" \
+LINKERCLOUD_DOMAIN="${LINKERCLOUD_DOMAIN:-}" \
+npx jest --config jest.config.e2e.js "$@"
 
 echo "E2E tests passed!"
