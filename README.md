@@ -19,7 +19,7 @@ Collection of [n8n](https://n8n.io) community nodes for Polish services. Each no
 | NBP | [api.nbp.pl](https://api.nbp.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-nbp)](https://www.npmjs.com/package/n8n-nodes-nbp) | Exchange rates from National Bank of Poland |
 | NFZ | [api.nfz.gov.pl](https://api.nfz.gov.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-nfz)](https://www.npmjs.com/package/n8n-nodes-nfz) | Healthcare waiting times from National Health Fund |
 | Ceneo | [ceneo.pl](https://ceneo.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-ceneo)](https://www.npmjs.com/package/n8n-nodes-ceneo) | Polish price comparison platform |
-| LinkerCloud | [linkercloud.pl](https://linkercloud.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-linkercloud)](https://www.npmjs.com/package/n8n-nodes-linkercloud) | Polish WMS/OMS fulfillment platform |
+| LinkerCloud | [linkercloud.com](https://linkercloud.com) | [![npm](https://img.shields.io/npm/v/n8n-nodes-linkercloud)](https://www.npmjs.com/package/n8n-nodes-linkercloud) | Polish WMS/OMS fulfillment platform |
 
 ## Installation
 
