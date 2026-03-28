@@ -130,7 +130,7 @@ export class Ceidg implements INodeType {
 				required: true,
 				default: '',
 				placeholder: '31F87519-9395-4FCF-8E19-6D5C0522FA7A',
-				description: 'CEIDG entry UUID (from search results — field: id)',
+				description: 'CEIDG entry UUID (from search results — field: ID)',
 				displayOptions: {
 					show: {
 						resource: ['company'],
