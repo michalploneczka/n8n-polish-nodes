@@ -70,7 +70,14 @@ jobs:
       - name: Test package
         run: pnpm --filter "${{ steps.tag.outputs.package_name }}" run test
 
-      - name: Publish with provenance
+      - name: Debug npm auth
+        run: |
+          npm whoami 2>&1 || echo "whoami failed"
+          cat ~/.npmrc 2>/dev/null || echo "no .npmrc"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish
         run: |
           cd packages/${{ steps.tag.outputs.package_name }}
           npm publish --access public
