@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-nbp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "n8n community node for NBP - official Polish exchange rates and gold prices from National Bank of Poland",
   "keywords": [
     "n8n-community-node-package",
