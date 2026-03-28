@@ -80,6 +80,7 @@ jobs:
       - name: Publish
         run: |
           cd packages/${{ steps.tag.outputs.package_name }}
-          npm publish --access public
+          npm publish --access public --auth-type=legacy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: false
