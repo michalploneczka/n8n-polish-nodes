@@ -187,18 +187,18 @@ export const productFields: INodeProperties[] = [
 				description: 'Country of origin (ISO 3166-2, e.g. PL, CN)',
 			},
 			{
-				displayName: 'Depth',
-				name: 'depth',
-				type: 'string',
-				default: '',
-				description: 'Product depth',
-			},
-			{
 				displayName: 'Depot ID',
 				name: 'depotId',
 				type: 'string',
 				default: '',
 				description: 'ID of the depot/warehouse',
+			},
+			{
+				displayName: 'Depth',
+				name: 'depth',
+				type: 'string',
+				default: '',
+				description: 'Product depth',
 			},
 			{
 				displayName: 'Dimensions Unit',
@@ -484,18 +484,18 @@ export const productFields: INodeProperties[] = [
 				description: 'Country of origin (ISO 3166-2)',
 			},
 			{
-				displayName: 'Depth',
-				name: 'depth',
-				type: 'string',
-				default: '',
-				description: 'Product depth',
-			},
-			{
 				displayName: 'Depot ID',
 				name: 'depotId',
 				type: 'string',
 				default: '',
 				description: 'ID of the depot/warehouse',
+			},
+			{
+				displayName: 'Depth',
+				name: 'depth',
+				type: 'string',
+				default: '',
+				description: 'Product depth',
 			},
 			{
 				displayName: 'Dimensions Unit',

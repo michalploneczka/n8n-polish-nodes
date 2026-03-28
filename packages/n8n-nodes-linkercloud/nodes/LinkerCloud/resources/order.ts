@@ -358,20 +358,18 @@ export const orderFields: INodeProperties[] = [
 				displayName: 'Item',
 				values: [
 					{
-						displayName: 'SKU',
-						name: 'sku',
+						displayName: 'Description',
+						name: 'description',
 						type: 'string',
 						default: '',
-						required: true,
-						description: 'Product SKU code',
+						description: 'Item description	/	product name',
 					},
 					{
-						displayName: 'Quantity',
-						name: 'quantity',
-						type: 'number',
-						default: 1,
-						required: true,
-						description: 'Number of units',
+						displayName: 'EAN',
+						name: 'ean',
+						type: 'string',
+						default: '',
+						description: 'Product EAN/barcode',
 					},
 					{
 						displayName: 'Price Gross',
@@ -381,13 +379,6 @@ export const orderFields: INodeProperties[] = [
 						description: 'Gross price per unit',
 					},
 					{
-						displayName: 'Description',
-						name: 'description',
-						type: 'string',
-						default: '',
-						description: 'Item description / product name',
-					},
-					{
 						displayName: 'Price Net',
 						name: 'price_net',
 						type: 'number',
@@ -395,18 +386,27 @@ export const orderFields: INodeProperties[] = [
 						description: 'Net price per unit',
 					},
 					{
+						displayName: 'Quantity',
+						name: 'quantity',
+						type: 'number',
+						default: 1,
+							required:	true,
+						description: 'Number of units',
+					},
+					{
+						displayName: 'SKU',
+						name: 'sku',
+						type: 'string',
+						default: '',
+							required:	true,
+						description: 'Product SKU code',
+					},
+					{
 						displayName: 'Tax Rate',
 						name: 'tax_rate',
 						type: 'number',
 						default: 0,
 						description: 'Tax rate (e.g. 23 for 23%)',
-					},
-					{
-						displayName: 'EAN',
-						name: 'ean',
-						type: 'string',
-						default: '',
-						description: 'Product EAN/barcode',
 					},
 					{
 						displayName: 'Weight',
@@ -457,7 +457,6 @@ export const orderFields: INodeProperties[] = [
 				name: 'additionalOrderNumber',
 				type: 'string',
 				default: '',
-				description: 'Additional order number',
 			},
 			{
 				displayName: 'Billing City',
@@ -492,14 +491,12 @@ export const orderFields: INodeProperties[] = [
 				name: 'billingFirstName',
 				type: 'string',
 				default: '',
-				description: 'Billing first name',
 			},
 			{
 				displayName: 'Billing Last Name',
 				name: 'billingLastName',
 				type: 'string',
 				default: '',
-				description: 'Billing last name',
 			},
 			{
 				displayName: 'Billing Phone',
@@ -645,7 +642,6 @@ export const orderFields: INodeProperties[] = [
 				name: 'deliveryPointCity',
 				type: 'string',
 				default: '',
-				description: 'Delivery point city',
 			},
 			{
 				displayName: 'Delivery Point ID',
@@ -659,7 +655,6 @@ export const orderFields: INodeProperties[] = [
 				name: 'deliveryPointName',
 				type: 'string',
 				default: '',
-				description: 'Delivery point name',
 			},
 			{
 				displayName: 'Delivery Point Post Code',
@@ -812,7 +807,6 @@ export const orderFields: INodeProperties[] = [
 				name: 'additionalOrderNumber',
 				type: 'string',
 				default: '',
-				description: 'Additional order number',
 			},
 			{
 				displayName: 'Billing City',
@@ -847,14 +841,12 @@ export const orderFields: INodeProperties[] = [
 				name: 'billingFirstName',
 				type: 'string',
 				default: '',
-				description: 'Billing first name',
 			},
 			{
 				displayName: 'Billing Last Name',
 				name: 'billingLastName',
 				type: 'string',
 				default: '',
-				description: 'Billing last name',
 			},
 			{
 				displayName: 'Billing Phone',
@@ -1014,7 +1006,6 @@ export const orderFields: INodeProperties[] = [
 				name: 'deliveryPointCity',
 				type: 'string',
 				default: '',
-				description: 'Delivery point city',
 			},
 			{
 				displayName: 'Delivery Point ID',
@@ -1028,7 +1019,6 @@ export const orderFields: INodeProperties[] = [
 				name: 'deliveryPointName',
 				type: 'string',
 				default: '',
-				description: 'Delivery point name',
 			},
 			{
 				displayName: 'Delivery Point Post Code',
@@ -1163,7 +1153,6 @@ export const orderFields: INodeProperties[] = [
 				name: 'paymentTransactionId',
 				type: 'string',
 				default: '',
-				description: 'Payment transaction ID',
 			},
 			{
 				displayName: 'Price Gross',
