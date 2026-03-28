@@ -11,7 +11,6 @@ Collection of [n8n](https://n8n.io) community nodes for Polish services. Each no
 |------|---------|-------------|-------------|
 | SMSAPI | [smsapi.pl](https://www.smsapi.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-smsapi)](https://www.npmjs.com/package/n8n-nodes-smsapi) | Polish SMS gateway |
 | CEIDG | [dane.biznes.gov.pl](https://dane.biznes.gov.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-ceidg)](https://www.npmjs.com/package/n8n-nodes-ceidg) | Polish business registry lookup |
-| Fakturownia | [fakturownia.pl](https://fakturownia.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-fakturownia)](https://www.npmjs.com/package/n8n-nodes-fakturownia) | Polish invoicing platform |
 | InPost | [inpost.pl](https://inpost.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-inpost)](https://www.npmjs.com/package/n8n-nodes-inpost) | Polish parcel locker & courier service |
 | Biala Lista VAT | [mf.gov.pl](https://www.podatki.gov.pl/wykaz-podatnikow-vat-wyszukiwarka) | [![npm](https://img.shields.io/npm/v/n8n-nodes-biala-lista-vat)](https://www.npmjs.com/package/n8n-nodes-biala-lista-vat) | Polish VAT taxpayer white list verification |
 | KRS | [krs.gov.pl](https://www.krs.gov.pl) | [![npm](https://img.shields.io/npm/v/n8n-nodes-krs)](https://www.npmjs.com/package/n8n-nodes-krs) | Polish National Court Register company lookup |
