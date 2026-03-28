@@ -73,6 +73,6 @@ jobs:
       - name: Publish with provenance
         run: |
           cd packages/${{ steps.tag.outputs.package_name }}
-          npm publish --provenance --access public
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
