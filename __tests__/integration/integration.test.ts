@@ -9,16 +9,28 @@ import {
 
 const FIXTURES_DIR = path.join(__dirname, 'fixtures');
 
+/**
+ * Extract session cookie from Set-Cookie response header.
+ * n8n 2.x uses cookie-based auth via /rest/ endpoints.
+ */
+function extractSessionCookie(response: Response): string | undefined {
+	const setCookie = response.headers.get('set-cookie');
+	if (!setCookie) return undefined;
+	// Extract cookie name=value before first semicolon
+	const match = setCookie.match(/^([^;]+)/);
+	return match ? match[1] : undefined;
+}
+
 describe('n8n Integration Tests', () => {
-	let apiKey: string | undefined;
+	let sessionCookie: string | undefined;
 
 	beforeAll(async () => {
-		// Wait for n8n to be healthy (container started by integration-test.sh)
+		// Wait for n8n to be healthy (container started by docker-compose)
 		await waitForN8n(N8N_BASE_URL, 60000);
 
-		// Set up owner account for API access (needed for workflow import)
+		// Set up owner account via /rest/ prefix (n8n 2.x internal API)
 		try {
-			const setupResponse = await fetch(`${N8N_BASE_URL}/api/v1/owner/setup`, {
+			const setupResponse = await fetch(`${N8N_BASE_URL}/rest/owner/setup`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -30,48 +42,57 @@ describe('n8n Integration Tests', () => {
 			});
 
 			if (setupResponse.ok) {
-				const setupData = await setupResponse.json();
-				apiKey = setupData.apiKey;
+				sessionCookie = extractSessionCookie(setupResponse);
 			}
 		} catch {
-			// Owner may already be set up — continue without API key
+			// Owner may already be set up
 		}
 
-		// If no API key from setup, try to sign in and create one
-		if (!apiKey) {
+		// If no session from setup, log in to get one
+		if (!sessionCookie) {
 			try {
-				const loginResponse = await fetch(`${N8N_BASE_URL}/api/v1/login`, {
+				const loginResponse = await fetch(`${N8N_BASE_URL}/rest/login`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						email: 'test@example.com',
+						emailOrLdapLoginId: 'test@example.com',
 						password: 'TestPassword123!',
 					}),
 				});
 
 				if (loginResponse.ok) {
-					const loginData = await loginResponse.json();
-					apiKey = loginData.apiKey;
+					sessionCookie = extractSessionCookie(loginResponse);
 				}
 			} catch {
-				// Login failed — workflow import tests may be skipped
+				// Login failed
 			}
 		}
 
-		// Fail fast if auth not obtained -- INT-03 tests must not silently skip
-		if (!apiKey) {
+		// Fail fast if auth not obtained
+		if (!sessionCookie) {
 			throw new Error(
-				'Failed to obtain n8n API key -- owner setup and login both failed. ' +
-				'INT-03 workflow import tests require authentication in the Docker test environment.',
+				'Failed to obtain n8n session cookie -- owner setup and login both failed. ' +
+				'Integration tests require authentication in the Docker test environment.',
 			);
 		}
 	}, 90000);
+
+	/** Helper to build headers with session cookie */
+	function authHeaders(extra?: Record<string, string>): Record<string, string> {
+		const headers: Record<string, string> = { ...extra };
+		if (sessionCookie) {
+			headers['Cookie'] = sessionCookie;
+		}
+		return headers;
+	}
 
 	describe('Node Registration (INT-01)', () => {
 		let registeredNodeNames: string[];
 
 		beforeAll(async () => {
-			const response = await fetch(N8N_INTERNAL_TYPES_URL);
+			const response = await fetch(N8N_INTERNAL_TYPES_URL, {
+				headers: authHeaders(),
+			});
 			expect(response.ok).toBe(true);
 			const nodeTypes = await response.json();
 			registeredNodeNames = nodeTypes.map((n: { name: string }) => n.name);
@@ -82,7 +103,13 @@ describe('n8n Integration Tests', () => {
 		for (const pkg of expectedNodes) {
 			for (const nodeType of pkg.nodeTypes) {
 				it(`should have registered ${nodeType}`, () => {
-					expect(registeredNodeNames).toContain(nodeType);
+					// When loaded via N8N_CUSTOM_EXTENSIONS, nodes get "CUSTOM." prefix
+					// instead of package name prefix (e.g. "CUSTOM.smsapi" vs "n8n-nodes-smsapi.smsapi")
+					const shortName = nodeType.split('.').pop()!;
+					const customName = `CUSTOM.${shortName}`;
+					const found = registeredNodeNames.includes(nodeType) ||
+						registeredNodeNames.includes(customName);
+					expect(found).toBe(true);
 				});
 			}
 		}
@@ -92,7 +119,9 @@ describe('n8n Integration Tests', () => {
 		let registeredCredentialNames: string[];
 
 		beforeAll(async () => {
-			const response = await fetch(`${N8N_BASE_URL}/types/credentials.json`);
+			const response = await fetch(`${N8N_BASE_URL}/types/credentials.json`, {
+				headers: authHeaders(),
+			});
 
 			if (response.ok) {
 				const credentialTypes = await response.json();
@@ -101,7 +130,9 @@ describe('n8n Integration Tests', () => {
 				);
 			} else {
 				// Fallback: extract credential types from node type definitions
-				const nodeResponse = await fetch(N8N_INTERNAL_TYPES_URL);
+				const nodeResponse = await fetch(N8N_INTERNAL_TYPES_URL, {
+					headers: authHeaders(),
+				});
 				expect(nodeResponse.ok).toBe(true);
 				const nodeTypes = await nodeResponse.json();
 				const credSet = new Set<string>();
@@ -139,23 +170,16 @@ describe('n8n Integration Tests', () => {
 					fs.readFileSync(path.join(FIXTURES_DIR, fixtureFile), 'utf-8'),
 				);
 
-				const headers: Record<string, string> = {
-					'Content-Type': 'application/json',
-				};
-
-				if (apiKey) {
-					headers['X-N8N-API-KEY'] = apiKey;
-				}
-
-				const response = await fetch(`${N8N_BASE_URL}/api/v1/workflows`, {
+				const response = await fetch(`${N8N_BASE_URL}/rest/workflows`, {
 					method: 'POST',
-					headers,
+					headers: authHeaders({ 'Content-Type': 'application/json' }),
 					body: JSON.stringify(workflowJson),
 				});
 
 				expect(response.status).toBe(200);
 				const result = await response.json();
-				expect(result).toHaveProperty('id');
+				expect(result).toHaveProperty('data');
+				expect(result.data).toHaveProperty('id');
 			});
 		}
 	});

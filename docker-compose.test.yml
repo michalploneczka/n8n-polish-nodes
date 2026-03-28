@@ -16,7 +16,6 @@ services:
       - ./packages/n8n-nodes-biala-lista-vat:/custom-nodes/node_modules/n8n-nodes-biala-lista-vat
       - ./packages/n8n-nodes-ceidg:/custom-nodes/node_modules/n8n-nodes-ceidg
       - ./packages/n8n-nodes-ceneo:/custom-nodes/node_modules/n8n-nodes-ceneo
-      - ./packages/n8n-nodes-fakturownia:/custom-nodes/node_modules/n8n-nodes-fakturownia
       - ./packages/n8n-nodes-gus-regon:/custom-nodes/node_modules/n8n-nodes-gus-regon
       - ./packages/n8n-nodes-inpost:/custom-nodes/node_modules/n8n-nodes-inpost
       - ./packages/n8n-nodes-krs:/custom-nodes/node_modules/n8n-nodes-krs
