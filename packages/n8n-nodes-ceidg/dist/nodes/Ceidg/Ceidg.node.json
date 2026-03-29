@@ -1,0 +1,14 @@
+{
+  "node": "n8n-nodes-ceidg.ceidg",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Data & Storage"],
+  "subcategories": {
+    "Data & Storage": ["Other Data Stores"]
+  },
+  "resources": {
+    "primaryDocumentation": [
+      { "url": "https://dane.biznes.gov.pl/api" }
+    ]
+  }
+}

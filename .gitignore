@@ -1,12 +1,11 @@
 node_modules/
-dist/
 *.js.map
 *.d.ts
+*.tsbuildinfo
 !jest.config.base.js
 !scripts/*.js
 .idea/
 .DS_Store
-*.tsbuildinfo
 coverage/
 .n8n/
 package-lock.json

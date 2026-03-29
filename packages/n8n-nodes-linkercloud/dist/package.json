@@ -1,0 +1,56 @@
+{
+    "name": "n8n-nodes-linkercloud",
+    "version": "0.1.0",
+    "description": "n8n community node for Linker Cloud - Polish WMS/OMS fulfillment platform",
+    "keywords": [
+        "n8n-community-node-package",
+        "n8n",
+        "linkercloud",
+        "wms",
+        "fulfillment",
+        "poland",
+        "polish",
+        "ecommerce"
+    ],
+    "license": "MIT",
+    "author": {
+        "name": "Michal Ploneczka",
+        "email": "michal.ploneczka@gmail.com",
+        "url": "https://codersgroup.pl"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/michalploneczka/n8n-polish-nodes.git",
+        "directory": "packages/n8n-nodes-linkercloud"
+    },
+    "scripts": {
+        "build": "n8n-node build && node ../../scripts/copy-codex.js",
+        "dev": "n8n-node dev",
+        "lint": "n8n-node lint",
+        "lint:fix": "n8n-node lint --fix",
+        "release": "n8n-node release",
+        "test": "jest --config jest.config.js",
+        "clean": "rm -rf dist"
+    },
+    "files": [
+        "dist"
+    ],
+    "n8n": {
+        "n8nNodesApiVersion": 1,
+        "strict": false,
+        "credentials": [
+            "dist/credentials/LinkerCloudApi.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/LinkerCloud/LinkerCloud.node.js"
+        ]
+    },
+    "devDependencies": {
+        "@n8n/node-cli": "*",
+        "eslint": "9.32.0",
+        "typescript": "5.9.2"
+    },
+    "peerDependencies": {
+        "n8n-workflow": "*"
+    }
+}
