@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-ceidg",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "n8n community node for CEIDG - Polish company registry lookup",
     "keywords": [
         "n8n-community-node-package",
