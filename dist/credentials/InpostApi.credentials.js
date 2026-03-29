@@ -1,0 +1,1 @@
+../../packages/n8n-nodes-inpost/dist/credentials/InpostApi.credentials.js

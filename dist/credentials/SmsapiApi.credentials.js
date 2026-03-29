@@ -1,0 +1,1 @@
+../../packages/n8n-nodes-smsapi/dist/credentials/SmsapiApi.credentials.js

@@ -1,0 +1,1 @@
+../../packages/n8n-nodes-linkercloud/dist/credentials/LinkerCloudApi.credentials.js

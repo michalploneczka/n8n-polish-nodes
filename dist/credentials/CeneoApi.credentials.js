@@ -1,0 +1,1 @@
+../../packages/n8n-nodes-ceneo/dist/credentials/CeneoApi.credentials.js

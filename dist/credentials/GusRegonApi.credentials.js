@@ -1,0 +1,1 @@
+../../packages/n8n-nodes-gus-regon/dist/credentials/GusRegonApi.credentials.js

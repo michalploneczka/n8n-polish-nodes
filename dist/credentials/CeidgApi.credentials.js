@@ -1,0 +1,1 @@
+../../packages/n8n-nodes-ceidg/dist/credentials/CeidgApi.credentials.js
