@@ -1,0 +1,1 @@
+../packages/n8n-nodes-smsapi/credentials/SmsapiApi.credentials.ts

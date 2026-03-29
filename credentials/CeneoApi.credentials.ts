@@ -1,0 +1,1 @@
+../packages/n8n-nodes-ceneo/credentials/CeneoApi.credentials.ts
