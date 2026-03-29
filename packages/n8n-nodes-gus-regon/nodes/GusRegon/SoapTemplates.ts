@@ -9,11 +9,11 @@ export const URLS = {
 } as const;
 
 export const REPORT_TYPES = {
-	legalEntity: 'PublDaneRaportPrawna',
-	legalEntityPkd: 'PublDaneRaportDzialalnosciPrawnej',
-	naturalPerson: 'PublDaneRaportFizycznaOsoba',
-	naturalPersonCeidg: 'PublDaneRaportDzialalnoscFizycznejCeidg',
-	naturalPersonPkd: 'PublDaneRaportDzialalnosciFizycznej',
+	legalEntity: 'BIR11OsPrawna',
+	legalEntityPkd: 'BIR11OsPrawnaPkd',
+	naturalPerson: 'BIR11OsFizycznaDaneOgolne',
+	naturalPersonCeidg: 'BIR11OsFizycznaDzialalnoscCeidg',
+	naturalPersonPkd: 'BIR11OsFizycznaPkd',
 } as const;
 
 export function zalogujEnvelope(url: string, apiKey: string): string {

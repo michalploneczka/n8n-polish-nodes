@@ -18,7 +18,7 @@ export class GusRegonApi implements ICredentialType {
 			default: '',
 			required: true,
 			description:
-				'API key from dane.biznes.gov.pl (free registration). Test key: abcde12345abcde12345',
+				'User key obtained by emailing regon_bir@stat.gov.pl (free). Test key: abcde12345abcde12345',
 		},
 		{
 			displayName: 'Environment',
