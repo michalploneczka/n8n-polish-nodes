@@ -1,0 +1,1 @@
+../packages/n8n-nodes-linkercloud/credentials/LinkerCloudApi.credentials.ts

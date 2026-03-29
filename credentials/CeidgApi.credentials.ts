@@ -1,0 +1,1 @@
+../packages/n8n-nodes-ceidg/credentials/CeidgApi.credentials.ts
