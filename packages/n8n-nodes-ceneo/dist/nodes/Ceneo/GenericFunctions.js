@@ -10,7 +10,7 @@ function resetTokenCache() {
     cachedToken = undefined;
 }
 async function getToken() {
-    var _a;
+    var _a, _b;
     if (cachedToken)
         return cachedToken;
     const credentials = await this.getCredentials('ceneoApi');
@@ -23,10 +23,13 @@ async function getToken() {
     };
     try {
         const response = await this.helpers.httpRequest(requestOptions);
-        cachedToken =
-            typeof response === 'string'
-                ? response
-                : (_a = response.token) !== null && _a !== void 0 ? _a : String(response);
+        if (typeof response === 'string') {
+            cachedToken = response.replace(/^"|"$/g, '');
+        }
+        else {
+            const obj = response;
+            cachedToken = (_b = (_a = obj.Token) !== null && _a !== void 0 ? _a : obj.token) !== null && _b !== void 0 ? _b : String(response);
+        }
         return cachedToken;
     }
     catch (error) {
@@ -57,7 +60,7 @@ async function ceneoApiRequestV2(functionName, params = {}) {
     const credentials = await this.getCredentials('ceneoApi');
     const endpoint = `/api/v2/function/${functionName}/Call`;
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         url: `${BASE_URL}${endpoint}`,
         qs: {
             apiKey: credentials.apiKey,

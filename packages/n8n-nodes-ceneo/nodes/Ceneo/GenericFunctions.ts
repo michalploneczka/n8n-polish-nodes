@@ -30,11 +30,13 @@ async function getToken(this: IExecuteFunctions): Promise<string> {
 		// Ceneo v3 auth requires programmatic token acquisition from AuthorizationService
 		// eslint-disable-next-line @n8n/community-nodes/no-http-request-with-manual-auth
 		const response = await this.helpers.httpRequest(requestOptions);
-		// GetToken may return plain string or JSON -- handle both
-		cachedToken =
-			typeof response === 'string'
-				? response
-				: ((response as IDataObject).token as string) ?? String(response);
+		// GetToken returns token as plain string or JSON with PascalCase key (WCF service)
+		if (typeof response === 'string') {
+			cachedToken = response.replace(/^"|"$/g, '');
+		} else {
+			const obj = response as IDataObject;
+			cachedToken = (obj.Token as string) ?? (obj.token as string) ?? String(response);
+		}
 		return cachedToken;
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error as JsonObject, {
@@ -75,7 +77,7 @@ export async function ceneoApiRequestV2(
 	const endpoint = `/api/v2/function/${functionName}/Call`;
 
 	const requestOptions: IHttpRequestOptions = {
-		method: 'POST',
+		method: 'GET',
 		url: `${BASE_URL}${endpoint}`,
 		qs: {
 			apiKey: credentials.apiKey as string,

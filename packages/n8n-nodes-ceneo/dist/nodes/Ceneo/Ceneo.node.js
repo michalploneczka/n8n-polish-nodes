@@ -67,11 +67,11 @@ class Ceneo {
                     }
                     else if (operation === 'getAllOffers') {
                         const shopProductIds = this.getNodeParameter('shopProductIds', i);
-                        responseData = await GenericFunctions_1.ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductOffersBy_IDs', { shop_product_ids: shopProductIds });
+                        responseData = await GenericFunctions_1.ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductOffersBy_IDs', { shop_product_ids_comma_separated: shopProductIds });
                     }
                     else if (operation === 'getTop10CheapestOffers') {
                         const shopProductIds = this.getNodeParameter('shopProductIds', i);
-                        responseData = await GenericFunctions_1.ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductTop10OffersByIDs', { shop_product_ids: shopProductIds });
+                        responseData = await GenericFunctions_1.ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductTop10OffersBy_IDs', { shop_product_ids_comma_separated: shopProductIds });
                     }
                     else {
                         responseData = {};
@@ -87,7 +87,7 @@ class Ceneo {
                 }
                 else if (resource === 'account') {
                     if (operation === 'getLimits') {
-                        responseData = await GenericFunctions_1.ceneoApiRequestV2.call(this, 'webapi_data_critical.GetExecutionLimits');
+                        responseData = await GenericFunctions_1.ceneoApiRequestV2.call(this, 'webapi_meta.GetExecutionLimits');
                     }
                     else {
                         responseData = {};

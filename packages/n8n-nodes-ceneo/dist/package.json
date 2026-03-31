@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-ceneo",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "n8n community node for Ceneo - Polish price comparison platform for market price verification",
     "keywords": [
         "n8n-community-node-package",

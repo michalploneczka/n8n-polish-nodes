@@ -78,10 +78,10 @@ export class Ceneo implements INodeType {
 						responseData = await ceneoApiRequestV3.call(this, '/api/v3/GetTopCategoryProducts', { categoryName, top });
 					} else if (operation === 'getAllOffers') {
 						const shopProductIds = this.getNodeParameter('shopProductIds', i) as string;
-						responseData = await ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductOffersBy_IDs', { shop_product_ids: shopProductIds });
+						responseData = await ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductOffersBy_IDs', { shop_product_ids_comma_separated: shopProductIds });
 					} else if (operation === 'getTop10CheapestOffers') {
 						const shopProductIds = this.getNodeParameter('shopProductIds', i) as string;
-						responseData = await ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductTop10OffersByIDs', { shop_product_ids: shopProductIds });
+						responseData = await ceneoApiRequestV2.call(this, 'webapi_data_critical.shop_getProductTop10OffersBy_IDs', { shop_product_ids_comma_separated: shopProductIds });
 					} else {
 						responseData = {};
 					}
@@ -93,7 +93,7 @@ export class Ceneo implements INodeType {
 					}
 				} else if (resource === 'account') {
 					if (operation === 'getLimits') {
-						responseData = await ceneoApiRequestV2.call(this, 'webapi_data_critical.GetExecutionLimits');
+						responseData = await ceneoApiRequestV2.call(this, 'webapi_meta.GetExecutionLimits');
 					} else {
 						responseData = {};
 					}

@@ -64,6 +64,22 @@ describe('Ceneo Token Acquisition', () => {
 		expect(firstCall.url).toContain('AuthorizationService.svc/GetToken');
 		expect(firstCall.headers.Authorization).toBe(`Basic ${TEST_API_KEY}`);
 	});
+
+	it('should handle token returned as JSON with PascalCase key', async () => {
+		const mock = createCeneoMock({
+			resource: 'category',
+			operation: 'list',
+		});
+		(mock.helpers.httpRequest as jest.Mock)
+			.mockResolvedValueOnce({ Token: TEST_TOKEN })
+			.mockResolvedValueOnce([{ categoryId: 1, name: 'Elektronika' }]);
+
+		const result = await node.execute.call(mock);
+
+		expect(result[0]).toHaveLength(1);
+		const secondCall = (mock.helpers.httpRequest as jest.Mock).mock.calls[1][0];
+		expect(secondCall.headers.Authorization).toBe(`Bearer ${TEST_TOKEN}`);
+	});
 });
 
 describe('Product Operations', () => {
@@ -111,11 +127,11 @@ describe('Product Operations', () => {
 
 		const callArgs = (mock.helpers.httpRequest as jest.Mock).mock.calls[0][0];
 		expect(callArgs.url).toContain('webapi_data_critical.shop_getProductOffersBy_IDs/Call');
-		expect(callArgs.method).toBe('POST');
+		expect(callArgs.method).toBe('GET');
 		expect(callArgs.qs).toEqual(expect.objectContaining({
 			apiKey: TEST_API_KEY,
 			resultFormatter: 'json',
-			shop_product_ids: '123,456',
+			shop_product_ids_comma_separated: '123,456',
 		}));
 	});
 
@@ -133,7 +149,10 @@ describe('Product Operations', () => {
 		expect(result[0]).toHaveLength(1);
 
 		const callArgs = (mock.helpers.httpRequest as jest.Mock).mock.calls[0][0];
-		expect(callArgs.url).toContain('shop_getProductTop10OffersByIDs');
+		expect(callArgs.url).toContain('shop_getProductTop10OffersBy_IDs');
+		expect(callArgs.qs).toEqual(expect.objectContaining({
+			shop_product_ids_comma_separated: '789',
+		}));
 	});
 });
 
