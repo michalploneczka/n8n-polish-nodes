@@ -2,13 +2,14 @@
   "node": "n8n-nodes-krs.krs",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
-  "categories": ["Data & Storage"],
-  "subcategories": {
-    "Data & Storage": ["Other Data Stores"]
-  },
+  "categories": [
+    "Data & Storage"
+  ],
   "resources": {
     "primaryDocumentation": [
-      { "url": "https://api-krs.ms.gov.pl/" }
+      {
+        "url": "https://api-krs.ms.gov.pl/"
+      }
     ]
   }
 }

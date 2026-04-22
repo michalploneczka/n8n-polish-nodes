@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-vies",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "n8n community node for VIES - EU VAT number validation via European Commission",
     "keywords": [
         "n8n-community-node-package",
@@ -23,6 +23,7 @@
         "url": "https://github.com/michalploneczka/n8n-polish-nodes.git",
         "directory": "packages/n8n-nodes-vies"
     },
+    "homepage": "https://github.com/michalploneczka/n8n-polish-nodes/tree/main/packages/n8n-nodes-vies#readme",
     "scripts": {
         "build": "n8n-node build && node ../../scripts/copy-codex.js",
         "dev": "n8n-node dev",

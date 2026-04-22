@@ -2,13 +2,14 @@
   "node": "n8n-nodes-smsapi.smsapi",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
-  "categories": ["Communication"],
-  "subcategories": {
-    "Communication": ["SMS"]
-  },
+  "categories": [
+    "Communication"
+  ],
   "resources": {
     "primaryDocumentation": [
-      { "url": "https://www.smsapi.pl/docs" }
+      {
+        "url": "https://www.smsapi.pl/docs"
+      }
     ]
   }
 }

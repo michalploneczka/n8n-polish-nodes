@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-nbp",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "n8n community node for NBP - official Polish exchange rates and gold prices from National Bank of Poland",
     "keywords": [
         "n8n-community-node-package",
@@ -24,6 +24,7 @@
         "url": "https://github.com/michalploneczka/n8n-polish-nodes.git",
         "directory": "packages/n8n-nodes-nbp"
     },
+    "homepage": "https://github.com/michalploneczka/n8n-polish-nodes/tree/main/packages/n8n-nodes-nbp#readme",
     "scripts": {
         "build": "n8n-node build && node ../../scripts/copy-codex.js",
         "dev": "n8n-node dev",

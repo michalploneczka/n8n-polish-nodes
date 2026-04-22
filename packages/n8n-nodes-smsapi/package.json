@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-smsapi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "n8n community node for SMSAPI.pl - Polish SMS gateway",
   "keywords": [
     "n8n-community-node-package",
@@ -21,6 +21,7 @@
     "url": "https://github.com/michalploneczka/n8n-polish-nodes.git",
     "directory": "packages/n8n-nodes-smsapi"
   },
+  "homepage": "https://github.com/michalploneczka/n8n-polish-nodes/tree/main/packages/n8n-nodes-smsapi#readme",
   "scripts": {
     "build": "n8n-node build && node ../../scripts/copy-codex.js",
     "dev": "n8n-node dev",

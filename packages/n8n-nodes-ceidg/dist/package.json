@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-ceidg",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "n8n community node for CEIDG - Polish company registry lookup",
     "keywords": [
         "n8n-community-node-package",
@@ -22,6 +22,7 @@
         "url": "https://github.com/michalploneczka/n8n-polish-nodes.git",
         "directory": "packages/n8n-nodes-ceidg"
     },
+    "homepage": "https://github.com/michalploneczka/n8n-polish-nodes/tree/main/packages/n8n-nodes-ceidg#readme",
     "scripts": {
         "build": "n8n-node build && node ../../scripts/copy-codex.js",
         "dev": "n8n-node dev",

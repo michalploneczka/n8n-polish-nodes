@@ -2,13 +2,14 @@
   "node": "n8n-nodes-nbp.nbp",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
-  "categories": ["Data & Storage"],
-  "subcategories": {
-    "Data & Storage": ["Other Data Stores"]
-  },
+  "categories": [
+    "Data & Storage"
+  ],
   "resources": {
     "primaryDocumentation": [
-      { "url": "https://api.nbp.pl/" }
+      {
+        "url": "https://api.nbp.pl/"
+      }
     ]
   }
 }

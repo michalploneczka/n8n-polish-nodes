@@ -2,10 +2,9 @@
   "node": "n8n-nodes-inpost.inpost",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
-  "categories": ["Miscellaneous"],
-  "subcategories": {
-    "Miscellaneous": ["Other"]
-  },
+  "categories": [
+    "Miscellaneous"
+  ],
   "resources": {
     "primaryDocumentation": [
       {

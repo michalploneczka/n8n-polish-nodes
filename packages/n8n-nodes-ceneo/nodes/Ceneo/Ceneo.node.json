@@ -2,13 +2,14 @@
   "node": "n8n-nodes-ceneo.ceneo",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
-  "categories": ["Data & Storage"],
-  "subcategories": {
-    "Data & Storage": ["Pricing"]
-  },
+  "categories": [
+    "Data & Storage"
+  ],
   "resources": {
     "primaryDocumentation": [
-      { "url": "https://developers.ceneo.pl" }
+      {
+        "url": "https://developers.ceneo.pl"
+      }
     ]
   }
 }
