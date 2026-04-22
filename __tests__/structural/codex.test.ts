@@ -94,13 +94,13 @@ describe.each(packages)('Package %s codex', (pkgName) => {
     }
   });
 
-  it('codex has subcategories object with at least one key', () => {
+  it('codex does not contain undocumented subcategories field', () => {
+    // n8n Creator Portal review (2026-04) flagged `subcategories` as undocumented.
+    // Only node, nodeVersion, codexVersion, categories, resources, alias are supported.
     for (const { nodeDir, nodeName } of nodeEntries) {
       const codexPath = path.join(pkgDir, 'nodes', nodeDir, `${nodeName}.node.json`);
       const codex = JSON.parse(fs.readFileSync(codexPath, 'utf-8'));
-      expect(typeof codex.subcategories).toBe('object');
-      expect(codex.subcategories).not.toBeNull();
-      expect(Object.keys(codex.subcategories).length).toBeGreaterThan(0);
+      expect(codex.subcategories).toBeUndefined();
     }
   });
 
